@@ -1,0 +1,4 @@
+sp_reports:
+    resource: "@SpReportsBundle/Controller/"
+    type:     annotation
+    prefix:   /reports/

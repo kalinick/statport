@@ -1,0 +1,77 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/spfront/css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+    {% block header %}
+        <div class="header">
+            <div class="white-container-left">
+                <div class="white-container-right">
+                    <div id="header-content">
+                        <div id="logo">
+                            <a href="/"><img src="{{ asset('bundles/spfront/images/sport-statport.png') }}" alt="Sport-Statport.com"></a>
+                        </div>
+                        <div class="menu">
+                            <div class="menu-item gray-container bold" style="width: 69px;"><a href="http://symfony.sport-statport.com/profile/commons" class="blue">Commons</a></div>
+                            <div class="divisor divisor-menu"></div>
+                            <div class="menu-item" style="width: 76px;"><a href="http://symfony.sport-statport.com/profile/" class="blue">My account</a></div>
+                            <div class="divisor divisor-menu"></div>
+                            <div class="menu-item" style="width: 53px;"><a href="http://symfony.sport-statport.com/logout" class="blue">Log out</a></div>
+                        </div>
+                        <div id="login-popup"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+        <div class="global-width" id="footer">
+
+            <div id="footer-content">
+                <div class="footer-left">
+                    <div class="email">Email: <a href="mailto:info@sport-statport.com">info@sport-statport.com</a></div>
+                    <div class="divisor divisor-footer"></div>
+                    Call us directly at <b>480-249-8520</b>
+                </div>
+                <div class="footer-right">
+                    <a href="/privacy">Privacy</a>
+                    <div class="divisor divisor-footer"></div>
+                    <a href="/terms-of-service">Terms of service</a>
+                    <div class="divisor divisor-footer"></div>
+                    <a href="/legal-notices">Legal notices</a>
+                    <div class="divisor divisor-footer"></div>
+                    <a href="/about">About</a>
+                    <div class="divisor divisor-footer"></div>
+                    <a href="/contact-us">Contact us</a>
+                </div>
+            </div>
+            <div id="footer2-content">
+                <div class="footer-left">
+                    <span style="display:block; margin-top:5px;">&copy; 2012 Statport Group LLC</span>
+                </div>
+                <div class="footer-right">
+                    <span style="float:left; display:block; margin-right: 25px; margin-top:5px;">Share this page:</span>
+                    <span class='st_facebook_hcount' displayText='Facebook'></span>
+                    <span class='st_twitter_hcount' displayText='Tweet'></span>
+                    <span class='st_email_hcount' displayText='Email'></span>
+                    <span class='st_googleplus_hcount' displayText='Google +'></span>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/spfront/js/jquery-1.10.1.min.js.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/spfront/js/main.js') }}"></script>
+{% endblock %}
