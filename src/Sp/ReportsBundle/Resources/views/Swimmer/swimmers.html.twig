@@ -1,0 +1,27 @@
+{% extends 'SpFrontBundle::base.html.twig' %}
+
+{% block content %}
+    <div>
+        <label for="swimmer-list">Choose swimmer:</label>
+        <select id="swimmer-list">
+            <option value="0">Please, select swimmer</option>
+            {% for swimmer in swimmers %}
+            <option value="{{ swimmer.id }}">{{ swimmer }}</option>
+            {% endfor %}
+        </select>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            $('#swimmer-list').change(function(){
+                var value = $(this).val();
+                if (value > 0) {
+                    document.location = '{{ path('reports_swimmers') }}' + $(this).val();
+                }
+            });
+        });
+    </script>
+{% endblock %}

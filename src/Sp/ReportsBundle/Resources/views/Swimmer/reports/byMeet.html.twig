@@ -1,0 +1,21 @@
+<table class="default">
+    <thead>
+    <tr>
+        <th>Meet</th>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set i = 0 %}
+    {% for event in report %}
+        <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
+            <td>{{ event.meet }}</td>
+            <td>{{ event.date.format('d/m/Y') }}</td>
+            <td>{{ event|eventToString }}</td>
+            <td>{{ event.seconds|timeToString }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

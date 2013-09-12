@@ -1,0 +1,40 @@
+<table class="default">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Meet</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>LSC</th>
+            <th>Club</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% set i = 0 %}
+    {% for eventType, events in report %}
+    <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
+        <td class="eventType" rowspan="{{ events|length }}">{{ eventType }}</td>
+        {% set first = true %}
+        {% for event in events %}
+            {% if(not first) %}
+                <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
+            {% endif %}
+            <td>{{ event.date.format('d/m/Y') }}</td>
+            <td>{{ event.meet }}</td>
+            <td>{{ event.gender }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ event.seconds|timeToString }}</td>
+            {% if(not first) %}
+                </tr>
+            {% endif %}
+            {% set first = false %}
+            {% set i = i + 1 %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

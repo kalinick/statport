@@ -1,0 +1,11 @@
+{% for eventType, params in report %}
+    <div class="graphic historical-graphic">
+        <div class="image"></div>
+        <div class="params">
+            <div class="subtitle">{{ eventType }}</div>
+            <div class="dates">{{ params.dates }}</div>
+            <div class="swimmerSeconds">{{ params.swimmerSeconds }}</div>
+            <div class="tempSeconds">{{ params.tempSeconds }}</div>
+        </div>
+    </div>
+{% endfor %}

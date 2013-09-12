@@ -4,17 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+
     <parameters>
-        <parameter key="sp_app.example.class">Sp\AppBundle\Example</parameter>
+        <parameter key="sp_app.swimmer_manager.class">Sp\AppBundle\Model\SwimmerManager</parameter>
     </parameters>
 
     <services>
-        <service id="sp_app.example" class="%sp_app.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="sp_app.swimmer_manager" class="%sp_app.swimmer_manager.class%">
+            <argument type="service" id="doctrine" />
         </service>
     </services>
-    -->
+
 </container>

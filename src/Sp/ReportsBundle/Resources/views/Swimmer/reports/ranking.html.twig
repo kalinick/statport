@@ -1,0 +1,24 @@
+<table class="default">
+    {% for eventType, events in report %}
+    <tr>
+        <th colspan="5">{{ eventType }}</th>
+    </tr>
+    <tr>
+        <th>Meet</th>
+        <th>Date</th>
+        <th>Ranking</th>
+        <th>Out of</th>
+        <th>%tile</th>
+    </tr>
+        {% set i = 0 %}
+        {% for event in events %}
+            <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
+                <td>{{ event.meet }}</td>
+                <td>{{ event.date.format('d/m/Y') }}</td>
+                <td>{{ event.rank }}</td>
+                <td>{{ event.resultsNum }}</td>
+                <td>{% if (event.tile is null) %}N/A{% else %}{{ event.tile }} %{% endif %}</td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+</table>

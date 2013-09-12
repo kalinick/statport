@@ -1,0 +1,17 @@
+<table class="default">
+    <thead>
+    <tr>
+        <th>Event</th>
+        <th>Best Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set i = 0 %}
+    {% for event in report %}
+        <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
+            <td>{{ event|eventToString }}</td>
+            <td>{{ event.seconds|timeToString }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

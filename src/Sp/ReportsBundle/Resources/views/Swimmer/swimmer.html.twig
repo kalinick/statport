@@ -1,0 +1,107 @@
+{% extends 'SpFrontBundle::base.html.twig' %}
+
+{% block content %}
+    <a href="{{ path('reports_swimmers') }}">Back</a>
+    <h1>{{ swimmer }}</h1>
+
+    <div class="reports-wrapper">
+        <div class="reports-titles">
+            <ol>
+                {% for key, title in reportsTitles %}
+                    <li><a data-id="{{ key + 1 }}" href="#{{ key + 1 }}">{{ title }}</a></li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="reports">
+            <div class="report" data-id="1">
+                {{ include('SpReportsBundle:Swimmer:reports/performance.html.twig', {'report': reports['performance']}) }}
+            </div>
+            <div class="report" data-id="2">
+                {{ include('SpReportsBundle:Swimmer:reports/bestTime.html.twig', {'report': reports['bestTime']}) }}
+            </div>
+            <div class="report" data-id="3">
+                {{ include('SpReportsBundle:Swimmer:reports/byMeet.html.twig', {'report': reports['byMeet']}) }}
+            </div>
+            <div class="report" data-id="4">
+                {{ include('SpReportsBundle:Swimmer:reports/ranking.html.twig', {'report': reports['rank']}) }}
+            </div>
+            <div class="report" data-id="5">
+                {{ include('SpReportsBundle:Swimmer:reports/historical.html.twig', {'report': reports['historical']}) }}
+            </div>
+        </div>
+        <div class="clear-both"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/spfront/js/highcharts/highcharts.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            showReport(window.location.hash.substring(1));
+
+            $('.reports-titles li a').click(function(){
+                showReport($(this).attr('href').substr(1));
+            });
+
+            $('.graphic').each(function(){
+                initHighcharts(this);
+            });
+
+        });
+
+        function showReport(id)
+        {
+            $('.report').hide();
+            $('.reports-titles a').removeClass('selected');
+            id = (id == '') ? 1 : id;
+            $('.reports [data-id="' + id + '"]').show();
+            $('.reports-titles a[data-id="' + id + '"]').addClass('selected');
+        }
+
+        function initHighcharts(target) {
+            var subtitle = $(target).find('.params .subtitle').html();
+            var dates = $.parseJSON($(target).find('.params .dates').html());
+            var swimmerSeconds = $.parseJSON($(target).find('.params .swimmerSeconds').html());
+            var tempSeconds = $.parseJSON($(target).find('.params .tempSeconds').html());
+
+            $(target).find('.params').remove();
+            $(target).find('.image').highcharts({
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Historical Progression'
+                },
+                subtitle: {
+                    text: subtitle
+                },
+                xAxis: {
+                    categories: dates
+                },
+                yAxis: {
+                    title: {
+                        text: 'Time(sec)'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                series: [{
+                    name: subtitle,
+                    data: swimmerSeconds
+                }, {
+                    name: 'temp',
+                    data: tempSeconds
+                }]
+            });
+        }
+
+    </script>
+{% endblock %}
