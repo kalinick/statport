@@ -8,6 +8,7 @@
 namespace Sp\ReportsBundle\Model;
 
 use Sp\AppBundle\Entity;
+use Sp\AppBundle\Model\TimeStandartManager;
 use Sp\AppBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
@@ -38,10 +39,58 @@ class ReportsModel
      */
     private $swimmerRepository;
 
+    /**
+     * @var Repository\EventRepository
+     */
+    private $eventRepository;
+
+    /**
+     * @var TimeStandartManager
+     */
+    private $timeStandartManager;
+
+    /**
+     * @var HelperModel
+     */
+    private $helperModel;
+
     public function __construct(Registry $doctrine)
     {
         $this->doctrine = $doctrine;
         $this->swimmerRepository = $this->doctrine->getRepository('SpAppBundle:Swimmer');
+        $this->eventRepository = $this->doctrine->getRepository('SpAppBundle:Event');
+    }
+
+    /**
+     * @param TimeStandartManager $timeStandartManager
+     */
+    public function setTimeStandartManager($timeStandartManager)
+    {
+        $this->timeStandartManager = $timeStandartManager;
+    }
+
+    /**
+     * @return TimeStandartManager
+     */
+    public function getTimeStandartManager()
+    {
+        return $this->timeStandartManager;
+    }
+
+    /**
+     * @param HelperModel $helperModel
+     */
+    public function setHelperModel($helperModel)
+    {
+        $this->helperModel = $helperModel;
+    }
+
+    /**
+     * @return HelperModel
+     */
+    public function getHelperModel()
+    {
+        return $this->helperModel;
     }
 
     /**
@@ -114,7 +163,18 @@ class ReportsModel
         $aResult = [];
         $aRank = $this->swimmerRepository->getRankReport($oSwimmer);
 
+        $aIds = [];
         foreach($aRank as $row) {
+            $aIds[] = $row['id'];
+        }
+        $aTemp = $this->eventRepository->countEventsMember($aIds);
+        $aEventMemberNum = [];
+        foreach($aTemp as $row) {
+            $aEventMemberNum[$row['id']] = $row['num'];
+        }
+
+        foreach($aRank as $row) {
+            $row['resultsNum'] = $aEventMemberNum[$row['id']];
             $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
             if (!isset($aResult[$event])) {
                 $aResult[$event] = [];
@@ -133,6 +193,7 @@ class ReportsModel
         return $aResult;
     }
 
+
     /**
      * @param Entity\Swimmer $oSwimmer
      * @return array
@@ -150,22 +211,34 @@ class ReportsModel
             $aEvents[$event][] = $row;
         }
 
+        $aTimeStandartTitles = $this->getTimeStandartManager()->getTimeStandartTitles();
+
         $report = [];
         foreach($aEvents as $event => $aEventResults) {
             $aDate = [];
             $aSwimmerSeconds = [];
-            $aTempSeconds = [];
+            $aTimeStandartSeconds = [];
+            foreach($aTimeStandartTitles as $row) {
+                $aTimeStandartSeconds[$row['title']] = [];
+            }
 
             foreach($aEventResults as $res) {
                 $aDate[] = $res['date']->format('d/m/Y');
                 $aSwimmerSeconds[] = $res['seconds'];
-                $aTempSeconds[] = $res['seconds'] - 1;
+                $age = $this->getHelperModel()->getAge($res['birthday'], $res['date']);
+
+                $tempTimeStandart = $this->getTimeStandartManager()->getTimeStandartsForEvent(
+                    $res['distanceId'], $res['styleId'], $res['courseId'], $res['gender'], $age);
+
+                foreach($aTimeStandartSeconds as $title => $val) {
+                    $aTimeStandartSeconds[$title][] = (isset($tempTimeStandart[$title])) ? $tempTimeStandart[$title] : null;
+                }
             }
 
             $report[$event] = [
                 'dates' => json_encode($aDate),
                 'swimmerSeconds' => json_encode($aSwimmerSeconds),
-                'tempSeconds' => json_encode($aTempSeconds),
+                'timeStandartSeconds' => json_encode($aTimeStandartSeconds),
             ];
         }
 

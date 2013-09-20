@@ -7,14 +7,25 @@
 
     <parameters>
         <parameter key="sp_reports.reports_model.class">Sp\ReportsBundle\Model\ReportsModel</parameter>
+        <parameter key="sp_reports.helper_model.class">Sp\ReportsBundle\Model\HelperModel</parameter>
+
         <parameter key="sp_reports.twig.event_to_string_extension.class">Sp\ReportsBundle\Twig\EventToStringExtension</parameter>
         <parameter key="sp_reports.twig.time_to_string_extension.class">Sp\ReportsBundle\Twig\TimeToStringExtension</parameter>
+        <parameter key="sp_reports.twig.get_age_extension.class">Sp\ReportsBundle\Twig\GetAgeExtension</parameter>
     </parameters>
 
     <services>
         <service id="sp_reports.reports_model" class="%sp_reports.reports_model.class%">
             <argument type="service" id="doctrine" />
+            <call method="setTimeStandartManager">
+                <argument type='service' id='sp_app.time_standart_manager' />
+            </call>
+            <call method="setHelperModel">
+                <argument type='service' id='sp_reports.helper_model' />
+            </call>
         </service>
+
+        <service id="sp_reports.helper_model" class="%sp_reports.helper_model.class%"/>
 
         <service id="sp_reports.twig.event_to_string_extension" class="%sp_reports.twig.event_to_string_extension.class%">
             <tag name="twig.extension" />
@@ -22,6 +33,11 @@
 
         <service id="sp_reports.twig.time_to_string_extension" class="%sp_reports.twig.time_to_string_extension.class%">
             <tag name="twig.extension" />
+        </service>
+
+        <service id="sp_reports.twig.get_age_extension" class="%sp_reports.twig.get_age_extension.class%">
+            <tag name="twig.extension" />
+            <argument type="service" id="sp_reports.helper_model" />
         </service>
     </services>
 

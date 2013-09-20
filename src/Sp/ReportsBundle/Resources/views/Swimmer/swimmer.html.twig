@@ -65,9 +65,25 @@
             var subtitle = $(target).find('.params .subtitle').html();
             var dates = $.parseJSON($(target).find('.params .dates').html());
             var swimmerSeconds = $.parseJSON($(target).find('.params .swimmerSeconds').html());
-            var tempSeconds = $.parseJSON($(target).find('.params .tempSeconds').html());
-
+            var timeStandartSeconds = $.parseJSON($(target).find('.params .timeStandartSeconds').html());
             $(target).find('.params').remove();
+
+            var series = [{
+                name: 'Your time',
+                data: swimmerSeconds
+            }];
+
+            var name, visible = true;
+
+            for(name in timeStandartSeconds) {
+                series.push({
+                    name: name,
+                    data: timeStandartSeconds[name],
+                    visible: visible
+                });
+                visible = false;
+            }
+
             $(target).find('.image').highcharts({
                 chart: {
                     type: 'line'
@@ -93,13 +109,7 @@
                         }
                     }
                 },
-                series: [{
-                    name: subtitle,
-                    data: swimmerSeconds
-                }, {
-                    name: 'temp',
-                    data: tempSeconds
-                }]
+                series: series
             });
         }
 

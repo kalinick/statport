@@ -25,24 +25,29 @@ class Swimmer
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", name="first_name", length=255)
      */
     protected $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", name="last_name", length=255)
      */
     protected $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", name="middle_name", length=255)
      */
     protected $middleName;
 
     /**
-     * @ORM\Column(type="string", type="string", length=1)
+     * @ORM\Column(type="string", length=1)
      */
     protected $gender;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $birthday;
 
     /**
      * @ORM\OneToMany(targetEntity="EventResult", mappedBy="swimmer")
@@ -198,5 +203,28 @@ class Swimmer
     public function __toString()
     {
         return $this->getLastName() . ' ' . $this->getFirstName();
+    }
+
+    /**
+     * Set birthday
+     *
+     * @param \DateTime $birthday
+     * @return Swimmer
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+    
+        return $this;
+    }
+
+    /**
+     * Get birthday
+     *
+     * @return \DateTime 
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
     }
 }

@@ -8,6 +8,7 @@
 namespace Sp\ReportsBundle\Controller;
 
 use Sp\AppBundle\Classes\ContainerTrait;
+use Sp\AppBundle\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;

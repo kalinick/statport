@@ -14,6 +14,18 @@ use Sp\AppBundle\Entity;
 class SwimmerRepository extends EntityRepository
 {
     /**
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this
+            ->createQueryBuilder('s')
+            ->orderBy('s.lastName, s.firstName')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @param Entity\Swimmer $oSwimmer
      * @return array
      */
@@ -21,14 +33,16 @@ class SwimmerRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('s')
-            ->select("d.length as distance, ss.title as style, c.title as course, m.date, m.title as meet, er.seconds")
-            ->addSelect('s.gender')
+            ->select('d.length as distance, ss.title as style, c.title as course, m.date, m.title as meet, er.seconds')
+            ->addSelect('s.gender, l.title as lsc, cl.title as club, s.birthday')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Meet', 'm', 'WITH', 'm.id = e.meet')
             ->innerJoin('SpAppBundle:Distance', 'd', 'WITH', 'e.distance = d.id')
             ->innerJoin('SpAppBundle:SwimmingStyle', 'ss', 'WITH', 'e.style = ss.id')
             ->innerJoin('SpAppBundle:Course', 'c', 'WITH', 'e.course = c.id')
+            ->innerJoin('SpAppBundle:Lsc', 'l', 'WITH', 'e.lsc = l.id')
+            ->innerJoin('SpAppBundle:Club', 'cl', 'WITH', 'e.club = cl.id')
             ->where('s.id = :swimmer_id')
             ->setParameter('swimmer_id', $oSwimmer->getId())
             ->orderBy('distance, style, course, m.date')
@@ -44,7 +58,7 @@ class SwimmerRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('s')
-            ->select("d.length as distance, ss.title as style, c.title as course, MIN(er.seconds) as seconds")
+            ->select('d.length as distance, ss.title as style, c.title as course, MIN(er.seconds) as seconds')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Distance', 'd', 'WITH', 'e.distance = d.id')
@@ -65,7 +79,7 @@ class SwimmerRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('s')
-            ->select("d.length as distance, ss.title as style, c.title as course, m.date, m.title as meet, er.seconds")
+            ->select('d.length as distance, ss.title as style, c.title as course, m.date, m.title as meet, er.seconds')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Meet', 'm', 'WITH', 'm.id = e.meet')
@@ -87,8 +101,8 @@ class SwimmerRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('s')
-            ->select("d.length as distance, ss.title as style, c.title as course, m.date, m.title as meet, er.rank, e.resultsNum")
-            ->addSelect('s.gender')
+            ->select('d.length as distance, ss.title as style, c.title as course, m.date, m.title as meet, er.rank')
+            ->addSelect('s.gender, e.id')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Meet', 'm', 'WITH', 'm.id = e.meet')
@@ -110,7 +124,8 @@ class SwimmerRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('s')
-            ->select("d.length as distance, ss.title as style, c.title as course, er.seconds, m.date")
+            ->select('d.length as distance, ss.title as style, c.title as course, er.seconds, m.date')
+            ->addSelect('d.id as distanceId, ss.id as styleId, c.id as courseId, s.birthday, s.gender')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Meet', 'm', 'WITH', 'm.id = e.meet')

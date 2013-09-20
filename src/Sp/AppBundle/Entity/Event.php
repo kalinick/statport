@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sp\AppBundle\Repository\EventRepository")
  * @ORM\Table(name="event")
  */
 class Event
@@ -49,14 +49,21 @@ class Event
     protected $course;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Lsc")
+     * @ORM\JoinColumn(name="lsc_id", referencedColumnName="id")
+     */
+    protected $lsc;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club")
+     * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     */
+    protected $club;
+
+    /**
      * @ORM\OneToMany(targetEntity="EventResult", mappedBy="event")
      */
     private $results;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $resultsNum;
 
     /**
      * Constructor
@@ -202,26 +209,49 @@ class Event
     }
 
     /**
-     * Set resultsNum
+     * Set lsc
      *
-     * @param integer $resultsNum
+     * @param Lsc $lsc
      * @return Event
      */
-    public function setResultsNum($resultsNum)
+    public function setLsc(Lsc $lsc = null)
     {
-        $this->resultsNum = $resultsNum;
+        $this->lsc = $lsc;
     
         return $this;
     }
 
     /**
-     * Get resultsNum
+     * Get lsc
      *
-     * @return integer 
+     * @return Lsc
      */
-    public function getResultsNum()
+    public function getLsc()
     {
-        return $this->resultsNum;
+        return $this->lsc;
+    }
+
+    /**
+     * Set club
+     *
+     * @param Club $club
+     * @return Event
+     */
+    public function setClub(Club $club = null)
+    {
+        $this->club = $club;
+    
+        return $this;
+    }
+
+    /**
+     * Get club
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
     }
 
     /**
