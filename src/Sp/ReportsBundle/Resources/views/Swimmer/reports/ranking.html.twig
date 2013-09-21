@@ -19,6 +19,7 @@
                 <td>{{ event.resultsNum }}</td>
                 <td>{% if (event.tile is null) %}N/A{% else %}{{ event.tile }} %{% endif %}</td>
             </tr>
+            {% set i = i + 1 %}
         {% endfor %}
     {% endfor %}
 </table>

@@ -59,6 +59,7 @@ class SwimmerRepository extends EntityRepository
         return $this
             ->createQueryBuilder('s')
             ->select('d.length as distance, ss.title as style, c.title as course, MIN(er.seconds) as seconds')
+            ->addSelect('d.id as distanceId, ss.id as styleId, c.id as courseId')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Distance', 'd', 'WITH', 'e.distance = d.id')

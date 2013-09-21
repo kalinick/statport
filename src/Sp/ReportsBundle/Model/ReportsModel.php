@@ -113,6 +113,7 @@ class ReportsModel
         $aResult['byMeet'] = $this->getByMeetReport($oSwimmer);
         $aResult['rank'] = $this->getRankReport($oSwimmer);
         $aResult['historical'] = $this->getHistoricalReport($oSwimmer);
+        $aResult['timeDeficiency'] = $this->getTimeDeficiencyReport($oSwimmer);
 
         return $aResult;
     }
@@ -243,5 +244,55 @@ class ReportsModel
         }
 
         return $report;
+    }
+
+    /**
+     * @param Entity\Swimmer $oSwimmer
+     * @return array
+     */
+    public function getTimeDeficiencyReport(Entity\Swimmer $oSwimmer)
+    {
+        $aBestTime = $this->swimmerRepository->getBestTimeReport($oSwimmer);
+
+        $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
+        foreach($aBestTime as &$res) {
+            $aTimeStandart = $this->getTimeStandartManager()->getTimeStandartsForEvent(
+                $res['distanceId'], $res['styleId'], $res['courseId'], $oSwimmer->getGender(), $age);
+
+            if(empty($aTimeStandart)) {
+                $res['achievedTs'] = null;
+                $res['nextTs'] = null;
+                $res['gap'] = null;
+                continue;
+            }
+
+            $achieved = null;
+            foreach($aTimeStandart as $key => $ts) {
+                if ($res['seconds'] > $ts) {
+                    break;
+                }
+                $achieved = $key;
+            }
+
+            if ($achieved == null) {
+                $res['achievedTs'] = null;
+                $nextTsValue = reset($aTimeStandart);
+                $nextTs = key($aTimeStandart);
+                $res['nextTs'] = $nextTs;
+                $res['gap'] = $nextTsValue - $res['seconds'];
+            } else {
+                $res['achievedTs'] = $achieved;
+
+                if ($res['seconds'] > $ts) {
+                    $res['nextTs'] = $key;
+                    $res['gap'] = $res['seconds'] - $aTimeStandart[$key];
+                } else {
+                    $res['nextTs'] = null;
+                    $res['gap'] = null;
+                }
+            }
+        }
+
+        return $aBestTime;
     }
 }

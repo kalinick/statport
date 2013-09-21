@@ -227,4 +227,27 @@ class Swimmer
     {
         return $this->birthday;
     }
+
+    /**
+     * @return string
+     */
+    public function toStringGenderAge()
+    {
+        $str = ($this->getGender() == 'M') ? 'Boys' : 'Girls';
+        $age = (int) $this->getBirthday()->diff(new \DateTime())->format('%y');
+        if ($age < 11) {
+            $str  = $str . ' 10&Under';
+        } else if ($age < 13 ) {
+            $str = $str . ' 11-12';
+        } else if ($age < 15 ) {
+            $str = $str . ' 13-14';
+        } else if ($age < 17 ) {
+            $str = $str . ' 15-16';
+        } else if ($age < 19 ) {
+            $str = $str . ' 17-18';
+        } else {
+            $str  = $str . ' 19&Older';
+        }
+        return $str;
+    }
 }

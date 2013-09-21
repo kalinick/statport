@@ -1,0 +1,23 @@
+<table class="default">
+    <tr>
+        <th colspan="5">{{ swimmer.toStringGenderAge }}</th>
+    </tr>
+    <tr>
+        <th>Events</th>
+        <th>Times</th>
+        <th>TS Achieved</th>
+        <th>Next TS</th>
+        <th>GAP</th>
+    </tr>
+    {% set i = 0 %}
+    {% for event in report %}
+    <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
+        <td>{{ event|eventToString }}</td>
+        <td>{{ event.seconds|timeToString }}</td>
+        <td>{{ event.achievedTs }}</td>
+        <td>{{ event.nextTs }}</td>
+        <td>{{ event.gap }}</td>
+    </tr>
+        {% set i = i + 1 %}
+    {% endfor %}
+</table>
