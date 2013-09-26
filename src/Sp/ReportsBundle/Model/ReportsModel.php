@@ -114,6 +114,9 @@ class ReportsModel
         $aResult['rank'] = $this->getRankReport($oSwimmer);
         $aResult['historical'] = $this->getHistoricalReport($oSwimmer);
         $aResult['timeDeficiency'] = $this->getTimeDeficiencyReport($oSwimmer);
+        $aResult['withinTeam'] = $this->getWithinTeamReport($oSwimmer);
+        $aResult['withinTeamGraphic'] = $this->getWithinTeamGraphicReport($oSwimmer, $aResult['performance']);
+        $aResult['withinRegionGraphic'] = $this->getWithinRegionGraphicReport($oSwimmer, $aResult['performance']);
 
         return $aResult;
     }
@@ -226,7 +229,8 @@ class ReportsModel
             foreach($aEventResults as $res) {
                 $aDate[] = $res['date']->format('d/m/Y');
                 $aSwimmerSeconds[] = $res['seconds'];
-                $age = $this->getHelperModel()->getAge($res['birthday'], $res['date']);
+                //$age = $this->getHelperModel()->getAge($res['birthday'], $res['date']);
+                $age = $this->getHelperModel()->getAge($res['birthday']);
 
                 $tempTimeStandart = $this->getTimeStandartManager()->getTimeStandartsForEvent(
                     $res['distanceId'], $res['styleId'], $res['courseId'], $res['gender'], $age);
@@ -294,5 +298,88 @@ class ReportsModel
         }
 
         return $aBestTime;
+    }
+
+    /**
+     * @param Entity\Swimmer $oSwimmer
+     * @return array
+     */
+    public function getWithinTeamReport(Entity\Swimmer $oSwimmer)
+    {
+        $aBestTime = $this->swimmerRepository->getBestTimeReport($oSwimmer);
+
+        foreach($aBestTime as &$res) {
+            $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
+            $ageInterval = $this->getHelperModel()->getAgeInterval($age);
+
+            $minAvg = $this->swimmerRepository->getMinAvgByClub(
+                $ageInterval,
+                $oSwimmer->getGender(),
+                $res['distanceId'],
+                $res['styleId'],
+                $res['courseId'],
+                $res['clubId']
+            );
+            $res['best'] = $minAvg['best'];
+            $res['avg'] = ($minAvg['middle'] === null) ? null : round($minAvg['middle'], 2);
+        }
+
+        return $aBestTime;
+    }
+
+    /**
+     * @param Entity\Swimmer $oSwimmer
+     * @param array $performance
+     * @return array
+     */
+    public function getWithinTeamGraphicReport(Entity\Swimmer $oSwimmer, $performance)
+    {
+        $aResult = [];
+        foreach($performance as $style => $aEvent) {
+            $aResult[$style] = ['meet' => [], 'my' => [], 'avg' => []];
+            foreach($aEvent as $event) {
+                $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
+                $ageInterval = $this->getHelperModel()->getAgeInterval($age);
+                $avg = $this->eventRepository->getAvgByEventClubAgeGender($event['eventId'], $event['clubId'], $ageInterval, $oSwimmer->getGender());
+
+                $aResult[$style]['meet'][] = $event['meet'];
+                $aResult[$style]['my'][] = $event['seconds'];
+                $aResult[$style]['avg'][] = (float) round($avg, 2);
+            }
+
+            $aResult[$style]['meet'] = json_encode($aResult[$style]['meet']);
+            $aResult[$style]['my'] = json_encode($aResult[$style]['my']);
+            $aResult[$style]['avg'] = json_encode($aResult[$style]['avg']);
+        }
+
+        return $aResult;
+    }
+
+    /**
+     * @param Entity\Swimmer $oSwimmer
+     * @param array $performance
+     * @return array
+     */
+    public function getWithinRegionGraphicReport(Entity\Swimmer $oSwimmer, $performance)
+    {
+        $aResult = [];
+        foreach($performance as $style => $aEvent) {
+            $aResult[$style] = ['meet' => [], 'my' => [], 'avg' => []];
+            foreach($aEvent as $event) {
+                $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
+                $ageInterval = $this->getHelperModel()->getAgeInterval($age);
+                $avg = $this->eventRepository->getAvgByEventRegionAgeGender($event['eventId'], $event['lscId'], $ageInterval, $oSwimmer->getGender());
+
+                $aResult[$style]['meet'][] = $event['meet'];
+                $aResult[$style]['my'][] = $event['seconds'];
+                $aResult[$style]['avg'][] = (float) round($avg, 2);
+            }
+
+            $aResult[$style]['meet'] = json_encode($aResult[$style]['meet']);
+            $aResult[$style]['my'] = json_encode($aResult[$style]['my']);
+            $aResult[$style]['avg'] = json_encode($aResult[$style]['avg']);
+        }
+
+        return $aResult;
     }
 }

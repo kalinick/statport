@@ -45,6 +45,11 @@ class EventResult
     protected $rank;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $age;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -144,5 +149,28 @@ class EventResult
     public function getRank()
     {
         return $this->rank;
+    }
+
+    /**
+     * Set age
+     *
+     * @param integer $age
+     * @return EventResult
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+    
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return integer 
+     */
+    public function getAge()
+    {
+        return $this->age;
     }
 }

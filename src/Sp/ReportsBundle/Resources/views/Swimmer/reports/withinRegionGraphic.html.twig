@@ -1,0 +1,11 @@
+{% for eventType, event in report %}
+    <div class="graphic withing-region-graphic">
+        <div class="image"></div>
+        <div class="params">
+            <div class="subtitle">{{ eventType }}</div>
+            <div class="meets">{{ event.meet }}</div>
+            <div class="my">{{ event.my }}</div>
+            <div class="avg">{{ event.avg }}</div>
+        </div>
+    </div>
+{% endfor %}

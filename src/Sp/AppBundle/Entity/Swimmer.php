@@ -167,7 +167,7 @@ class Swimmer
     /**
      * Get results
      *
-     * @return Collection
+     * @return EventResult[]
      */
     public function getResults()
     {

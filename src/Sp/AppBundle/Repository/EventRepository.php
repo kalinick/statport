@@ -10,6 +10,7 @@ namespace Sp\AppBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 use Sp\AppBundle\Entity;
+use Sp\ReportsBundle\Classes\AgeInterval;
 
 class EventRepository extends EntityRepository
 {
@@ -32,5 +33,69 @@ class EventRepository extends EntityRepository
             ->setParameter('ids', $aIds)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param int $eventId
+     * @param int $clubId
+     * @param AgeInterval $ageInterval
+     * @param string $gender
+     * @return float
+     */
+    public function getAvgByEventClubAgeGender($eventId, $clubId, AgeInterval $ageInterval, $gender)
+    {
+        return $this
+            ->createQueryBuilder('e')
+            ->select('AVG(er.seconds) as middle')
+            ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.event = e.id')
+            ->innerJoin('SpAppBundle:Swimmer', 's', 'WITH', 's.id = er.swimmer')
+            ->where('e.id = :eventId')
+            ->andWhere('s.gender = :gender')
+            ->andWhere('e.club = :clubId')
+            ->andWhere('s.birthday >= :minBirthday')
+            ->andWhere('s.birthday <= :maxBirthday')
+//            ->andWhere('er.age >= :minAge')
+//            ->andWhere('er.age <= :maxAge')
+            ->setParameter('eventId', $eventId)
+            ->setParameter('clubId', $clubId)
+            ->setParameter('gender', $gender)
+            ->setParameter('minBirthday', $ageInterval->getMinBirthdayAsString())
+            ->setParameter('maxBirthday', $ageInterval->getMaxBirthdayAsString())
+//            ->setParameter('minAge', $ageInterval->getMinAge())
+//            ->setParameter('maxAge', $ageInterval->getMaxAge())
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * @param int $eventId
+     * @param int $clubId
+     * @param AgeInterval $ageInterval
+     * @param string $gender
+     * @return float
+     */
+    public function getAvgByEventRegionAgeGender($eventId, $lscId, AgeInterval $ageInterval, $gender)
+    {
+        return $this
+            ->createQueryBuilder('e')
+            ->select('AVG(er.seconds) as middle')
+            ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.event = e.id')
+            ->innerJoin('SpAppBundle:Swimmer', 's', 'WITH', 's.id = er.swimmer')
+            ->where('e.id = :eventId')
+            ->andWhere('s.gender = :gender')
+            ->andWhere('e.lsc = :lscId')
+            ->andWhere('s.birthday >= :minBirthday')
+            ->andWhere('s.birthday <= :maxBirthday')
+//            ->andWhere('er.age >= :minAge')
+//            ->andWhere('er.age <= :maxAge')
+            ->setParameter('eventId', $eventId)
+            ->setParameter('lscId', $lscId)
+            ->setParameter('gender', $gender)
+            ->setParameter('minBirthday', $ageInterval->getMinBirthdayAsString())
+            ->setParameter('maxBirthday', $ageInterval->getMaxBirthdayAsString())
+//            ->setParameter('minAge', $ageInterval->getMinAge())
+//            ->setParameter('maxAge', $ageInterval->getMaxAge())
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }

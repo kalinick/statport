@@ -10,6 +10,7 @@ namespace Sp\AppBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 use Sp\AppBundle\Entity;
+use Sp\ReportsBundle\Classes\AgeInterval;
 
 class SwimmerRepository extends EntityRepository
 {
@@ -34,7 +35,8 @@ class SwimmerRepository extends EntityRepository
         return $this
             ->createQueryBuilder('s')
             ->select('d.length as distance, ss.title as style, c.title as course, m.date, m.title as meet, er.seconds')
-            ->addSelect('s.gender, l.title as lsc, cl.title as club, s.birthday')
+            ->addSelect('s.gender, l.title as lsc, cl.title as club, er.age, e.id as eventId, cl.id as clubId')
+            ->addSelect('l.id as lscId')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Meet', 'm', 'WITH', 'm.id = e.meet')
@@ -59,7 +61,7 @@ class SwimmerRepository extends EntityRepository
         return $this
             ->createQueryBuilder('s')
             ->select('d.length as distance, ss.title as style, c.title as course, MIN(er.seconds) as seconds')
-            ->addSelect('d.id as distanceId, ss.id as styleId, c.id as courseId')
+            ->addSelect('d.id as distanceId, ss.id as styleId, c.id as courseId, IDENTITY(e.club) as clubId')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Distance', 'd', 'WITH', 'e.distance = d.id')
@@ -140,4 +142,41 @@ class SwimmerRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * @param AgeInterval $ageInterval
+     * @param string $gender
+     * @param int $distanceId
+     * @param int $styleId
+     * @param int $courseId
+     * @param int $clubId
+     * @return array
+     */
+    public function getMinAvgByClub(AgeInterval $ageInterval, $gender, $distanceId, $styleId, $courseId, $clubId)
+    {
+        return $this
+            ->createQueryBuilder('s')
+            ->select('MIN(er.seconds) as best, AVG(er.seconds) as middle')
+            ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
+            ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
+            ->andWhere('s.gender = :gender')
+            ->andWhere('s.birthday >= :minBirthday')
+            ->andWhere('s.birthday <= :maxBirthday')
+//            ->andWhere('er.age >= :minAge')
+//            ->andWhere('er.age <= :maxAge')
+            ->andWhere('e.distance = :distance')
+            ->andWhere('e.style = :style')
+            ->andWhere('e.course = :course')
+            ->andWhere('e.club = :club')
+            ->setParameter('gender', $gender)
+            ->setParameter('minBirthday', $ageInterval->getMinBirthdayAsString())
+            ->setParameter('maxBirthday', $ageInterval->getMaxBirthdayAsString())
+            ->setParameter('distance', $distanceId)
+            ->setParameter('style', $styleId)
+            ->setParameter('course', $courseId)
+            ->setParameter('club', $clubId)
+//            ->setParameter('minAge', $ageInterval->getMinAge())
+//            ->setParameter('maxAge', $ageInterval->getMaxAge())
+            ->getQuery()
+            ->getSingleResult();
+    }
 }

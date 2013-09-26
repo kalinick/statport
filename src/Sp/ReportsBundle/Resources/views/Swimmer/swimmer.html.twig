@@ -31,6 +31,15 @@
             <div class="report" data-id="6">
                 {{ include('SpReportsBundle:Swimmer:reports/timeDeficiency.html.twig', {'report': reports['timeDeficiency'], 'swimmer': swimmer}) }}
             </div>
+            <div class="report" data-id="7">
+                {{ include('SpReportsBundle:Swimmer:reports/withinTeam.html.twig', {'report': reports['withinTeam'], 'swimmer': swimmer}) }}
+            </div>
+            <div class="report" data-id="8">
+                {{ include('SpReportsBundle:Swimmer:reports/withinTeamGraphic.html.twig', {'report': reports['withinTeamGraphic']}) }}
+            </div>
+            <div class="report" data-id="9">
+                {{ include('SpReportsBundle:Swimmer:reports/withinRegionGraphic.html.twig', {'report': reports['withinRegionGraphic']}) }}
+            </div>
         </div>
         <div class="clear-both"></div>
     </div>
@@ -49,8 +58,16 @@
                 showReport($(this).attr('href').substr(1));
             });
 
-            $('.graphic').each(function(){
-                initHighcharts(this);
+            $('.historical-graphic').each(function(){
+                initHistoricalHighcharts(this);
+            });
+
+            $('.withing-team-graphic').each(function(){
+                initWithingTeamHighcharts(this);
+            });
+
+            $('.withing-region-graphic').each(function(){
+                initWithingTeamHighcharts(this);
             });
 
         });
@@ -64,7 +81,7 @@
             $('.reports-titles a[data-id="' + id + '"]').addClass('selected');
         }
 
-        function initHighcharts(target) {
+        function initHistoricalHighcharts(target) {
             var subtitle = $(target).find('.params .subtitle').html();
             var dates = $.parseJSON($(target).find('.params .dates').html());
             var swimmerSeconds = $.parseJSON($(target).find('.params .swimmerSeconds').html());
@@ -105,14 +122,75 @@
                         text: 'Time(sec)'
                     }
                 },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        }
+                series: series
+            });
+        }
+
+        function initWithingTeamHighcharts(target) {
+            var subtitle = $(target).find('.params .subtitle').html();
+            var meets = $.parseJSON($(target).find('.params .meets').html());
+            var my = $.parseJSON($(target).find('.params .my').html());
+            var avg = $.parseJSON($(target).find('.params .avg').html());
+
+            $(target).find('.image').highcharts({
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Average Time Comparison By Event'
+                },
+                subtitle: {
+                    text: subtitle
+                },
+                xAxis: {
+                    categories: meets
+                },
+                yAxis: {
+                    title: {
+                        text: 'Time(sec)'
                     }
                 },
-                series: series
+                series: [{
+                    name: 'Your time',
+                    data: my
+                }, {
+                    name: 'Team avg time',
+                    data: avg
+                }]
+            });
+        }
+
+        function initWithingRegionHighcharts(target) {
+            var subtitle = $(target).find('.params .subtitle').html();
+            var meets = $.parseJSON($(target).find('.params .meets').html());
+            var my = $.parseJSON($(target).find('.params .my').html());
+            var avg = $.parseJSON($(target).find('.params .avg').html());
+
+            $(target).find('.image').highcharts({
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Average Time Comparison By Event'
+                },
+                subtitle: {
+                    text: subtitle
+                },
+                xAxis: {
+                    categories: meets
+                },
+                yAxis: {
+                    title: {
+                        text: 'Time(sec)'
+                    }
+                },
+                series: [{
+                    name: 'Your time',
+                    data: my
+                }, {
+                    name: 'Team avg time',
+                    data: avg
+                }]
             });
         }
 
