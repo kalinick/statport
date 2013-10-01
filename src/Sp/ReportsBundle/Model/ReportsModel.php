@@ -25,7 +25,7 @@ class ReportsModel
         'Age statistics ‐ Team',
         'Average Time Comparsion by Event ‐ Team',
         'Average Time Comparsion by Event ‐ State',
-        'Season to Season Comparsion',
+//        'Season to Season Comparsion',
         'Swimmer to Swimmer Comparsion'
     ];
 
@@ -378,6 +378,41 @@ class ReportsModel
             $aResult[$style]['meet'] = json_encode($aResult[$style]['meet']);
             $aResult[$style]['my'] = json_encode($aResult[$style]['my']);
             $aResult[$style]['avg'] = json_encode($aResult[$style]['avg']);
+        }
+
+        return $aResult;
+    }
+
+    /**
+     * @param $meId
+     * @param $swimmerId
+     * @param $event
+     * @return array
+     */
+    public function getSwimmerToSwimmerReport($meId, $swimmerId, $event)
+    {
+        $comparison = $this->swimmerRepository->getSwimmerToSwimmerReport($meId, $swimmerId, $event);
+
+        $aTemp = [];
+        foreach($comparison as $row) {
+            if (!isset($aTemp[$row['meet']])) {
+                $aTemp[$row['meet']] = [];
+            }
+
+            if ($row['id'] == $meId) {
+                $aTemp[$row['meet']]['me'] = $row['seconds'];
+            } else {
+                $aTemp[$row['meet']]['swimmer'] = $row['seconds'];
+            }
+        }
+
+        $aResult = [];
+        $aResult['meet'] = array_keys($aTemp);
+        $aResult['me'] = [];
+        $aResult['swimmer'] = [];
+        foreach($aResult['meet'] as $meet) {
+            $aResult['me'][] = (isset($aTemp[$meet]['me'])) ? $aTemp[$meet]['me'] : null;
+            $aResult['swimmer'][] = (isset($aTemp[$meet]['swimmer'])) ? $aTemp[$meet]['swimmer'] : null;
         }
 
         return $aResult;

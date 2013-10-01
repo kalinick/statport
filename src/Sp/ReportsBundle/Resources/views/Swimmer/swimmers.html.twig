@@ -19,7 +19,7 @@
             $('#swimmer-list').change(function(){
                 var value = $(this).val();
                 if (value > 0) {
-                    document.location = '{{ path('reports_swimmers') }}' + $(this).val();
+                    document.location =  '{{ path('reports_swimmer', {id: '---'}) }}'.replace('---', $(this).val());
                 }
             });
         });

@@ -40,6 +40,9 @@
             <div class="report" data-id="9">
                 {{ include('SpReportsBundle:Swimmer:reports/withinRegionGraphic.html.twig', {'report': reports['withinRegionGraphic']}) }}
             </div>
+            <div class="report" data-id="10">
+                {{ include('SpReportsBundle:Swimmer:reports/swimmerToSwimmer.html.twig', {'swimmers': swimmers, 'events': events}) }}
+            </div>
         </div>
         <div class="clear-both"></div>
     </div>
@@ -70,6 +73,7 @@
                 initWithingTeamHighcharts(this);
             });
 
+            $('.swimmer-to-swimmer select').change(swimmerToSwimmerChange);
         });
 
         function showReport(id)
@@ -190,6 +194,50 @@
                 }, {
                     name: 'Team avg time',
                     data: avg
+                }]
+            });
+        }
+
+        function swimmerToSwimmerChange()
+        {
+            var reportBlock = $(this).closest('.swimmer-to-swimmer');
+            var swimmer = reportBlock.find('#swimmer-list').val();
+            var event = reportBlock.find('#event-list').val();
+
+            if (swimmer != 0 && event != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('reports_compare_swimmer', {id : swimmer.id}) }}",
+                    data: { swimmer: swimmer, event: event },
+                    success: function(response){swimmerToSwimmerResponse(reportBlock, response)},
+                    error: function(response){console.log(response);}
+                })
+            }
+        }
+
+        function swimmerToSwimmerResponse(block, response)
+        {
+            $(block).find('.graphic-swimmer-to-swimmer').highcharts({
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Swimmer to Swimmer Comparsion'
+                },
+                xAxis: {
+                    categories: response.meet
+                },
+                yAxis: {
+                    title: {
+                        text: 'Time(sec)'
+                    }
+                },
+                series: [{
+                    name: response.myName,
+                    data: response.me
+                }, {
+                    name: response.swimmerName,
+                    data: response.swimmer
                 }]
             });
         }

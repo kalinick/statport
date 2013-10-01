@@ -13,6 +13,14 @@ use Sp\ReportsBundle\Model\ReportsModel;
 trait ContainerTrait
 {
     /**
+     * @return Model\EventManager
+     */
+    protected function getEventManager()
+    {
+        return $this->get('sp_app.event_manager');
+    }
+
+    /**
      * @return Model\SwimmerManager
      */
     protected function getSwimmerManager()

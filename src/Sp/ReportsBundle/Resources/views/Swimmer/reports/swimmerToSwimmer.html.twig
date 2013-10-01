@@ -1,0 +1,19 @@
+<div class="swimmer-to-swimmer">
+    <label for="swimmer-list">Choose swimmer:</label>
+    <select id="swimmer-list">
+        <option value="0">Please, select swimmer</option>
+        {% for swimmer in swimmers %}
+            <option value="{{ swimmer.id }}">{{ swimmer }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="event-list">Choose event:</label>
+    <select id="event-list">
+        <option value="0">Please, select event</option>
+        {% for event in events %}
+            <option value="{{ event.key }}">{{ event.value }}</option>
+        {% endfor %}
+    </select>
+
+    <div class="graphic-swimmer-to-swimmer"></div>
+</div>

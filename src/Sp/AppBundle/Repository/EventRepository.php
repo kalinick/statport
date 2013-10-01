@@ -69,7 +69,7 @@ class EventRepository extends EntityRepository
 
     /**
      * @param int $eventId
-     * @param int $clubId
+     * @param int $lscId
      * @param AgeInterval $ageInterval
      * @param string $gender
      * @return float
@@ -97,5 +97,23 @@ class EventRepository extends EntityRepository
 //            ->setParameter('maxAge', $ageInterval->getMaxAge())
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function findEvents()
+    {
+        return $this
+            ->createQueryBuilder('e')
+            ->select('d.id as distanceId, ss.id as styleId, c.id as courseId, d.length as distance')
+            ->addSelect('ss.title as style, c.title as course')
+            ->innerJoin('SpAppBundle:Distance', 'd', 'WITH', 'e.distance = d.id')
+            ->innerJoin('SpAppBundle:SwimmingStyle', 'ss', 'WITH', 'e.style = ss.id')
+            ->innerJoin('SpAppBundle:Course', 'c', 'WITH', 'e.course = c.id')
+            ->groupBy('distanceId, styleId, courseId')
+            ->orderBy('distanceId, styleId, courseId')
+            ->getQuery()
+            ->getResult();
     }
 }

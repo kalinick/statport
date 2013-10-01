@@ -37,6 +37,7 @@ class GenerateEventResultAgeCommand extends ContainerAwareCommand
         $i = 0;
         foreach($aSwimmers as $swimmer) {
 
+            $j = 0;
             foreach($swimmer->getResults() as $result) {
                 $age1 = $result->getAge();
                 if (!empty($age1)) {
@@ -46,6 +47,7 @@ class GenerateEventResultAgeCommand extends ContainerAwareCommand
 
                 $result->setAge($age);
                 $this->getDoctrine()->getManager()->flush();
+                $output->writeln('Processed ' . ++$j . ' result');
             }
 
             $output->writeln('Processed ' . ++$i . ' row');
