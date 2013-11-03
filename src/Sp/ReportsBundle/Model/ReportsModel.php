@@ -107,7 +107,7 @@ class ReportsModel
      */
     public function getSwimmerReports(Entity\Swimmer $oSwimmer)
     {
-        $aResult = [];
+        $aResult = array();
         $aResult['performance'] = $this->getPerformanceReport($oSwimmer);
         $aResult['bestTime'] = $this->getBestTimeReport($oSwimmer);
         $aResult['byMeet'] = $this->getByMeetReport($oSwimmer);
@@ -127,7 +127,7 @@ class ReportsModel
      */
     private function getPerformanceReport(Entity\Swimmer $oSwimmer)
     {
-        $aResult = [];
+        $aResult = array();
         $aPerformance = $this->swimmerRepository->getPerformanceReport($oSwimmer);
         foreach($aPerformance as $row) {
             $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
@@ -334,7 +334,7 @@ class ReportsModel
      */
     public function getWithinTeamGraphicReport(Entity\Swimmer $oSwimmer, $performance)
     {
-        $aResult = [];
+        $aResult = array();
         foreach($performance as $style => $aEvent) {
             $aResult[$style] = array('meet' => array(), 'my' => array(), 'avg' => array());
             foreach($aEvent as $event) {

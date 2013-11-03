@@ -45,7 +45,7 @@ class ImportDataCommand extends ContainerAwareCommand
         $aClub = $this->getAllClub();
         $aSwimmer = $this->getAllSwimmers();
         $aMeet = $this->getAllMeet();
-        $aEvent = [];
+        $aEvent = array();
 
         $em = $this->getDoctrine()->getManager();
 
