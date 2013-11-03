@@ -50,7 +50,7 @@ class TimeStandartManager
     {
         $aTemp = $this->tsrRepository->findTimeStandartsForEvent($distanceId, $styleId, $courseId, $gender, $age);
 
-        $aResult = [];
+        $aResult = array();
         foreach($aTemp as $row) {
             $aResult[$row['title']] = $row['seconds'];
         }

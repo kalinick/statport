@@ -203,7 +203,7 @@ class SwimmerRepository extends EntityRepository
             ->andWhere('e.distance = :distance')
             ->andWhere('e.style = :style')
             ->andWhere('e.course = :course')
-            ->setParameter('id', [$swimmerId, $meId])
+            ->setParameter('id', array($swimmerId, $meId))
             ->setParameter('distance', $event['distanceId'])
             ->setParameter('style', $event['styleId'])
             ->setParameter('course', $event['courseId'])

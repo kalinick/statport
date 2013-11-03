@@ -15,13 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-use Sp\AppBundle\Classes\ContainerTrait;
 use Sp\AppBundle\Entity;
 
 class ImportDataCommand extends ContainerAwareCommand
 {
-    use ContainerTrait;
-
     protected function configure()
     {
         $this
@@ -162,14 +159,14 @@ class ImportDataCommand extends ContainerAwareCommand
 
             if (!isset($aEvent[$eventStr])) {
 
-                $db->insert('event', [
+                $db->insert('event', array(
                     'distance_id' => $aDistance[$res['Distance']]->getId(),
                     'style_id' => $aStyle[$res['Stroke']]->getId(),
                     'course_id' => $aCourse[$res['Course']]->getId(),
                     'meet_id' => $aMeet[$res['Meet']]->getId(),
                     'lsc_id' => $aLsc[$res['LSC']]->getId(),
                     'club_id' => $aClub[$res['Club Code']]->getId(),
-                ]);
+                ));
 
                 $aEvent[$eventStr] = $db->lastInsertId();
 //                $oEvent = new Entity\Event();
@@ -194,12 +191,12 @@ class ImportDataCommand extends ContainerAwareCommand
                 throw new \Exception('Time or rank invalid');
             }
 
-            $db->insert('event_result', [
+            $db->insert('event_result', array(
                 'event_id' => $aEvent[$eventStr],
                 'swimmer_id' => $aSwimmer[$nsm]->getId(),
                 'rank' => $res['Rank'],
                 'seconds' => $res['TimeCalc']
-            ]);
+            ));
 
 //            $oEventResult = new Entity\EventResult();
 //            $oEventResult->setEvent($aEvent[$eventStr]);
@@ -226,7 +223,7 @@ class ImportDataCommand extends ContainerAwareCommand
 
     public function getAllDistance()
     {
-        $aResult = [];
+        $aResult = array();
         $aEntity =  $this->getDoctrine()->getRepository('SpAppBundle:Distance')->findAll();
         foreach($aEntity as $row) {
             $aResult[$row->getLength()] = $row;
@@ -237,7 +234,7 @@ class ImportDataCommand extends ContainerAwareCommand
 
     public function getAllStyle()
     {
-        $aResult = [];
+        $aResult = array();
         $aEntity =  $this->getDoctrine()->getRepository('SpAppBundle:SwimmingStyle')->findAll();
         foreach($aEntity as $row) {
             $aResult[$row->getTitle()] = $row;
@@ -248,7 +245,7 @@ class ImportDataCommand extends ContainerAwareCommand
 
     public function getAllCourse()
     {
-        $aResult = [];
+        $aResult = array();
         $aEntity =  $this->getDoctrine()->getRepository('SpAppBundle:Course')->findAll();
         foreach($aEntity as $row) {
             $aResult[$row->getTitle()] = $row;
@@ -259,7 +256,7 @@ class ImportDataCommand extends ContainerAwareCommand
 
     public function getAllLsc()
     {
-        $aResult = [];
+        $aResult = array();
         $aEntity =  $this->getDoctrine()->getRepository('SpAppBundle:Lsc')->findAll();
         foreach($aEntity as $row) {
             $aResult[$row->getTitle()] = $row;
@@ -270,7 +267,7 @@ class ImportDataCommand extends ContainerAwareCommand
 
     public function getAllClub()
     {
-        $aResult = [];
+        $aResult = array();
         $aEntity =  $this->getDoctrine()->getRepository('SpAppBundle:Club')->findAll();
         foreach($aEntity as $row) {
             $aResult[$row->getTitle()] = $row;
@@ -281,7 +278,7 @@ class ImportDataCommand extends ContainerAwareCommand
 
     public function getAllSwimmers()
     {
-        $aResult = [];
+        $aResult = array();
         $aEntity =  $this->getDoctrine()->getRepository('SpAppBundle:Swimmer')->findAll();
         foreach($aEntity as $row) {
             $nsm = $row->getFirstName() . $row->getLastName();
@@ -293,7 +290,7 @@ class ImportDataCommand extends ContainerAwareCommand
 
     public function getAllMeet()
     {
-        $aResult = [];
+        $aResult = array();
         $aEntity =  $this->getDoctrine()->getRepository('SpAppBundle:Meet')->findAll();
         foreach($aEntity as $row) {
             $aResult[$row->getTitle()] = $row;

@@ -132,7 +132,7 @@ class ReportsModel
         foreach($aPerformance as $row) {
             $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
             if (!isset($aResult[$event])) {
-                $aResult[$event] = [];
+                $aResult[$event] = array();
             }
 
             $aResult[$event][] = $row;
@@ -164,15 +164,15 @@ class ReportsModel
      */
     private function getRankReport(Entity\Swimmer $oSwimmer)
     {
-        $aResult = [];
+        $aResult = array();
         $aRank = $this->swimmerRepository->getRankReport($oSwimmer);
 
-        $aIds = [];
+        $aIds = array();
         foreach($aRank as $row) {
             $aIds[] = $row['id'];
         }
         $aTemp = $this->eventRepository->countEventsMember($aIds);
-        $aEventMemberNum = [];
+        $aEventMemberNum = array();
         foreach($aTemp as $row) {
             $aEventMemberNum[$row['id']] = $row['num'];
         }
@@ -181,7 +181,7 @@ class ReportsModel
             $row['resultsNum'] = $aEventMemberNum[$row['id']];
             $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
             if (!isset($aResult[$event])) {
-                $aResult[$event] = [];
+                $aResult[$event] = array();
             }
 
             if ($row['resultsNum'] > 1) {
@@ -204,12 +204,12 @@ class ReportsModel
      */
     private function getHistoricalReport(Entity\Swimmer $oSwimmer)
     {
-        $aEvents = [];
+        $aEvents = array();
         $aEventResults = $this->swimmerRepository->getHistoricalReport($oSwimmer);
         foreach($aEventResults as $row) {
             $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
             if (!isset($aEvents[$event])) {
-                $aEvents[$event] = [];
+                $aEvents[$event] = array();
             }
 
             $aEvents[$event][] = $row;
@@ -217,13 +217,13 @@ class ReportsModel
 
         $aTimeStandartTitles = $this->getTimeStandartManager()->getTimeStandartTitles();
 
-        $report = [];
+        $report = array();
         foreach($aEvents as $event => $aEventResults) {
-            $aDate = [];
-            $aSwimmerSeconds = [];
-            $aTimeStandartSeconds = [];
+            $aDate = array();
+            $aSwimmerSeconds = array();
+            $aTimeStandartSeconds = array();
             foreach($aTimeStandartTitles as $row) {
-                $aTimeStandartSeconds[$row['title']] = [];
+                $aTimeStandartSeconds[$row['title']] = array();
             }
 
             foreach($aEventResults as $res) {
@@ -240,11 +240,11 @@ class ReportsModel
                 }
             }
 
-            $report[$event] = [
+            $report[$event] = array(
                 'dates' => json_encode($aDate),
                 'swimmerSeconds' => json_encode($aSwimmerSeconds),
                 'timeStandartSeconds' => json_encode($aTimeStandartSeconds),
-            ];
+            );
         }
 
         return $report;
@@ -336,7 +336,7 @@ class ReportsModel
     {
         $aResult = [];
         foreach($performance as $style => $aEvent) {
-            $aResult[$style] = ['meet' => [], 'my' => [], 'avg' => []];
+            $aResult[$style] = array('meet' => array(), 'my' => array(), 'avg' => array());
             foreach($aEvent as $event) {
                 $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
                 $ageInterval = $this->getHelperModel()->getAgeInterval($age);
@@ -362,9 +362,9 @@ class ReportsModel
      */
     public function getWithinRegionGraphicReport(Entity\Swimmer $oSwimmer, $performance)
     {
-        $aResult = [];
+        $aResult = array();
         foreach($performance as $style => $aEvent) {
-            $aResult[$style] = ['meet' => [], 'my' => [], 'avg' => []];
+            $aResult[$style] = array('meet' => array(), 'my' => array(), 'avg' => array());
             foreach($aEvent as $event) {
                 $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
                 $ageInterval = $this->getHelperModel()->getAgeInterval($age);
@@ -393,10 +393,10 @@ class ReportsModel
     {
         $comparison = $this->swimmerRepository->getSwimmerToSwimmerReport($meId, $swimmerId, $event);
 
-        $aTemp = [];
+        $aTemp = array();
         foreach($comparison as $row) {
             if (!isset($aTemp[$row['meet']])) {
-                $aTemp[$row['meet']] = [];
+                $aTemp[$row['meet']] = array();
             }
 
             if ($row['id'] == $meId) {
@@ -406,10 +406,10 @@ class ReportsModel
             }
         }
 
-        $aResult = [];
+        $aResult = array();
         $aResult['meet'] = array_keys($aTemp);
-        $aResult['me'] = [];
-        $aResult['swimmer'] = [];
+        $aResult['me'] = array();
+        $aResult['swimmer'] = array();
         foreach($aResult['meet'] as $meet) {
             $aResult['me'][] = (isset($aTemp[$meet]['me'])) ? $aTemp[$meet]['me'] : null;
             $aResult['swimmer'][] = (isset($aTemp[$meet]['swimmer'])) ? $aTemp[$meet]['swimmer'] : null;

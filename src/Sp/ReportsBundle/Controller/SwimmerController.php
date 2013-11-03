@@ -7,20 +7,20 @@
 
 namespace Sp\ReportsBundle\Controller;
 
-use Sp\AppBundle\Classes\ContainerTrait;
 use Sp\AppBundle\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use Sp\AppBundle\Model;
+use Sp\ReportsBundle\Model\ReportsModel;
+
 /**
  * @Route("/swimmer")
  */
 class SwimmerController extends Controller
 {
-    use ContainerTrait;
-
     /**
      * @Route("/", name="reports_swimmers")
      * @Template()
@@ -39,13 +39,13 @@ class SwimmerController extends Controller
     public function swimmerAction($id)
     {
         $oSwimmer = $this->getSwimmerManager()->getSwimmer($id);
-        return [
+        return array(
             'swimmer' => $oSwimmer,
             'swimmers' => $this->getSwimmerManager()->getSwimmers(),
             'events' => $this->getEventManager()->findEvents(),
             'reportsTitles' => $this->getReportsManager()->getReportsTitles(),
             'reports' => $this->getReportsManager()->getSwimmerReports($oSwimmer)
-        ];
+        );
     }
 
     /**
@@ -60,5 +60,29 @@ class SwimmerController extends Controller
         $aResult['myName'] = (string) $this->getSwimmerManager()->getSwimmer($id);
         $aResult['swimmerName'] = (string) $this->getSwimmerManager()->getSwimmer($swimmer);
         return new JsonResponse($aResult);
+    }
+
+    /**
+     * @return Model\EventManager
+     */
+    protected function getEventManager()
+    {
+        return $this->get('sp_app.event_manager');
+    }
+
+    /**
+     * @return Model\SwimmerManager
+     */
+    protected function getSwimmerManager()
+    {
+        return $this->get('sp_app.swimmer_manager');
+    }
+
+    /**
+     * @return ReportsModel
+     */
+    protected function getReportsManager()
+    {
+        return $this->get('sp_reports.reports_model');
     }
 }

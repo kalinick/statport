@@ -15,13 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-use Sp\AppBundle\Classes\ContainerTrait;
 use Sp\AppBundle\Entity;
 
 class ImportTimeStandartCommand extends ContainerAwareCommand
 {
-    use ContainerTrait;
-
     protected function configure()
     {
         $this
@@ -50,18 +47,18 @@ class ImportTimeStandartCommand extends ContainerAwareCommand
                 $eventData[2] = $eventData[3];
             }
 
-            $aYears = [
-                '10 & Under' => ['min' => 0, 'max' => 10],
-                '11 - 12' => ['min' => 11, 'max' => 12],
-                '13 - 14' => ['min' => 13, 'max' => 14],
-                '15 - 16' => ['min' => 15, 'max' => 16],
-                '17 - 18' => ['min' => 17, 'max' => 18],
-            ];
+            $aYears = array(
+                '10 & Under' => array('min' => 0, 'max' => 10),
+                '11 - 12' => array('min' => 11, 'max' => 12),
+                '13 - 14' => array('min' => 13, 'max' => 14),
+                '15 - 16' => array('min' => 15, 'max' => 16),
+                '17 - 18' => array('min' => 17, 'max' => 18),
+            );
 
-            $oDistance = $this->getDoctrine()->getRepository('SpAppBundle:Distance')->findOneBy(['length' => trim($eventData[0])]);
-            $oStyle = $this->getDoctrine()->getRepository('SpAppBundle:SwimmingStyle')->findOneBy(['title' => trim($eventData[1])]);
-            $oCourse = $this->getDoctrine()->getRepository('SpAppBundle:Course')->findOneBy(['title' => trim($eventData[2])]);
-            $oTimeStandart = $this->getDoctrine()->getRepository('SpAppBundle:TimeStandart')->findOneBy(['title' => trim($data[4])]);
+            $oDistance = $this->getDoctrine()->getRepository('SpAppBundle:Distance')->findOneBy(array('length' => trim($eventData[0])));
+            $oStyle = $this->getDoctrine()->getRepository('SpAppBundle:SwimmingStyle')->findOneBy(array('title' => trim($eventData[1])));
+            $oCourse = $this->getDoctrine()->getRepository('SpAppBundle:Course')->findOneBy(array('title' => trim($eventData[2])));
+            $oTimeStandart = $this->getDoctrine()->getRepository('SpAppBundle:TimeStandart')->findOneBy(array('title' => trim($data[4])));
             $gender = trim($data[2]);
             $years = $aYears[$data[3]];
 

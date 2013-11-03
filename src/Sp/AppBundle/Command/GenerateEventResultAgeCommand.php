@@ -15,13 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-use Sp\AppBundle\Classes\ContainerTrait;
 use Sp\AppBundle\Entity;
 
 class GenerateEventResultAgeCommand extends ContainerAwareCommand
 {
-    use ContainerTrait;
-
     protected function configure()
     {
         $this

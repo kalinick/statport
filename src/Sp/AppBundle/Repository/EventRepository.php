@@ -21,7 +21,7 @@ class EventRepository extends EntityRepository
     public function countEventsMember($aIds)
     {
         if (count($aIds) == 0) {
-            return [];
+            return array();
         }
 
         return $this

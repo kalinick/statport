@@ -27,11 +27,69 @@ img {
     outline: none;
 }
 
+.clear-both {
+    clear: both;
+}
 
+.reports-titles {
+    width: 200px;
+    float: left;
+}
 
+.reports-titles ol li {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0082FF;
+    line-height: 26px;
+}
 
+.reports-titles ol li a {
+    color: #000000;
+}
 
+.reports-titles ol li a.selected {
+    font-weight: lighter;
+    text-decoration: none;
+}
 
+.reports {
+    width: 700px;
+    float: right;
+}
+
+table.default {
+    border-spacing: 4px 0;
+    width: 100%;
+}
+
+table.default tr th {
+    background-color: #F0F0F0;
+    border-bottom: 2px dotted #FF0000;
+}
+
+table.default td {
+    border-bottom: 2px dotted #C6C6C6;
+    height: 19px;
+}
+
+table.default td, table.default th {
+    font-size: 11px;
+    padding: 7px;
+    text-align: left;
+    vertical-align: top;
+}
+
+table.default tr.grayed {
+    background-color: #F5F5F5;
+}
+
+table.default tr td.eventType {
+    background-color: #FFFFFF;
+}
+
+.reports .report .graphic .params {
+    display: none;
+}
 
 /*TODO: need overview!!!!!*/
 

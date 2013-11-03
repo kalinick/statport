@@ -37,16 +37,16 @@ class EventManager
     {
         $aEvents = $this->repository->findEvents();
 
-        $aResult = [];
+        $aResult = array();
         foreach($aEvents as $event) {
-            $aResult[] = [
-                'key' => json_encode([
+            $aResult[] = array(
+                'key' => json_encode(array(
                     'distanceId' => $event['distanceId'],
                     'styleId' => $event['styleId'],
                     'courseId' => $event['courseId'],
-                ]),
+                )),
                 'value' => $event['distance'] . ' ' . $event['style'] . ' ' . $event['course']
-            ];
+            );
         }
 
         return $aResult;
