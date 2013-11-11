@@ -1,3 +1,8 @@
+sp_front:
+    resource: "@SpFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 sp_reports:
     resource: "@SpReportsBundle/Controller/"
     type:     annotation

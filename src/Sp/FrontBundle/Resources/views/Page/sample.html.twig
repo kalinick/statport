@@ -1,0 +1,862 @@
+{% extends 'SpFrontBundle::base.html.twig' %}
+
+{% block content %}
+    <h1><span class="header blue">Membership Reports</span></h1>
+
+    <div class="l-gray header-content">
+        These reports are designed to summarize athlete's performance in a <span class="l-blue">straightforward and easy to understand format.</span> Report will provide you with the <span class="l-blue">most valuable information</span> to better monitor your kids development, recognize <span class="l-blue">your child's strongest events</span> and pin point the areas of an immediate concern. It will help you to validate the progress and identify the trends. The following performance reports are avaliable at single cost of <span class="l-blue"><strong>14.95/month per swimmer:</strong></span>
+    </div>
+    <div id="reports-list">
+        <ol class="left">
+            <li class="l-blue"><a href="#1" class="d-gray">Performance Overview</a></li>
+            <li class="l-blue"><a href="#2" class="d-gray">Best Time by Event</a></li>
+            <li class="l-blue"><a href="#3" class="d-gray">Individual meet results</a></li>
+            <li class="l-blue"><a href="#4" class="d-gray">Ranking Report</a></li>
+        </ol>
+        <ol start="5" class="left">
+            <li class="l-blue"><a href="#5" class="d-gray">Historical Progression</a></li>
+            <li class="l-blue"><a href="#6" class="d-gray">Time Deficiency Report</a></li>
+            <li class="l-blue"><a href="#7" class="d-gray">Age statistics ‐ Team</a></li>
+            <li class="l-blue two-line-item"><a href="#8" class="d-gray">Average Time Comparsion by Event ‐ Team</a></li>
+        </ol>
+        <ol start="9" class="left">
+            <li class="l-blue two-line-item"><a href="#9" class="d-gray">Average Time Comparsion by Event ‐ State</a></li>
+            <li class="l-blue"><a href="#10" class="d-gray">Season to Season Comparsion</a></li>
+            <li class="l-blue"><a href="#11" class="d-gray">Swimmer to Swimmer Comparsion</a></li>
+        </ol>
+    </div>
+    <div id="reports">
+    <div id="1" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">1.</div><span class="d-gray">Performance Overview</span></div>
+            <p class="l-gray">
+                this table will summarize your performance and list all your times for each event.
+            </p>
+        </div>
+        <table class="default">
+            <thead>
+            <tr>
+                <th class="event-col"><span class="l-gray">Event</span></th>
+                <th class="date-col"><span class="l-gray">Date</span></th>
+                <th class="meet-col"><span class="l-gray">Meet</span></th>
+                <th class="gender-col"><span class="l-gray">Gender</span></th>
+                <th class="age-col"><span class="l-gray">Age</span></th>
+                <th class="lsc-col"><span class="l-gray">LSC</span></th>
+                <th class="club-col"><span class="l-gray">Club</span></th>
+                <th class="time-col"><span class="l-gray">Time</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd-row">
+                <td rowspan="2">50 Freestyle SCY</td>
+                <td>9/18/2010</td>
+                <td>2010 AZ SAC&amp;&ndash;WSF</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>58.32</td>
+            </tr>
+            <tr class="even-row">
+                <td>11/12/2010</td>
+                <td>2010 AZ Fall FASTival</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>55.32</td>
+            </tr>
+            <tr class="odd-row">
+                <td rowspan="3">100 Freestyle SCY</td>
+                <td>11/12/2010</td>
+                <td>2010 AZ Fall FASTival</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+
+
+                <td>UN</td>
+                <td>2:12.32</td>
+            </tr>
+            <tr class="even-row">
+                <td>12/11/2010</td>
+                <td>2010 AZ WReg Suppl</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>1:57.84</td>
+            </tr>
+            <tr class="odd-row">
+                <td>1/28/2011</td>
+                <td>2011 AZ SAC Winter Inv</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>1:51.13</td>
+            </tr>
+            <tr class="even-row">
+                <td rowspan="5">200 Freestyle SCY</td>
+                <td>11/12/2010</td>
+                <td>2010 AZ Fall FASTival</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>3:27.97</td>
+            </tr>
+            <tr class="odd-row">
+                <td>12/20/2010</td>
+                <td>2010 AZ AGE Eastern Reg</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>3:18.12</td>
+            </tr>
+            <tr class="even-row">
+                <td>1/28/2011</td>
+                <td>2011 AZ SAC Winter Inv</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>2:53.09</td>
+            </tr>
+            <tr class="odd-row">
+                <td>2/25/2011</td>
+                <td>2011 AZ Age Group Reg</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>2:47.47</td>
+            </tr>
+            <tr class="even-row">
+                <td>3/10/2011</td>
+                <td>2011 AZ SC Age State</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>2:56.49</td>
+            </tr>
+            <tr class="odd-row">
+                <td rowspan="3">500 Freestyle SCY</td>
+                <td>11/12/2010</td>
+                <td>2010 AZ Fall FASTival</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>9:35.42</td>
+            </tr>
+            <tr class="even-row">
+                <td>1/28/2011</td>
+                <td>2011 AZ SAC Winter Inv</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>8:30.45</td>
+            </tr>
+            <tr class="odd-row">
+                <td>2/25/2011</td>
+                <td>2011 AZ Age Reg</td>
+                <td>M</td>
+                <td>9</td>
+                <td>UN</td>
+                <td>UN</td>
+                <td>7:23.72</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="2" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">2.</div><span class="d-gray">Best Time by Event</span></div>
+            <p class="l-gray">
+                this table will list best times for all your events.
+            </p>
+        </div>
+        <table class="default">
+            <thead>
+            <tr>
+                <th class="event-col"><span class="l-gray">Event</span></th>
+                <th class="time-col"><span class="l-gray">Best Time</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd-row">
+                <td>50 Free SCY</td>
+                <td>42.43</td>
+            </tr>
+            <tr class="even-row">
+                <td>50 Free LCY</td>
+                <td>50.13</td>
+            </tr>
+            <tr class="odd-row">
+                <td>100 Free SCY</td>
+                <td>1:42.36</td>
+            </tr>
+            <tr class="even-row">
+                <td>100 Free LCY</td>
+                <td>1:54.88</td>
+            </tr>
+            <tr class="odd-row">
+                <td>200 Free SCY</td>
+                <td>3:42.82</td>
+            </tr>
+            <tr class="even-row">
+                <td>200 Free LCY</td>
+                <td>4:24.84</td>
+            </tr>
+            <tr class="odd-row">
+                <td>50 Back SCY</td>
+                <td>52.36</td>
+            </tr>
+            <tr class="even-row">
+                <td>50 Back LCY</td>
+                <td>1:05.58</td>
+            </tr>
+            <tr class="odd-row">
+                <td>100 Back SCY</td>
+                <td>2:09.70</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="3" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">3.</div><span class="d-gray">Individual meet results</span></div>
+            <p class="l-gray">
+                this table will summarize your events and performance per each meet within our reporting period.
+            </p>
+        </div>
+        <table class="default">
+            <thead>
+            <tr>
+                <th class="meet-col"><span class="l-gray">Meet</span></th>
+                <th class="date-col"><span class="l-gray">Date</span></th>
+                <th class="event-col"><span class="l-gray">Event</span></th>
+                <th class="time-col"><span class="l-gray">Time</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd-row">
+                <td>2011 AZ Blue and Gold Meet</td>
+                <td>5/7/2011</td>
+                <td>200 Freestyle LCM</td>
+                <td>4:34.64</td>
+            </tr>
+            <tr class="even-row">
+                <td>2011 AZ Blue and Gold Meet</td>
+                <td>5/7/2011</td>
+                <td>100 Freestyle LCM</td>
+                <td>2:34.64</td>
+            </tr>
+            <tr class="odd-row">
+                <td>2011 AZ Blue and Gold Meet</td>
+                <td>5/7/2011</td>
+                <td>100 Backstroke LCM</td>
+                <td>2:07.58</td>
+            </tr>
+            <tr class="even-row">
+                <td>2011 AZ Blue and Gold Meet</td>
+                <td>5/7/2011</td>
+                <td>50 Backstroke LCM</td>
+                <td>1:07.58</td>
+            </tr>
+            <tr class="odd-row">
+                <td>2011 AZ Blue and Gold Meet</td>
+                <td>5/7/2011</td>
+                <td>100 Breaststroke LCM</td>
+                <td>2:27.19</td>
+            </tr>
+            <tr class="even-row">
+                <td>2011 AZ Blue and Gold Meet</td>
+                <td>5/7/2011</td>
+                <td>50 Breaststroke LCM</td>
+                <td>1:27.19</td>
+            </tr>
+            <tr class="odd-row">
+                <td>2011 AZ Blue and Gold Meet</td>
+                <td>5/7/2011</td>
+                <td>50 Freestyle LCM</td>
+                <td>56.13</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="4" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">4.</div><span class="d-gray">Ranking Report</span></div>
+            <p class="l-gray"></p>
+        </div>
+        <table class="default">
+            <thead>
+            <tr>
+                <th colspan="5"><span class="l-gray">50 Free SCY, F</span></th>
+            </tr>
+            <tr>
+                <th class="meet-col"><span class="l-gray">Meet</span></th>
+                <th class="date-col"><span class="l-gray">Date</span></th>
+                <th><span class="l-gray">Ranking</span></th>
+                <th><span class="l-gray">Out of</span></th>
+                <th><span class="l-gray">%tile</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd-row">
+                <td>Meet 1</td>
+                <td>2/9/2010</td>
+                <td>126</td>
+                <td>150</td>
+                <td>16.00%</td>
+            </tr>
+            <tr class="even-row">
+                <td>Meet 2</td>
+                <td>15/10/2010</td>
+                <td>110</td>
+                <td>130</td>
+                <td>15.38%</td>
+            </tr>
+            <tr class="odd-row">
+                <td>Meet 3</td>
+                <td>3/12/2010</td>
+                <td>88</td>
+                <td>120</td>
+                <td>26.67%</td>
+            </tr>
+            <tr class="even-row">
+                <td>Meet 4</td>
+                <td>28/1/2011</td>
+                <td>80</td>
+                <td>120</td>
+                <td>33.33%</td>
+            </tr>
+            <tr class="odd-row">
+                <td>Meet 5</td>
+                <td>13/2/2011</td>
+                <td>65</td>
+                <td>80</td>
+                <td>18.75%</td>
+            </tr>
+            <tr class="even-row">
+                <td>Meet 6</td>
+                <td>28/2/2011</td>
+                <td>56</td>
+                <td>80</td>
+                <td>30.00%</td>
+            </tr>
+            <tr class="odd-row">
+                <td>Meet 7</td>
+                <td>4/3/2011</td>
+                <td>50</td>
+                <td>76</td>
+                <td>34.21%</td>
+            </tr>
+            <tr class="even-row">
+                <td>Meet 8</td>
+                <td>26/3/2011</td>
+                <td>39</td>
+                <td>60</td>
+                <td>35.00%</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="5" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">5.</div><span class="d-gray">Historical Progression</span></div>
+            <p class="l-gray">
+                a visual report, consisting of series of graphs representing your time progression for each event.
+            </p>
+        </div>
+        <div class="chart">
+            <div class="chart-graph"><svg height="220" version="1.1" width="700" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;"><desc>Created with Raphaël 2.1.0</desc><defs/><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="85" y="90" text-anchor="middle" font="18 Arial" stroke="none" fill="#494949" transform="matrix(0,-1,1,0,-4.5,175.5)"><tspan dy="3.5">Time (sec)</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">70</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="25" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">66</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="45" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">62</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="65" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">58</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="85" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">54</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="105" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">50</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="125" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">46</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="145" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">42</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="165" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">38</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="185" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">34</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="205" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">30</tspan></text><path style="" fill="none" stroke="#e5e5e5" d="M133,5H661M133,25H661M133,45H661M133,65H661M133,85H661M133,105H661M133,125H661M133,145H661M133,165H661M133,185H661M133,205H661" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#0000ff" d="M156,48.816666666666656L180,52.54999999999999L252,63.75L324,78.4L396,129.25L468,125.5L540,121.49999999999999L612,142.3L636,149.23333333333335" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="180" cy="52.54999999999999" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="252" cy="63.75" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="324" cy="78.4" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="396" cy="129.25" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="468" cy="125.5" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="540" cy="121.49999999999999" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="612" cy="142.3" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#ff0000" d="M156,160.55L180,160.55L252,160.55L324,160.55L396,160.55L468,160.55L540,160.55L612,160.55L636,160.55" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="180" cy="160.55" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="252" cy="160.55" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="324" cy="160.55" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="396" cy="160.55" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="468" cy="160.55" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="540" cy="160.55" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="612" cy="160.55" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/></svg></div>
+            <div class="legend left d-gray">
+                <div class="right">
+                    <div class="legend-item"></div>
+                    <span class="legend-item"><span class="blue circle">°&nbsp;</span>50 Free</span>
+                    <br>
+                    <span class="legend-item"><span class="red circle">°&nbsp;</span>50 Free Regionals</span>
+                </div>
+            </div>
+            <table class="sample">
+                <thead>
+                <tr>
+                    <th><span>6/25/2010</span></th>
+                    <th><span>9/18/2010</span></th>
+                    <th><span>11/13/2010</span></th>
+                    <th><span>7/29/2011</span></th>
+                    <th><span>9/10/2011</span></th>
+                    <th><span>9/17/2011</span></th>
+                    <th class="no-border"><span>1/21/2012</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>60.49</td>
+                    <td>58.25</td>
+                    <td>55.32</td>
+                    <td>45.15</td>
+                    <td>45.9</td>
+                    <td>46.7</td>
+                    <td>42.54</td>
+                </tr>
+                <tr>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="chart">
+            <div class="chart-graph"><svg height="220" version="1.1" width="700" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;"><desc>Created with Raphaël 2.1.0</desc><defs/><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="85" y="90" text-anchor="middle" font="18 Arial" stroke="none" fill="#494949" transform="matrix(0,-1,1,0,-4.5,175.5)"><tspan dy="3.5">Time (sec)</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">140</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="19" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">136</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="33" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">132</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="47" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">128</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="61" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">124</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="75" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">120</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">116</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="103" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">112</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="117" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">108</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="131" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">104</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="145" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">100</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="159" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">96</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="173" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">92</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="187" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">88</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="201" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">84</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="215" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">80</tspan></text><path style="" fill="none" stroke="#e5e5e5" d="M133,5H661M133,19H661M133,33H661M133,47H661M133,61H661M133,75H661M133,89H661M133,103H661M133,117H661M133,131H661M133,145H661M133,159H661M133,173H661M133,187H661M133,201H661M133,215H661" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#0000ff" d="M150.66666666666666,31.973333333333304L172,29.954999999999984L236,23.90000000000002L300,82.55999999999999L364,103.31500000000001L428,95.195L492,106.53500000000003L556,93.90000000000002L620,118.29500000000002L641.3333333333334,126.42666666666668" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="172" cy="29.954999999999984" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="236" cy="23.90000000000002" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="300" cy="82.55999999999999" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="364" cy="103.31500000000001" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="428" cy="95.195" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="492" cy="106.53500000000003" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="556" cy="93.90000000000002" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="620" cy="118.29500000000002" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#ff0000" d="M150.66666666666666,182.835L172,182.835L236,182.835L300,182.835L364,182.835L428,182.835L492,182.835L556,182.835L620,182.835L641.3333333333334,182.835" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="172" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="236" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="300" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="364" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="428" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="492" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="556" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="620" cy="182.835" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/></svg></div>
+            <div class="legend left d-gray">
+                <div class="right">
+                    <div class="legend-item"></div>
+                    <span class="legend-item"><span class="blue circle">°&nbsp;</span>100 Free</span>
+                    <br>
+                    <span class="legend-item"><span class="red circle">°&nbsp;</span>100 Free Regionals</span>
+                </div>
+            </div>
+            <table class="sample">
+                <thead>
+                <tr>
+                    <th><span>7/9/2010</span></th>
+                    <th><span>11/14/2010</span></th>
+                    <th><span>12/11/2010</span></th>
+                    <th><span>1/30/2011</span></th>
+                    <th><span>5/20/2011</span></th>
+                    <th><span>6/10/2011</span></th>
+                    <th><span>5/8/2011</span></th>
+                    <th class="no-border"><span>6/18/2011</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>132.87</td>
+                    <td>134.6</td>
+                    <td>117.84</td>
+                    <td>111.91</td>
+                    <td>114.23</td>
+                    <td>110.99</td>
+                    <td>114.6</td>
+                    <td>107.63</td>
+                </tr>
+                <tr>
+                    <td>89.19</td>
+                    <td>89.19</td>
+                    <td>89.19</td>
+                    <td>89.19</td>
+                    <td>89.19</td>
+                    <td>89.19</td>
+                    <td>89.19</td>
+                    <td>89.19</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div id="6" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">6.</div><span class="d-gray">Time Deficiency Report</span></div>
+            <p class="l-gray">
+                this table lists all events with qualifying times as a benchmark. The qualifying time is yours specific and is determined, based on your age and a gender. All qualifying event will be highlighted. The three best non-qualified events also will be listed with the time gap identified.
+            </p>
+        </div>
+        <table class="default">
+            <thead>
+            <tr>
+                <th colspan="5"><span class="l-gray">Boys 10&amp;Under</span></th>
+            </tr>
+            <tr>
+                <th class="meet-col"><span class="l-gray">Meet</span></th>
+                <th class="time-col"><span class="l-gray">Times</span></th>
+                <th><span class="l-gray">R</span></th>
+                <th><span class="l-gray">Gap</span></th>
+                <th><span class="l-gray">Qualified Event</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd-row">
+                <td>50 Freestyle SCY</td>
+                <td>55.32</td>
+                <td>38.89</td>
+                <td>16.43</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="even-row">
+                <td>100 Freestyle SCY</td>
+                <td>1:51.13</td>
+
+                <td>1:29.19</td>
+                <td>21.94</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="odd-row">
+                <td>200 Freestyle SCY</td>
+                <td>1:51.13</td>
+                <td>3:9.89</td>
+                <td>&nbsp;</td>
+                <td>200 Freestyle SCY</td>
+            </tr>
+            <tr class="even-row">
+                <td>500 Freestyle SCY</td>
+                <td>5:54.23</td>
+                <td>8:25.79</td>
+                <td>&nbsp;</td>
+                <td>500 Freestyle SCY</td>
+            </tr>
+            <tr class="odd-row">
+                <td>50 Backstroke SCY</td>
+                <td>58.08</td>
+                <td>49.19</td>
+                <td>8.89</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="even-row">
+                <td>100 Backstroke SCY</td>
+                <td>58.32</td>
+                <td>1:42.89</td>
+                <td>&nbsp;</td>
+                <td>100 Backstroke SCY</td>
+            </tr>
+            <tr class="odd-row">
+                <td>50 Breakstroke SCY</td>
+                <td>1:25.89</td>
+                <td>53.59</td>
+                <td>32.3</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="even-row">
+                <td>100 Breakstroke SCY</td>
+                <td>58.32</td>
+                <td>1:55.69</td>
+                <td>&nbsp;</td>
+                <td>100 Breststroke SCY</td>
+            </tr>
+            <tr class="odd-row">
+                <td>50 Butterfly SCY</td>
+                <td>55.32</td>
+                <td>47.29</td>
+                <td>8.3</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="even-row">
+                <td>100 Butterfly SCY</td>
+                <td>2:32.32</td>
+                <td>1:55.19</td>
+                <td>37.13</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="odd-row">
+                <td>100 IM SCY</td>
+                <td>58.32</td>
+                <td>1:41.29</td>
+                <td>&nbsp;</td>
+                <td>100 IM SCY</td>
+            </tr>
+            <tr class="even-row">
+                <td>200 IM SCY</td>
+                <td>5:34.64</td>
+                <td>3:40.89</td>
+                <td>113.75</td>
+                <td>&nbsp;</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="7" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">7.</div><span class="d-gray">Age Statistics within your team</span></div>
+            <p class="l-gray">
+                this report consists of table. The table will show your best time for each event, the team best time for the same event within the same age group, the team average time, the % tile of swimmers with better performance and the % tile of your performance within your team.
+            </p>
+        </div>
+        <table class="default">
+            <thead>
+            <tr>
+                <th colspan="4"><span class="l-gray">Age Average Statistics &amp; %tile</span></th>
+            </tr>
+            <tr>
+                <th><span class="l-gray">Boys 8 - 10</span></th>
+                <th><span class="l-gray">50 Free SCY</span></th>
+                <th><span class="l-gray">100 Free SCY</span></th>
+                <th><span class="l-gray">50 Back SCY</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="even-row">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="odd-row">
+                <td>Best Result</td>
+                <td>28.84</td>
+                <td>1:03.89</td>
+                <td>35.96</td>
+            </tr>
+            <tr class="even-row">
+                <td>Average Time</td>
+                <td>48.01</td>
+                <td>1:35.00</td>
+                <td>58:08</td>
+            </tr>
+            <tr class="odd-row">
+                <td>Your Best Time</td>
+                <td>42.43</td>
+                <td>1:42.36</td>
+                <td>52.36</td>
+            </tr>
+            <tr class="even-row">
+                <td>Better Times Percentile</td>
+                <td>31.60%</td>
+                <td>40%</td>
+                <td>41.20%</td>
+            </tr>
+            <tr class="odd-row">
+                <td>Your Performance Percentile</td>
+                <td>74%</td>
+                <td>66.70%</td>
+                <td>62.50%</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="8" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">8.</div><span class="d-gray">Average Time Comparison By Event</span></div>
+            <p class="l-gray">
+                The chart will show the comparison of progression of your best time versus average time.
+            </p>
+        </div>
+        <div class="chart">
+            <div id="chart-8" class="chart-graph"><svg height="220" version="1.1" width="700" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;"><desc>Created with Raphaël 2.1.0</desc><defs/><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="85" y="90" text-anchor="middle" font="18 Arial" stroke="none" fill="#494949" transform="matrix(0,-1,1,0,-4.5,175.5)"><tspan dy="3.5">Time (sec)</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">70</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="26" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">66</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="47" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">62</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="68" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">58</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">54</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="110" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">50</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="131" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">46</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="152" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">42</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="173" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">38</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="194" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">34</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="215" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">30</tspan></text><path style="" fill="none" stroke="#e5e5e5" d="M133,5H661M133,26H661M133,47H661M133,68H661M133,89H661M133,110H661M133,131H661M133,152H661M133,173H661M133,194H661M133,215H661" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#0000ff" d="M150.66666666666666,51.007499999999986L172,54.92749999999999L236,66.6875L300,82.07L364,103.01750000000001L428,86.165L492,132.05L556,135.4625L620,131.525L641.3333333333334,130.2125" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="172" cy="54.92749999999999" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="236" cy="66.6875" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="300" cy="82.07" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="364" cy="103.01750000000001" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="428" cy="86.165" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="492" cy="132.05" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="556" cy="135.4625" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="620" cy="131.525" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#ff0000" d="M150.66666666666666,146.9425L172,147.7475L236,150.1625L300,120.4475L364,161.345L428,176.7275L492,132.05L556,117.61250000000001L620,95.45749999999998L641.3333333333334,88.07249999999998" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="172" cy="147.7475" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="236" cy="150.1625" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="300" cy="120.4475" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="364" cy="161.345" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="428" cy="176.7275" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="492" cy="132.05" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="556" cy="117.61250000000001" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="620" cy="95.45749999999998" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/></svg></div>
+            <div class="legend left d-gray">
+                <div class="right">
+                    <div class="legend-item"></div>
+                    <span class="legend-item"><span class="blue circle">°&nbsp;</span>Swimmer</span>
+                    <br>
+                    <span class="legend-item"><span class="red circle">°&nbsp;</span>State</span>
+                </div>
+            </div>
+            <table class="sample">
+                <thead>
+                <tr>
+                    <th><span>Splash Meet<br>6/25/2010</span></th>
+                    <th><span>SAV vs WSF<br>9/18/2010</span></th>
+                    <th><span>Fall FASTival<br>11/13/2010</span></th>
+                    <th><span>Gold &amp; Blue<br>5/7/2011</span></th>
+                    <th><span>PHX Invite<br>6/17/2011</span></th>
+                    <th><span>REG Supl<br>7/16/2011</span></th>
+                    <th><span>Splash Final<br>7/29/2011</span></th>
+                    <th class="no-border"><span>Splash Meet<br>9/10/2011</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>60.49</td>
+                    <td>58.25</td>
+                    <td>55.32</td>
+                    <td>51.33</td>
+                    <td>54.54</td>
+                    <td>45.8</td>
+                    <td>45.15</td>
+                    <td>45.9</td>
+                </tr>
+                <tr>
+                    <td>42.81</td>
+                    <td>42.35</td>
+                    <td>48.01</td>
+                    <td>40.22</td>
+                    <td>37.29</td>
+                    <td>45.8</td>
+                    <td>48.55</td>
+                    <td>52.77</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="9" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">9.</div><span class="d-gray">State average time comparsion</span></div>
+            <p class="l-gray">
+                this report will show the comparsion of progression of your best time versus state average for each event / age group
+            </p>
+        </div>
+        <div class="chart">
+            <div id="chart-9" class="chart-graph"><svg height="220" version="1.1" width="700" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;"><desc>Created with Raphaël 2.1.0</desc><defs/><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="85" y="90" text-anchor="middle" font="18 Arial" stroke="none" fill="#494949" transform="matrix(0,-1,1,0,-4.5,175.5)"><tspan dy="3.5">Time (sec)</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">70</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="26" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">66</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="47" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">62</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="68" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">58</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">54</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="110" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">50</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="131" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">46</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="152" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">42</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="173" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">38</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="194" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">34</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="215" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">30</tspan></text><path style="" fill="none" stroke="#e5e5e5" d="M133,5H661M133,26H661M133,47H661M133,68H661M133,89H661M133,110H661M133,131H661M133,152H661M133,173H661M133,194H661M133,215H661" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#0000ff" d="M150.66666666666666,51.007499999999986L172,54.92749999999999L236,66.6875L300,82.07L364,103.01750000000001L428,86.2175L492,132.05L556,135.4625L620,131.525L641.3333333333334,130.2125" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="172" cy="54.92749999999999" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="236" cy="66.6875" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="300" cy="82.07" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="364" cy="103.01750000000001" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="428" cy="86.2175" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="492" cy="132.05" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="556" cy="135.4625" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="620" cy="131.525" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#ff0000" d="M150.66666666666666,158.03749999999997L172,159.40249999999997L236,163.4975L300,144.9125L364,177.4625L428,186.3875L492,154.9925L556,121.76L620,108.21499999999997L641.3333333333334,103.69999999999996" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="172" cy="159.40249999999997" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="236" cy="163.4975" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="300" cy="144.9125" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="364" cy="177.4625" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="428" cy="186.3875" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="492" cy="154.9925" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="556" cy="121.76" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="620" cy="108.21499999999997" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/></svg></div>
+            <div class="legend left d-gray">
+                <div class="right">
+                    <div class="legend-item"></div>
+                    <span class="legend-item"><span class="blue circle">°&nbsp;</span>Swimmer</span>
+                    <br>
+                    <span class="legend-item"><span class="red circle">°&nbsp;</span>State</span>
+                </div>
+            </div>
+            <table class="sample">
+                <thead>
+                <tr>
+                    <th><span>Splash Meet<br>5/25/2010</span></th>
+                    <th><span>SAV vs WSF<br>9/18/2010</span></th>
+                    <th><span>Fall FASTival<br>11/13/2010</span></th>
+                    <th><span>Gold &amp; Blue<br>5/7/2011</span></th>
+                    <th><span>PHX Invite<br>6/17/2011</span></th>
+                    <th><span>REG Supl<br>7/16/2011</span></th>
+                    <th><span>Splash Final<br>7/29/2011</span></th>
+                    <th class="no-border"><span>Splash Meet<br>9/10/2011</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>60.49</td>
+                    <td>58.25</td>
+                    <td>55.32</td>
+                    <td>51.33</td>
+                    <td>54.53</td>
+                    <td>45.8</td>
+                    <td>45.15</td>
+                    <td>45.9</td>
+                </tr>
+                <tr>
+                    <td>40.59</td>
+                    <td>39.81</td>
+                    <td>43.35</td>
+                    <td>37.15</td>
+                    <td>35.45</td>
+                    <td>41.43</td>
+                    <td>47.76</td>
+                    <td>50.34</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="10" class="report">
+        <div class="description">
+            <div class="title"><div class="num l-blue left">10.</div><span class="d-gray">Season To Season Comparison</span></div>
+            <p class="l-gray">
+                this visual report will show the comparison of progression of each event by seasons (for example, short course of previous year vs short course of current year).
+            </p>
+        </div>
+        <div class="chart">
+            <div id="chart-10-1" class="chart-graph"><svg height="220" version="1.1" width="700" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;"><desc>Created with Raphaël 2.1.0</desc><defs/><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="85" y="90" text-anchor="middle" font="18 Arial" stroke="none" fill="#494949" transform="matrix(0,-1,1,0,-4.5,175.5)"><tspan dy="3.5">Time (sec)</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">70</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="26" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">66</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="47" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">62</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="68" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">58</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">54</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="110" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">50</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="131" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">46</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="152" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">42</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="173" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">38</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="194" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">34</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="215" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">30</tspan></text><path style="" fill="none" stroke="#e5e5e5" d="M133,5H661M133,26H661M133,47H661M133,68H661M133,89H661M133,110H661M133,131H661M133,152H661M133,173H661M133,194H661M133,215H661" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#0000ff" d="M154.33333333333334,51.007499999999986L189,54.92749999999999L293,66.6875L397,82.07L501,103.01750000000001L605,86.2175L639.6666666666666,80.61749999999999" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="189" cy="54.92749999999999" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="293" cy="66.6875" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="397" cy="82.07" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="501" cy="103.01750000000001" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="605" cy="86.2175" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#ff0000" d="M154.33333333333334,130.8425L189,131.9975L293,135.4625L397,131.525L501,147.8L605,155.4125L639.6666666666666,157.95" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="189" cy="131.9975" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="293" cy="135.4625" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="397" cy="131.525" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="501" cy="147.8" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="605" cy="155.4125" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#00ff00" d="M154.33333333333334,168.3275L189,168.3275L293,168.3275L397,168.3275L501,168.3275L605,168.3275L639.6666666666666,168.3275" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="189" cy="168.3275" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="293" cy="168.3275" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="397" cy="168.3275" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="501" cy="168.3275" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="605" cy="168.3275" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/></svg></div>
+            <div class="legend left d-gray">
+                <div class="right">
+                    <div class="legend-item"></div>
+                    <span class="legend-item"><span class="blue circle">°&nbsp;</span>SCY Fall 2009 ‐ Winter 2010</span>
+                    <br>
+                    <span class="legend-item"><span class="red circle">°&nbsp;</span>SCY Fall 2010 ‐ Winter 2011</span>
+                    <br>
+                    <span class="legend-item"><span class="green circle">°&nbsp;</span>Regional Qualifying</span>
+                </div>
+            </div>
+            <table class="sample">
+                <thead>
+                <tr>
+                    <th><span>September</span></th>
+                    <th><span>October</span></th>
+                    <th><span>November</span></th>
+                    <th><span>January</span></th>
+                    <th class="no-border"><span>February</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>60.49</td>
+                    <td>58.25</td>
+                    <td>55.32</td>
+                    <td>51.33</td>
+                    <td>54.53</td>
+                </tr>
+                <tr>
+                    <td>45.81</td>
+                    <td>45.15</td>
+                    <td>45.9</td>
+                    <td>42.8</td>
+                    <td>41.35</td>
+                </tr>
+                <tr>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                    <td>38.89</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="chart">
+            <div id="chart-10-2" class="chart-graph"><svg height="220" version="1.1" width="700" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative;"><desc>Created with Raphaël 2.1.0</desc><defs/><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="85" y="90" text-anchor="middle" font="18 Arial" stroke="none" fill="#494949" transform="matrix(0,-1,1,0,-4.5,175.5)"><tspan dy="3.5">Time (sec)</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">150</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="19" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">146</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="33" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">142</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="47" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">138</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="61" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">134</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="75" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">130</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="89" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">126</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="103" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">122</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="117" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">118</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="131" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">114</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="145" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">110</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="159" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">106</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="173" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">102</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="187" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">98</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="201" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">94</tspan></text><text style="text-anchor: middle; font: 10px &quot;Arial&quot;;" x="119" y="215" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#494949"><tspan dy="3.5">90</tspan></text><path style="" fill="none" stroke="#e5e5e5" d="M133,5H661M133,19H661M133,33H661M133,47H661M133,61H661M133,75H661M133,89H661M133,103H661M133,117H661M133,131H661M133,145H661M133,159H661M133,173H661M133,187H661M133,201H661M133,215H661" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#0000ff" d="M154.33333333333334,24.401666666666664L189,36.18499999999999L293,71.53499999999997L397,64.46500000000003L501,71.84999999999998L605,77.97499999999998L639.6666666666666,80.01666666666665" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="189" cy="36.18499999999999" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="293" cy="71.53499999999997" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="397" cy="64.46500000000003" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="501" cy="71.84999999999998" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="605" cy="77.97499999999998" r="2.5" fill="#ffffff" stroke="#0000ff" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#ff0000" d="M154.33333333333334,72.8066666666666L189,79.09499999999996L293,97.96000000000001L397,128.41000000000003L501,162.185L605,195.78500000000003L639.6666666666666,206.98500000000004" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="189" cy="79.09499999999996" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="293" cy="97.96000000000001" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="397" cy="128.41000000000003" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="501" cy="162.185" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="605" cy="195.78500000000003" r="2.5" fill="#ffffff" stroke="#ff0000" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><path style="" fill="none" stroke="#00ff00" d="M154.33333333333334,175.48499999999999L189,175.48499999999999L293,175.48499999999999L397,175.48499999999999L501,175.48499999999999L605,175.48499999999999L639.6666666666666,175.48499999999999" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="189" cy="175.48499999999999" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="293" cy="175.48499999999999" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="397" cy="175.48499999999999" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="501" cy="175.48499999999999" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/><circle cx="605" cy="175.48499999999999" r="2.5" fill="#ffffff" stroke="#00ff00" style="" transform="matrix(1,0,0,1,0.5,0.5)"/></svg></div>
+            <div class="legend left d-gray">
+                <div class="right">
+                    <div class="legend-item"></div>
+                    <span class="legend-item"><span class="blue circle">°&nbsp;</span>SCY Fall 2009 ‐ Winter 2010</span>
+                    <span class="legend-item"><span class="red circle">°&nbsp;</span>SCY Fall 2010 ‐ Winter 2011</span>
+                    <span class="legend-item"><span class="green circle">°&nbsp;</span>Regional Qualifying</span>
+                </div>
+            </div>
+            <table class="sample">
+                <thead>
+                <tr>
+                    <th><span>September</span></th>
+                    <th><span>October</span></th>
+                    <th><span>November</span></th>
+                    <th><span>January</span></th>
+                    <th class="no-border"><span>February</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>141.09</td>
+                    <td>130.99</td>
+                    <td>133.01</td>
+                    <td>130.9</td>
+                    <td>129.15</td>
+                </tr>
+                <tr>
+                    <td>128.83</td>
+                    <td>123.44</td>
+                    <td>114.74</td>
+                    <td>105.09</td>
+                    <td>95.49</td>
+                </tr>
+                <tr>
+                    <td>101.29</td>
+                    <td>101.29</td>
+                    <td>101.29</td>
+                    <td>101.29</td>
+                    <td>101.29</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <a href="/register/">
+        <div class="signup-button button blue-button unselectable">
+            <div class="bb-l"></div>
+            <div class="bb-m"><span>Sign up now</span></div>
+            <div class="bb-r"></div>
+        </div>
+    </a>
+
+    <div class="clear-both"></div>
+    </div>
+
+{% endblock %}

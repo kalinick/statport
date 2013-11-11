@@ -1,0 +1,58 @@
+{% extends 'SpFrontBundle::base.html.twig' %}
+
+{% block content %}
+    <div class="gray-container">
+        <div id="qf-content">
+            <div class="question-flow" id="qf-1">
+                <img src="{{ asset('bundles/spfront/images/qm1.png') }}" alt="" class="qm left">
+                <img src="{{ asset('bundles/spfront/images/qf1.png') }}" alt="" class="ilustration left">
+                <p>Do you really have time <br> or energy digging through <br> pages of data?</p>
+            </div>
+            <div class="divisor divisor-qf menu-item"></div>
+            <div class="question-flow" id="qf-2">
+                <img src="{{ asset('bundles/spfront/images/qm2.png') }}" alt="" class="qm left">
+                <img src="{{ asset('bundles/spfront/images/qf2.png') }}" alt="" class="ilustration">
+                <p>Can you easily compare <br> your kid’s performance <br> against other swimmers?</p>
+            </div>
+            <div class="divisor divisor-qf menu-item"></div>
+            <div class="question-flow" id="qf-3">
+                <img src="{{ asset('bundles/spfront/images/qm3.png') }}" alt="" class="qm left">
+                <img src="{{ asset('bundles/spfront/images/qf3.png') }}" alt="" class="ilustration">
+                <p>Aren’t you tired of pencil tracking your kid’s progress?</p>
+            </div>
+        </div>
+    </div>
+    <div class="center" id="main-header"><h1><span class="header blue">Sports analytics</span><span class="header red">analysis &amp;reporting</span></h1></div>
+    <div id="opportunities">
+        <img src="{{ asset('bundles/spfront/images/graph-main.png') }}" alt="Graph" class="left">
+        <div id="one" class="left red">1.</div>
+        <div class="left">
+            <p>
+                <span class="l-blue">We monitor</span> your swimmer’s data throughout the month and conduct detailed analysis on the metrics
+                that matter to you the most
+            </p>
+
+        </div>
+        <div id="two" class="left red">2.</div>
+        <div class="left">
+            <p>
+                <span class="l-blue">We deliver</span> customized monthly reports, that will help you measure and monitor your kid’s competition
+                performance
+            </p>
+        </div>
+
+        <a href="{{ path('sample_page') }}" class="button gray-button left unselectable" id="sample-button">
+            <div class="gb-l"></div>
+            <div class="gb-m"><span>Sample</span></div>
+            <div class="gb-r"></div>
+        </a>
+        <div class="sample">See a sample report</div>
+        <a href="#">
+            <div class="button blue-button right unselectable">
+                <div class="bb-l"></div>
+                <div class="bb-m"><span>Sign up now</span></div>
+                <div class="bb-r"></div>
+            </div>
+        </a>
+    </div>
+{% endblock %}

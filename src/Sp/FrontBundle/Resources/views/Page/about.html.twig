@@ -1,0 +1,22 @@
+{% extends 'SpFrontBundle::base.html.twig' %}
+
+{% block content %}
+    <div class="page about-us">
+        <h1><div class="left"><span class="header blue">About us</span></div></h1>
+        <div class="sub-header l-blue">Our company</div>
+        <div class="company">Sport-Statport is a member company and fully owned subsidiary of Statport Group. It is a provider of a high value statistical, financial and business analytics solutions to the various industries. The company is headquartered in Phoenix, Arizona.</div>
+        <div class="sub-header l-blue">What we do</div>
+        <div class="what-we-do">
+            <span class="text">Balanced scorecards and dashboards have become the most innovative tools to measure athlete's performance and are very popular for their ability to communicate complex information visually. </span>
+            <br>
+            <br>
+            <span class="text">We deliver accurate and timely performance data reports on individual athletes via our proprietary product - Athlete Performance Analytics™ (APA). The reports provide you with the most valuable information to better monitor young athletes’ development, recognize your child’s strongest events and pin point the areas of an immediate concern. It will help you validate the progress and identify the trends quickly and more effectively.</span>
+        </div>
+        <div class="questions">If you have any questions, please do not hesitate to <a class="l-blue" href="{{ path('contact_page') }}">contact us</a></div>
+        <div class="download right">
+            <a class="l-blue" href="/download/brochure.pdf">Download our brochure</a>
+            <br>
+            <div class="text">If you can’t view our brochure you will need to download <a href="http://get.adobe.com/reader/" class="red">Adobe Reader</a> for free.</div>
+        </div>
+    </div>
+{% endblock %}
