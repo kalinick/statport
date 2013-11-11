@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Sp\AppBundle\SpAppBundle(),
             new Sp\FrontBundle\SpFrontBundle(),
             new Sp\ReportsBundle\SpReportsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
