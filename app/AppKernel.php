@@ -20,6 +20,12 @@ class AppKernel extends Kernel
             new Sp\FrontBundle\SpFrontBundle(),
             new Sp\ReportsBundle\SpReportsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sp\AdminBundle\SpAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
