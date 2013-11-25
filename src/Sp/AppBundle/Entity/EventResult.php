@@ -20,34 +20,34 @@ class EventResult
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Event")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", nullable=false)
      */
-    protected $event;
+    private $event;
 
     /**
      * @ORM\ManyToOne(targetEntity="Swimmer")
-     * @ORM\JoinColumn(name="swimmer_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="swimmer_id", referencedColumnName="id", nullable=false)
      */
-    protected $swimmer;
+    private $swimmer;
 
     /**
      * @ORM\Column(type="float")
      */
-    protected $seconds;
+    private $seconds;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $rank;
+    private $rank;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $age;
+    private $age;
 
     /**
      * Get id

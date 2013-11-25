@@ -23,12 +23,12 @@ class Lsc
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    protected $title;
+    private $title;
 
     /**
      * @ORM\OneToMany(targetEntity="Event", mappedBy="lsc")

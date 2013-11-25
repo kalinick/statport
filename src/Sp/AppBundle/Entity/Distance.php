@@ -22,17 +22,18 @@ class Distance
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $length;
+    private $length;
 
     /**
      * @ORM\OneToMany(targetEntity="Event", mappedBy="distance")
      */
     private $events;
+
     /**
      * Constructor
      */

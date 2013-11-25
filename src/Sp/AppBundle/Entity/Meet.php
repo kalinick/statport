@@ -22,17 +22,17 @@ class Meet
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    protected $title;
+    private $title;
 
     /**
      * @ORM\Column(type="date")
      */
-    protected $date;
+    private $date;
 
     /**
      * @ORM\OneToMany(targetEntity="Event", mappedBy="meet")
