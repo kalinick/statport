@@ -22,51 +22,51 @@ class TimeStandartResult
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Distance")
-     * @ORM\JoinColumn(name="distance_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="distance_id", referencedColumnName="id", nullable=false)
      */
-    protected $distance;
+    private $distance;
 
     /**
      * @ORM\ManyToOne(targetEntity="SwimmingStyle")
-     * @ORM\JoinColumn(name="style_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="style_id", referencedColumnName="id", nullable=false)
      */
-    protected $style;
+    private $style;
 
     /**
      * @ORM\ManyToOne(targetEntity="Course")
-     * @ORM\JoinColumn(name="course_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", nullable=false)
      */
-    protected $course;
+    private $course;
 
     /**
      * @ORM\ManyToOne(targetEntity="TimeStandart")
-     * @ORM\JoinColumn(name="time_standart_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="time_standart_id", referencedColumnName="id", nullable=false)
      */
-    protected $timeStandart;
+    private $timeStandart;
 
     /**
      * @ORM\Column(type="string", type="string", length=1)
      */
-    protected $gender;
+    private $gender;
 
     /**
      * @ORM\Column(type="integer", name="min_age")
      */
-    protected $minAge;
+    private $minAge;
 
     /**
-     * @ORM\Column(type="integer" , name="max_age")
+     * @ORM\Column(type="integer", name="max_age")
      */
-    protected $maxAge;
+    private $maxAge;
 
     /**
      * @ORM\Column(type="float")
      */
-    protected $seconds;
+    private $seconds;
 
     /**
      * Get id

@@ -22,43 +22,43 @@ class Event
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Meet")
-     * @ORM\JoinColumn(name="meet_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="meet_id", referencedColumnName="id", nullable=false)
      */
-    protected $meet;
+    private $meet;
 
     /**
      * @ORM\ManyToOne(targetEntity="Distance")
-     * @ORM\JoinColumn(name="distance_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="distance_id", referencedColumnName="id", nullable=false)
      */
-    protected $distance;
+    private $distance;
 
     /**
      * @ORM\ManyToOne(targetEntity="SwimmingStyle")
-     * @ORM\JoinColumn(name="style_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="style_id", referencedColumnName="id", nullable=false)
      */
-    protected $style;
+    private $style;
 
     /**
      * @ORM\ManyToOne(targetEntity="Course")
-     * @ORM\JoinColumn(name="course_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", nullable=false)
      */
-    protected $course;
+    private $course;
 
     /**
      * @ORM\ManyToOne(targetEntity="Lsc")
-     * @ORM\JoinColumn(name="lsc_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="lsc_id", referencedColumnName="id", nullable=false)
      */
-    protected $lsc;
+    private $lsc;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club")
-     * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="club_id", referencedColumnName="id", nullable=false)
      */
-    protected $club;
+    private $club;
 
     /**
      * @ORM\OneToMany(targetEntity="EventResult", mappedBy="event")

@@ -22,32 +22,32 @@ class Swimmer
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", name="first_name", length=255)
      */
-    protected $firstName;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", name="last_name", length=255)
      */
-    protected $lastName;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", name="middle_name", length=255)
      */
-    protected $middleName;
+    private $middleName;
 
     /**
      * @ORM\Column(type="string", length=1)
      */
-    protected $gender;
+    private $gender;
 
     /**
      * @ORM\Column(type="date")
      */
-    protected $birthday;
+    private $birthday;
 
     /**
      * @ORM\OneToMany(targetEntity="EventResult", mappedBy="swimmer")

@@ -28,6 +28,12 @@ class GenerateEventResultAgeCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        ini_set('memory_limit','1024M');
+
+        $this->getDoctrine()->getRepository('SpAppBundle:EventResult')->findAll();
+        $this->getDoctrine()->getRepository('SpAppBundle:Event')->findAll();
+        $this->getDoctrine()->getRepository('SpAppBundle:Meet')->findAll();
+
         /* @var Entity\Swimmer[] $aSwimmers*/
         $aSwimmers = $this->getDoctrine()->getRepository('SpAppBundle:Swimmer')->findAll();
 
@@ -43,7 +49,8 @@ class GenerateEventResultAgeCommand extends ContainerAwareCommand
                 $age = $result->getEvent()->getMeet()->getDate()->diff($swimmer->getBirthday())->format('%y');
 
                 $result->setAge($age);
-                $this->getDoctrine()->getManager()->flush();
+                $con = $this->getDoctrine()->getConnection();
+                $con->exec('UPDATE event_result SET age = ' . $age . ' WHERE id = ' . $result->getId());
                 $output->writeln('Processed ' . ++$j . ' result');
             }
 
