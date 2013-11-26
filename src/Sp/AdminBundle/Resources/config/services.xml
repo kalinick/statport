@@ -4,17 +4,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+
     <parameters>
-        <parameter key="sp_admin.example.class">Sp\AdminBundle\Example</parameter>
+        <parameter key="sp_admin.unprocessed_result_transaction_admin.class">Sp\AdminBundle\Admin\UnprocessedResultTransactionAdmin</parameter>
     </parameters>
 
     <services>
-        <service id="sp_admin.example" class="%sp_admin.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="sp_admin.unprocessed_result_transaction_admin" class="%sp_admin.unprocessed_result_transaction_admin.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Result" label="Unprocessed result transactions"/>
+            <argument/>
+            <argument>Sp\AppBundle\Entity\UnprocessedResultTransaction</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
         </service>
     </services>
-    -->
+
 </container>
