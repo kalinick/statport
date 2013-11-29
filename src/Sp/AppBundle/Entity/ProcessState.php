@@ -28,6 +28,16 @@ class ProcessState
     private $title;
 
     /**
+     * @param int|null $id
+     */
+    public function __construct($id = null)
+    {
+        if (!empty($id)) {
+            $this->id = $id;
+        }
+    }
+
+    /**
      * Get id
      *
      * @return integer 

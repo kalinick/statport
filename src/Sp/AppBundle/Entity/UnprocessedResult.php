@@ -24,7 +24,7 @@ class UnprocessedResult
 
     /**
      * @ORM\ManyToOne(targetEntity="UnprocessedResultTransaction")
-     * @ORM\JoinColumn(name="transaction_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="transaction_id", referencedColumnName="id", nullable=false)
      */
     private $transaction;
 
@@ -35,7 +35,7 @@ class UnprocessedResult
 
     /**
      * @ORM\ManyToOne(targetEntity="ProcessState")
-     * @ORM\JoinColumn(name="process_state_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="process_state_id", referencedColumnName="id", nullable=false)
      */
     private $processState;
 
@@ -111,10 +111,20 @@ class UnprocessedResult
     /**
      * Get processState
      *
-     * @return \Sp\AppBundle\Entity\ProcessState 
+     * @return ProcessState
      */
     public function getProcessState()
     {
         return $this->processState;
+    }
+
+    /**
+     * This method needs for Sonata Admin Bundle
+     *
+     * @param $transaction
+     */
+    public function setUnprocessedresulttransaction($transaction)
+    {
+        $this->transaction = $transaction;
     }
 }

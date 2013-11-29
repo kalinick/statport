@@ -70,6 +70,13 @@ fos_user:
     firewall_name: main
     user_class: Sp\AppBundle\Entity\User
 
+# SonataAdmin Configuration
+sonata_admin:
+    title:    Back office
+    templates:
+        # default global templates
+        layout:  SpAdminBundle::layout.html.twig
+
 sonata_block:
     default_contexts: [cms]
     blocks:

@@ -1,0 +1,11 @@
+{% extends 'SonataAdminBundle:CRUD:list.html.twig' %}
+
+{% block actions %}
+    <div class="sonata-actions">
+        <form method="POST" enctype="multipart/form-data" class="import-result-form" action="{{ admin.generateUrl('import') }}">
+            <button type="submit" class="btn btn-primary">Import</button>
+            <input type="file" name="file" id="import" />
+        </form>
+        {% include 'SonataAdminBundle:Core:create_button.html.twig' %}
+    </div>
+{% endblock %}

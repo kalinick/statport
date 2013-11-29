@@ -32,7 +32,7 @@ class UnprocessedResultTransaction
 
     /**
      * @ORM\ManyToOne(targetEntity="ProcessState")
-     * @ORM\JoinColumn(name="process_state_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="process_state_id", referencedColumnName="id", nullable=false)
      */
     private $processState;
 
@@ -172,5 +172,13 @@ class UnprocessedResultTransaction
     public function getProcessState()
     {
         return $this->processState;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
     }
 }

@@ -8,26 +8,47 @@
 namespace Sp\AdminBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class UnprocessedResultTransactionAdmin extends Admin
 {
-//    protected function configureRoutes(RouteCollection $collection)
-//    {
-//        $collection
-//            ->clearExcept(['list'])
-//        ;
-//    }
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('import');
+    }
 
     public function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('id')
             ->addIdentifier('title')
             ->addIdentifier('processState')
             ->addIdentifier('createdAt')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'results' => array('template' => 'SpAdminBundle:UnprocessedResultTransaction:results.html.twig'),
+                )
+            ))
+        ;
+    }
+
+    public function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('title')
+            ->add('processState', 'entity', ['class' => 'SpAppBundle:ProcessState'])
+            ->end();
+    }
+
+    public function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('title')
+            ->add('processState')
+            ->add('createdAt')
         ;
     }
 
