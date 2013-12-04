@@ -5,9 +5,10 @@
  * Time: 6:13 PM
  */
 
-namespace Sp\AppBundle\Entity;
+namespace Sp\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sp\AppBundle\Entity\ProcessState;
 
 /**
  * @ORM\Entity
@@ -34,7 +35,7 @@ class UnprocessedResult
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProcessState")
+     * @ORM\ManyToOne(targetEntity="Sp\AppBundle\Entity\ProcessState")
      * @ORM\JoinColumn(name="process_state_id", referencedColumnName="id", nullable=false)
      */
     private $processState;

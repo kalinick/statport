@@ -8,13 +8,15 @@
     <parameters>
         <parameter key="sp_admin.unprocessed_result_transaction_admin.class">Sp\AdminBundle\Admin\UnprocessedResultTransactionAdmin</parameter>
         <parameter key="sp_admin.unprocessed_result_admin.class">Sp\AdminBundle\Admin\UnprocessedResultAdmin</parameter>
+
+        <parameter key="sp_admin.unprocessed_result_manager.class">Sp\AdminBundle\Model\UnprocessedResultManager</parameter>
     </parameters>
 
     <services>
         <service id="sp_admin.unprocessed_result_transaction_admin" class="%sp_admin.unprocessed_result_transaction_admin.class%">
             <tag name="sonata.admin" manager_type="orm" group="Result" label="Unprocessed result transactions"/>
             <argument/>
-            <argument>Sp\AppBundle\Entity\UnprocessedResultTransaction</argument>
+            <argument>Sp\AdminBundle\Entity\UnprocessedResultTransaction</argument>
             <argument>SpAdminBundle:UnprocessedResultTransactionAdmin</argument>
             <call method="addChild">
                 <argument type="service" id="sp_admin.unprocessed_result_admin"/>
@@ -28,12 +30,16 @@
         <service id="sp_admin.unprocessed_result_admin" class="%sp_admin.unprocessed_result_admin.class%">
             <tag name="sonata.admin" manager_type="orm" group="Result" label="Unprocessed results"/>
             <argument/>
-            <argument>Sp\AppBundle\Entity\UnprocessedResult</argument>
+            <argument>Sp\AdminBundle\Entity\UnprocessedResult</argument>
             <argument>SonataAdminBundle:CRUD</argument>
             <call method="setTemplate">
                 <argument type="string">list</argument>
                 <argument type="string">SpAdminBundle:UnprocessedResult:list.html.twig</argument>
             </call>
+        </service>
+
+        <service id="sp_admin.unprocessed_result_manager" class="%sp_admin.unprocessed_result_manager.class%">
+            <argument type="service" id="doctrine" />
         </service>
     </services>
 
