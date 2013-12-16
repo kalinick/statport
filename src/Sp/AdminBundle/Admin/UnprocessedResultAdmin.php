@@ -19,7 +19,7 @@ class UnprocessedResultAdmin extends Admin
 
     public function configureListFields(ListMapper $listMapper)
     {
-print 1;
+
         $listMapper
             ->addIdentifier('id')
             ->addIdentifier('transaction')
