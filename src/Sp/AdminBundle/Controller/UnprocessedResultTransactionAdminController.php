@@ -22,19 +22,19 @@ class UnprocessedResultTransactionAdminController extends Controller
          */
         $file = $this->getRequest()->files->get('file');
 
-        if (!$file instanceof UploadedFile || $file->getClientMimeType() !== 'text/csv') {
+        if (!$file instanceof UploadedFile) {
             $this->get('session')->getFlashBag()->add('sonata_flash_error', 'Error, before import please select csv file');
             return $this->redirect($listUrl);
         } else {
-            $id = $this->getEventManager()->import($file);
-            return $this->generateUrl('admin_sp_app_unprocessedresulttransaction_unprocessedresult_list', array('id' => $id));
+            $id = $this->getUnprocessedResultManager()->import($file);
+            return $this->redirect($this->generateUrl('admin_sp_admin_unprocessedresulttransaction_unprocessedresult_list', array('id' => $id)));
         }
     }
 
     /**
      * @return Model\UnprocessedResultManager
      */
-    protected function getEventManager()
+    protected function getUnprocessedResultManager()
     {
         return $this->get('sp_admin.unprocessed_result_manager');
     }
