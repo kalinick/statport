@@ -24,7 +24,8 @@ class User extends BaseUser
     protected $id;
 
     /**
-     *@ORM\OneToOne(targetEntity="UserProfile", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="UserProfile", mappedBy="user", cascade={"all"})
+     *
      **/
     private $profile;
 
@@ -52,7 +53,7 @@ class User extends BaseUser
     public function setProfile(UserProfile $profile = null)
     {
         $this->profile = $profile;
-    
+
         return $this;
     }
 

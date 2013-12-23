@@ -22,6 +22,8 @@ class UserProfileFormType extends AbstractType
         $builder->add('city');
         $builder->add('state', 'entity', array(
             'class' => 'SpAppBundle:State',
+            'empty_value' => 'Choose a state',
+            'required' => false,
             'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.title', 'ASC');
