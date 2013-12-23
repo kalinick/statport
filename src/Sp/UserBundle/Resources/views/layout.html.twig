@@ -1,5 +1,7 @@
 {% extends 'SpFrontBundle::base.html.twig' %}
 
+{% trans_default_domain "FOSUserBundle" %}
+
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
@@ -8,7 +10,7 @@
     {% for type, messages in app.session.flashbag.all() %}
         {% for message in messages %}
             <div class="flash-{{ type }}">
-                {{ message }}
+                {{ message|trans }}
             </div>
         {% endfor %}
     {% endfor %}
