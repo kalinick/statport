@@ -26,38 +26,38 @@ class UserProfile
 
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     protected $user;
 
     /**
-     * @ORM\Column(type="string", length=255, name="first_name")
+     * @ORM\Column(type="string", length=255, name="first_name", nullable=true)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255, name="last_name")
+     * @ORM\Column(type="string", length=255, name="last_name", nullable=true)
      */
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @ORM\ManyToOne(targetEntity="State")
-     * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=true)
      */
     private $state;
 
     /**
-     * @ORM\Column(type="integer", length=6)
+     * @ORM\Column(type="integer", length=6, nullable=true)
      */
     private $zip;
 
@@ -218,7 +218,7 @@ class UserProfile
     public function setUser(User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
@@ -230,5 +230,13 @@ class UserProfile
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getFirstName() . ' '  .$this->getLastName();
     }
 }

@@ -16,6 +16,19 @@
                         </div>
                         <div class="menu">
                             <div class="menu-item bold" style="width: 69px;"><a href="{{ path('sample_page') }}" class="blue">Reports</a></div>
+                            <div class="divisor divisor-menu"></div>
+                            <div class="menu-item bold" style="width: 69px;">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            </div>
+                            <div class="divisor divisor-menu"></div>
+                            <div class="menu-item bold" style="width: 69px;">
+                                <a href="{{ url('fos_user_registration_register') }}">Sign Up</a>
+                            {% endif %}
+                            </div>
+
                             {#<div class="divisor divisor-menu"></div>#}
                             {#<div class="menu-item" style="width: 76px;"><a href="http://symfony.sport-statport.com/profile/" class="blue">My account</a></div>#}
                             {#<div class="divisor divisor-menu"></div>#}
@@ -28,8 +41,10 @@
         </div>
     {% endblock %}
 
+    <div class="content">
     {% block content %}
     {% endblock %}
+    </div>
 
     {% block footer %}
         <div class="global-width" id="footer">

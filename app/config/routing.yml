@@ -3,11 +3,6 @@ sp_payment:
     type:     annotation
     prefix:   /
 
-sp_user:
-    resource: "@SpUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 sp_front:
     resource: "@SpFrontBundle/Controller/"
     type:     annotation

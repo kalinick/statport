@@ -27,7 +27,7 @@ class State
     /**
      * @ORM\Column(type="string", length=2)
      */
-    private $abbr;
+    private $code;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -58,26 +58,26 @@ class State
     }
 
     /**
-     * Set abbr
+     * Set code
      *
-     * @param string $abbr
+     * @param string $code
      * @return State
      */
-    public function setAbbr($abbr)
+    public function setCode($code)
     {
-        $this->abbr = $abbr;
+        $this->code = $code;
     
         return $this;
     }
 
     /**
-     * Get abbr
+     * Get code
      *
      * @return string 
      */
-    public function getAbbr()
+    public function getCode()
     {
-        return $this->abbr;
+        return $this->code;
     }
 
     /**
@@ -134,5 +134,13 @@ class State
     public function getUserProfile()
     {
         return $this->userProfile;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
     }
 }
