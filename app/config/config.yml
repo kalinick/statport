@@ -84,3 +84,15 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts:   [admin]
         # Your other blocks
+
+jms_payment_core:
+    secret: 1cp6hs3ioyck40808o84g848wck004o
+
+jms_payment_paypal:
+#    username: alexorlov001_api1.yahoo.com
+#    password: XTLB22NPVCP6US54
+#    signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AW7szpFV5GoXD9HBVanIxqFkSX--
+    username: kalinick-facilitator_api1.gmail.com
+    password: 1389529777
+    signature: A2w1X-nLXqYxkB9T-tRnvDdfeg7sAedu7.Lgy8eZXQYVuhR8EXLlxi0o
+    debug: true

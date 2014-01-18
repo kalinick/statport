@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7cdfad9216c351adad6c87b3002448e4",
+    "hash": "2950c251ee3d2f517807cbe1a58a0f8f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -780,6 +780,122 @@
                 "sql"
             ],
             "time": "2013-04-26 18:42:52"
+        },
+        {
+            "name": "jms/payment-core-bundle",
+            "version": "1.0.0",
+            "target-dir": "JMS/Payment/CoreBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSPaymentCoreBundle.git",
+                "reference": "9a7629f4be4489606f3bd0956728a887e2c2b855"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSPaymentCoreBundle/zipball/9a7629f4be4489606f3bd0956728a887e2c2b855",
+                "reference": "9a7629f4be4489606f3bd0956728a887e2c2b855",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mcrypt": "*",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/orm": "*",
+                "jms/aop-bundle": "*",
+                "jms/di-extra-bundle": "*",
+                "jms/payment-paypal-bundle": "*@dev",
+                "sensio/framework-extra-bundle": "*",
+                "symfony/browser-kit": "*",
+                "symfony/class-loader": "*",
+                "symfony/css-selector": "*",
+                "symfony/finder": "*",
+                "symfony/form": "*",
+                "symfony/process": "*",
+                "symfony/twig-bundle": "*",
+                "symfony/validator": "*",
+                "symfony/yaml": "*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Payment\\CoreBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com",
+                    "homepage": "http://jmsyst.com",
+                    "role": "Developer of wrapped JMSSerializerBundle"
+                }
+            ],
+            "description": "This bundle is providing the foundation for various payment plugins.",
+            "homepage": "http://jmsyst.com/bundles/JMSPaymentCoreBundle",
+            "keywords": [
+                "payment"
+            ],
+            "time": "2013-08-14 16:55:50"
+        },
+        {
+            "name": "jms/payment-paypal-bundle",
+            "version": "1.0.0",
+            "target-dir": "JMS/Payment/PaypalBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSPaymentPaypalBundle.git",
+                "reference": "5c58d9957814d83712b1e07a0acbf97c4f7d1f5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSPaymentPaypalBundle/zipball/5c58d9957814d83712b1e07a0acbf97c4f7d1f5b",
+                "reference": "5c58d9957814d83712b1e07a0acbf97c4f7d1f5b",
+                "shasum": ""
+            },
+            "require": {
+                "jms/payment-core-bundle": "~1.0",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.0"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Payment\\PaypalBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com",
+                    "homepage": "http://jmsyst.com",
+                    "role": "Developer of wrapped JMSSerializerBundle"
+                }
+            ],
+            "description": "Payment Bundle providing access to the PayPal API",
+            "homepage": "http://jmsyst.com/bundles/JMSPaymentPaypalBundle",
+            "keywords": [
+                "payment",
+                "paypal"
+            ],
+            "time": "2013-08-14 16:58:12"
         },
         {
             "name": "knplabs/knp-menu",

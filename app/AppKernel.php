@@ -23,10 +23,13 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
+            new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sp\AdminBundle\SpAdminBundle(),
             new Sp\UserBundle\SpUserBundle(),
+            new Sp\PaymentBundle\SpPaymentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

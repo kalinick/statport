@@ -1,3 +1,8 @@
+sp_payment:
+    resource: "@SpPaymentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 sp_user:
     resource: "@SpUserBundle/Controller/"
     type:     annotation
