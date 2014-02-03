@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20140118135748 extends AbstractMigration
+class Version20140126151336 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -23,13 +23,13 @@ class Version20140118135748 extends AbstractMigration
         $this->addSql("CREATE TABLE lsc (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE meet (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, date DATE NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE process_state (id SMALLINT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE state (id INT AUTO_INCREMENT NOT NULL, abbr VARCHAR(2) NOT NULL, title VARCHAR(45) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE swimmer (id INT AUTO_INCREMENT NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, middle_name VARCHAR(255) NOT NULL, gender VARCHAR(1) NOT NULL, birthday DATE NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE state (id INT AUTO_INCREMENT NOT NULL, code VARCHAR(2) NOT NULL, title VARCHAR(45) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE swimmer (id INT NOT NULL, club_id INT DEFAULT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, middle_name VARCHAR(255) NOT NULL, gender VARCHAR(1) NOT NULL, birthday DATE DEFAULT NULL, clubEnteredDate DATE DEFAULT NULL, INDEX IDX_ED2BC5D261190A32 (club_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE swimming_style (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE time_standart (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE time_standart_result (id INT AUTO_INCREMENT NOT NULL, distance_id INT NOT NULL, style_id INT NOT NULL, course_id INT NOT NULL, time_standart_id INT NOT NULL, gender VARCHAR(1) NOT NULL, min_age INT NOT NULL, max_age INT NOT NULL, seconds DOUBLE PRECISION NOT NULL, INDEX IDX_471B080F13192463 (distance_id), INDEX IDX_471B080FBACD6074 (style_id), INDEX IDX_471B080F591CC992 (course_id), INDEX IDX_471B080FE1B1AF34 (time_standart_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(255) NOT NULL, username_canonical VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, email_canonical VARCHAR(255) NOT NULL, enabled TINYINT(1) NOT NULL, salt VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, last_login DATETIME DEFAULT NULL, locked TINYINT(1) NOT NULL, expired TINYINT(1) NOT NULL, expires_at DATETIME DEFAULT NULL, confirmation_token VARCHAR(255) DEFAULT NULL, password_requested_at DATETIME DEFAULT NULL, roles LONGTEXT NOT NULL COMMENT '(DC2Type:array)', credentials_expired TINYINT(1) NOT NULL, credentials_expire_at DATETIME DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D64992FC23A8 (username_canonical), UNIQUE INDEX UNIQ_8D93D649A0D96FBF (email_canonical), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
-        $this->addSql("CREATE TABLE user_profile (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, state_id INT NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, zip INT NOT NULL, UNIQUE INDEX UNIQ_D95AB405A76ED395 (user_id), INDEX IDX_D95AB4055D83CC1 (state_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
+        $this->addSql("CREATE TABLE user_profile (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, state_id INT DEFAULT NULL, first_name VARCHAR(255) DEFAULT NULL, last_name VARCHAR(255) DEFAULT NULL, address VARCHAR(255) DEFAULT NULL, city VARCHAR(255) DEFAULT NULL, zip INT DEFAULT NULL, UNIQUE INDEX UNIQ_D95AB405A76ED395 (user_id), INDEX IDX_D95AB4055D83CC1 (state_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE unprocessed_result (id INT AUTO_INCREMENT NOT NULL, transaction_id INT NOT NULL, process_state_id SMALLINT NOT NULL, value VARCHAR(255) NOT NULL, INDEX IDX_9FAB42242FC0CB0F (transaction_id), INDEX IDX_9FAB4224F3296240 (process_state_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE unprocessed_result_transaction (id INT AUTO_INCREMENT NOT NULL, process_state_id SMALLINT NOT NULL, title VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_FD0D8B4FF3296240 (process_state_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
         $this->addSql("CREATE TABLE swimmers_order (id INT AUTO_INCREMENT NOT NULL, amount DOUBLE PRECISION NOT NULL, paymentInstruction_id INT DEFAULT NULL, UNIQUE INDEX UNIQ_6142D1F4FD913E4D (paymentInstruction_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB");
@@ -45,6 +45,7 @@ class Version20140118135748 extends AbstractMigration
         $this->addSql("ALTER TABLE event ADD CONSTRAINT FK_3BAE0AA761190A32 FOREIGN KEY (club_id) REFERENCES club (id)");
         $this->addSql("ALTER TABLE event_result ADD CONSTRAINT FK_21F3B64171F7E88B FOREIGN KEY (event_id) REFERENCES event (id)");
         $this->addSql("ALTER TABLE event_result ADD CONSTRAINT FK_21F3B641F27DFEC8 FOREIGN KEY (swimmer_id) REFERENCES swimmer (id)");
+        $this->addSql("ALTER TABLE swimmer ADD CONSTRAINT FK_ED2BC5D261190A32 FOREIGN KEY (club_id) REFERENCES club (id)");
         $this->addSql("ALTER TABLE time_standart_result ADD CONSTRAINT FK_471B080F13192463 FOREIGN KEY (distance_id) REFERENCES distance (id)");
         $this->addSql("ALTER TABLE time_standart_result ADD CONSTRAINT FK_471B080FBACD6074 FOREIGN KEY (style_id) REFERENCES swimming_style (id)");
         $this->addSql("ALTER TABLE time_standart_result ADD CONSTRAINT FK_471B080F591CC992 FOREIGN KEY (course_id) REFERENCES course (id)");
@@ -68,6 +69,7 @@ class Version20140118135748 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql", "Migration can only be executed safely on 'mysql'.");
         
         $this->addSql("ALTER TABLE event DROP FOREIGN KEY FK_3BAE0AA761190A32");
+        $this->addSql("ALTER TABLE swimmer DROP FOREIGN KEY FK_ED2BC5D261190A32");
         $this->addSql("ALTER TABLE event DROP FOREIGN KEY FK_3BAE0AA7591CC992");
         $this->addSql("ALTER TABLE time_standart_result DROP FOREIGN KEY FK_471B080F591CC992");
         $this->addSql("ALTER TABLE event DROP FOREIGN KEY FK_3BAE0AA713192463");

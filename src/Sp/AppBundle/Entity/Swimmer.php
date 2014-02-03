@@ -10,6 +10,7 @@ namespace Sp\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Sp\AppBundle\Repository\SwimmerRepository")
@@ -18,18 +19,28 @@ use Doctrine\Common\Collections\Collection;
 class Swimmer
 {
     /**
+     * @Assert\NotBlank()
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      max = "255",
+     *      maxMessage = "Swimmer first name be longer than {{ limit }} characters length"
+     * )
      * @ORM\Column(type="string", name="first_name", length=255)
      */
     private $firstName;
 
     /**
+     * @Assert\Length(
+     *      max = "255",
+     *      maxMessage = "Swimmer last name cannot be longer than {{ limit }} characters length"
+     * )
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", name="last_name", length=255)
      */
     private $lastName;
@@ -40,14 +51,27 @@ class Swimmer
     private $middleName;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {"M", "F"}, message = "Choose a valid gender.")
      * @ORM\Column(type="string", length=1)
      */
     private $gender;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $birthday;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club")
+     * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     */
+    private $club;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $clubEnteredDate;
 
     /**
      * @ORM\OneToMany(targetEntity="EventResult", mappedBy="swimmer")
@@ -211,7 +235,7 @@ class Swimmer
      * @param \DateTime $birthday
      * @return Swimmer
      */
-    public function setBirthday($birthday)
+    public function setBirthday(\DateTime $birthday)
     {
         $this->birthday = $birthday;
     
@@ -249,5 +273,64 @@ class Swimmer
             $str  = $str . ' 19&Older';
         }
         return $str;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Swimmer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    
+        return $this;
+    }
+
+    /**
+     * Set clubEnteredDate
+     *
+     * @param \DateTime $clubEnteredDate
+     * @return Swimmer
+     */
+    public function setClubEnteredDate($clubEnteredDate)
+    {
+        $this->clubEnteredDate = $clubEnteredDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get clubEnteredDate
+     *
+     * @return \DateTime 
+     */
+    public function getClubEnteredDate()
+    {
+        return $this->clubEnteredDate;
+    }
+
+    /**
+     * Set club
+     *
+     * @param Club $club
+     * @return Swimmer
+     */
+    public function setClub(Club $club)
+    {
+        $this->club = $club;
+    
+        return $this;
+    }
+
+    /**
+     * Get club
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
     }
 }

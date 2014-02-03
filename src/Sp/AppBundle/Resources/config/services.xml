@@ -6,12 +6,17 @@
 
 
     <parameters>
+        <parameter key="sp_app.club_manager.class">Sp\AppBundle\Model\ClubManager</parameter>
         <parameter key="sp_app.event_manager.class">Sp\AppBundle\Model\EventManager</parameter>
         <parameter key="sp_app.swimmer_manager.class">Sp\AppBundle\Model\SwimmerManager</parameter>
         <parameter key="sp_app.time_standart_manager.class">Sp\AppBundle\Model\TimeStandartManager</parameter>
     </parameters>
 
     <services>
+        <service id="sp_app.club_manager" class="%sp_app.club_manager.class%">
+            <argument type="service" id="doctrine" />
+        </service>
+
         <service id="sp_app.event_manager" class="%sp_app.event_manager.class%">
             <argument type="service" id="doctrine" />
         </service>

@@ -11,9 +11,10 @@ namespace Sp\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sp\AppBundle\Repository\ClubRepository")
  * @ORM\Table(name="club")
  */
 class Club
@@ -26,21 +27,26 @@ class Club
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      max = "255",
+     *      maxMessage = "Club title cannot be longer than {{ limit }} characters length"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Event", mappedBy="club")
+     * @ORM\OneToMany(targetEntity="Swimmer", mappedBy="club")
      */
-    private $events;
+    private $swimmers;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+        $this->swimmers = new ArrayCollection();
     }
 
     /**
@@ -77,36 +83,36 @@ class Club
     }
 
     /**
-     * Add events
+     * Add swimmers
      *
-     * @param Event $events
+     * @param Swimmer $swimmer
      * @return Club
      */
-    public function addEvent(Event $events)
+    public function addSwimmer(Swimmer $swimmer)
     {
-        $this->events[] = $events;
+        $this->swimmers[] = $swimmer;
 
         return $this;
     }
 
     /**
-     * Remove events
+     * Remove swimmer
      *
-     * @param Event $events
+     * @param Swimmer $swimmer
      */
-    public function removeEvent(Event $events)
+    public function removeSwimmer(Swimmer $swimmer  )
     {
-        $this->events->removeElement($events);
+        $this->swimmers->removeElement($swimmer);
     }
 
     /**
-     * Get events
+     * Get swimmers
      *
      * @return Collection
      */
-    public function getEvents()
+    public function getSwimmers()
     {
-        return $this->events;
+        return $this->swimmers;
     }
 
     /**
