@@ -45,9 +45,26 @@ class EventResult
     private $rank;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Lsc")
+     * @ORM\JoinColumn(name="lsc_id", referencedColumnName="id", nullable=false)
      */
-    private $age;
+    private $lsc;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Club")
+     * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     */
+    private $club;
+
+    /**
+     * @ORM\Column(type="string", name="ts", length=255)
+     */
+    private $ts;
+
+    /**
+     * @ORM\Column(type="string", name="relay", length=1)
+     */
+    private $relay;
 
     /**
      * Get id
@@ -152,25 +169,94 @@ class EventResult
     }
 
     /**
-     * Set age
+     * Set lsc
      *
-     * @param integer $age
-     * @return EventResult
+     * @param Lsc $lsc
+     * @return Swimmer
      */
-    public function setAge($age)
+    public function setLsc(Lsc $lsc)
     {
-        $this->age = $age;
-    
+        $this->lsc = $lsc;
+
         return $this;
     }
 
     /**
-     * Get age
+     * Get lsc
      *
-     * @return integer 
+     * @return Lsc
      */
-    public function getAge()
+    public function getLsc()
     {
-        return $this->age;
+        return $this->lsc;
+    }
+
+    /**
+     * Set club
+     *
+     * @param Club $club
+     * @return Swimmer
+     */
+    public function setClub(Club $club)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
+
+    /**
+     * Get club
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    /**
+     * Set ts
+     *
+     * @param string $ts
+     * @return EventResult
+     */
+    public function setTs($ts)
+    {
+        $this->ts = $ts;
+
+        return $this;
+    }
+
+    /**
+     * Get ts
+     *
+     * @return string
+     */
+    public function getTs()
+    {
+        return $this->ts;
+    }
+
+    /**
+     * Set relay
+     *
+     * @param string $relay
+     * @return EventResult
+     */
+    public function setRelay($relay)
+    {
+        $this->relay = $relay;
+
+        return $this;
+    }
+
+    /**
+     * Get relay
+     *
+     * @return string
+     */
+    public function getRelay()
+    {
+        return $this->relay;
     }
 }

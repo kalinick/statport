@@ -1,8 +1,8 @@
 <?php
 /**
- * User: Nikita
- * Date: 06.09.13
- * Time: 22:35
+ * User: nikk
+ * Date: 2/4/14
+ * Time: 3:13 PM
  */
 
 namespace Sp\AppBundle\Entity;
@@ -10,6 +10,7 @@ namespace Sp\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Sp\AppBundle\Repository\EventRepository")
@@ -31,39 +32,22 @@ class Event
     private $meet;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Distance")
-     * @ORM\JoinColumn(name="distance_id", referencedColumnName="id", nullable=false)
-     */
-    private $distance;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="SwimmingStyle")
-     * @ORM\JoinColumn(name="style_id", referencedColumnName="id", nullable=false)
-     */
-    private $style;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Course")
-     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", nullable=false)
-     */
-    private $course;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Lsc")
-     * @ORM\JoinColumn(name="lsc_id", referencedColumnName="id", nullable=false)
-     */
-    private $lsc;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Club")
-     * @ORM\JoinColumn(name="club_id", referencedColumnName="id", nullable=false)
-     */
-    private $club;
-
-    /**
      * @ORM\OneToMany(targetEntity="EventResult", mappedBy="event")
      */
     private $results;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EventTemplate")
+     * @ORM\JoinColumn(name="event_template_id", referencedColumnName="id", nullable=false)
+     */
+    private $eventTemplate;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {"M", "F"}, message = "Choose a valid gender.")
+     * @ORM\Column(type="string", length=1)
+     */
+    private $gender;
 
     /**
      * Constructor
@@ -76,80 +60,11 @@ class Event
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set distance
-     *
-     * @param Distance $distance
-     * @return Event
-     */
-    public function setDistance(Distance $distance = null)
-    {
-        $this->distance = $distance;
-    
-        return $this;
-    }
-
-    /**
-     * Get distance
-     *
-     * @return Distance
-     */
-    public function getDistance()
-    {
-        return $this->distance;
-    }
-
-    /**
-     * Set style
-     *
-     * @param SwimmingStyle $style
-     * @return Event
-     */
-    public function setStyle(SwimmingStyle $style = null)
-    {
-        $this->style = $style;
-    
-        return $this;
-    }
-
-    /**
-     * Get style
-     *
-     * @return SwimmingStyle
-     */
-    public function getStyle()
-    {
-        return $this->style;
-    }
-
-    /**
-     * Set course
-     *
-     * @param Course $course
-     * @return Event
-     */
-    public function setCourse(Course $course = null)
-    {
-        $this->course = $course;
-    
-        return $this;
-    }
-
-    /**
-     * Get course
-     *
-     * @return Course
-     */
-    public function getCourse()
-    {
-        return $this->course;
     }
 
     /**
@@ -161,7 +76,7 @@ class Event
     public function setMeet(Meet $meet = null)
     {
         $this->meet = $meet;
-    
+
         return $this;
     }
 
@@ -184,7 +99,7 @@ class Event
     public function addResult(EventResult $results)
     {
         $this->results[] = $results;
-    
+
         return $this;
     }
 
@@ -209,56 +124,48 @@ class Event
     }
 
     /**
-     * Set lsc
+     * Set event template
      *
-     * @param Lsc $lsc
+     * @param EventTemplate $eventTemplate
      * @return Event
      */
-    public function setLsc(Lsc $lsc = null)
+    public function setEventTemplate(EventTemplate $eventTemplate = null)
     {
-        $this->lsc = $lsc;
-    
+        $this->eventTemplate = $eventTemplate;
+
         return $this;
     }
 
     /**
-     * Get lsc
+     * Get event template
      *
-     * @return Lsc
+     * @return EventTemplate
      */
-    public function getLsc()
+    public function getEventTemplate()
     {
-        return $this->lsc;
+        return $this->eventTemplate;
     }
 
     /**
-     * Set club
+     * Set gender
      *
-     * @param Club $club
+     * @param string $gender
      * @return Event
      */
-    public function setClub(Club $club = null)
+    public function setGender($gender)
     {
-        $this->club = $club;
-    
+        $this->gender = $gender;
+
         return $this;
     }
 
     /**
-     * Get club
+     * Get gender
      *
-     * @return Club
-     */
-    public function getClub()
-    {
-        return $this->club;
-    }
-
-    /**
      * @return string
      */
-    public function __toString()
+    public function getGender()
     {
-        return $this->getDistance() . ' ' . $this->getStyle() . ' ' . $this->getCourse();
+        return $this->gender;
     }
 }

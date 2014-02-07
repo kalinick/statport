@@ -25,7 +25,7 @@ class SwimmingStyle
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Event", mappedBy="course")
+     * @ORM\OneToMany(targetEntity="EventTemplate", mappedBy="course")
      */
     private $events;
 
@@ -73,10 +73,10 @@ class SwimmingStyle
     /**
      * Add events
      *
-     * @param Event $events
+     * @param EventTemplate $events
      * @return SwimmingStyle
      */
-    public function addEvent(Event $events)
+    public function addEvent(EventTemplate $events)
     {
         $this->events[] = $events;
     
@@ -86,9 +86,9 @@ class SwimmingStyle
     /**
      * Remove events
      *
-     * @param Event $events
+     * @param EventTemplate $events
      */
-    public function removeEvent(Event $events)
+    public function removeEvent(EventTemplate $events)
     {
         $this->events->removeElement($events);
     }
@@ -96,7 +96,7 @@ class SwimmingStyle
     /**
      * Get events
      *
-     * @return Collection
+     * @return EventTemplate[]
      */
     public function getEvents()
     {

@@ -31,15 +31,16 @@ class Lsc
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Event", mappedBy="lsc")
+     * @ORM\OneToMany(targetEntity="EventResult", mappedBy="lsc")
      */
-    private $events;
+    private $eventResults;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+        $this->eventResults = new ArrayCollection();
     }
 
     /**
@@ -76,36 +77,36 @@ class Lsc
     }
 
     /**
-     * Add events
+     * Add event result
      *
-     * @param Event $events
+     * @param EventResult $eventResult
      * @return Lsc
      */
-    public function addEvent(Event $events)
+    public function addEvent(EventResult $eventResult)
     {
-        $this->events[] = $events;
+        $this->eventResults[] = $eventResult;
 
         return $this;
     }
 
     /**
-     * Remove events
+     * Remove event result
      *
-     * @param Event $events
+     * @param EventResult $eventResult
      */
-    public function removeEvent(Event $events)
+    public function removeEvent(EventResult $eventResult)
     {
-        $this->events->removeElement($events);
+        $this->eventResults->removeElement($eventResult);
     }
 
     /**
-     * Get events
+     * Get event results
      *
      * @return Collection
      */
-    public function getEvents()
+    public function getEventResults()
     {
-        return $this->events;
+        return $this->eventResults;
     }
 
     /**

@@ -24,6 +24,11 @@ class EventManager
      */
     private $repository;
 
+    /**
+     * @var Entity\Event[]
+     */
+    private $events;
+
     public function __construct(Registry $doctrine)
     {
         $this->doctrine = $doctrine;
@@ -31,24 +36,78 @@ class EventManager
     }
 
     /**
-     * @return array
+     * @param Entity\Meet          $meet
+     * @param Entity\EventTemplate $eventTemplate
+     * @param string               $gender
+     *
+     * @return string
      */
-    public function findEvents()
+    private function getKey(Entity\Meet $meet, Entity\EventTemplate $eventTemplate, $gender)
     {
-        $aEvents = $this->repository->findEvents();
+        return $meet->getId() . '_' . $eventTemplate->getId() . '_' . $gender;
+    }
 
-        $aResult = array();
-        foreach($aEvents as $event) {
-            $aResult[] = array(
-                'key' => json_encode(array(
-                    'distanceId' => $event['distanceId'],
-                    'styleId' => $event['styleId'],
-                    'courseId' => $event['courseId'],
-                )),
-                'value' => $event['distance'] . ' ' . $event['style'] . ' ' . $event['course']
-            );
+    /**
+     * @return Entity\Event[]
+     */
+    public function &findEvents()
+    {
+        if ($this->events === null) {
+            $events = $this->repository->findAll();
+            $result = [];
+            foreach($events as $event) {
+                $result[$this->getKey($event->getMeet(), $event->getEventTemplate(), $event->getGender())] = $event;
+            }
+            $this->events = $result;
         }
 
-        return $aResult;
+        return $this->events;
     }
+
+    /**
+     * @param Entity\Meet          $meet
+     * @param Entity\EventTemplate $eventTemplate
+     * @param string               $gender
+     *
+     * @return Entity\Event
+     */
+    public function findOrCreate(Entity\Meet $meet, Entity\EventTemplate $eventTemplate, $gender)
+    {
+        $events = &$this->findEvents();
+        $key = $this->getKey($meet, $eventTemplate, $gender);
+        if (!isset($events[$key])) {
+            $event = new Entity\Event();
+            $event->setMeet($meet);
+            $event->setEventTemplate($eventTemplate);
+            $event->setGender($gender);
+
+            $em = $this->doctrine->getManager();
+            $em->persist($event);
+            $em->flush();
+            $events[$key] = $event;
+        }
+        return $events[$key];
+    }
+
+//    /**
+//     * @return array
+//     */
+//    public function findEvents()
+//    {
+//        $aEvents = $this->repository->findEvents();
+//
+//        $aResult = array();
+//        foreach($aEvents as $event) {
+//            $aResult[] = array(
+//                'key' => json_encode(array(
+//                    'distanceId' => $event['distanceId'],
+//                    'styleId' => $event['styleId'],
+//                    'courseId' => $event['courseId'],
+//                )),
+//                'value' => $event['distance'] . ' ' . $event['style'] . ' ' . $event['course']
+//            );
+//        }
+//
+//        return $aResult;
+//    }
 }

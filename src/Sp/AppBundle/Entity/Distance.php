@@ -30,7 +30,7 @@ class Distance
     private $length;
 
     /**
-     * @ORM\OneToMany(targetEntity="Event", mappedBy="distance")
+     * @ORM\OneToMany(targetEntity="EventTemplate", mappedBy="distance")
      */
     private $events;
 
@@ -78,10 +78,10 @@ class Distance
     /**
      * Add events
      *
-     * @param Event $events
+     * @param EventTemplate $events
      * @return Distance
      */
-    public function addEvent(Event $events)
+    public function addEvent(EventTemplate $events)
     {
         $this->events[] = $events;
     
@@ -91,9 +91,9 @@ class Distance
     /**
      * Remove events
      *
-     * @param Event $events
+     * @param EventTemplate $events
      */
-    public function removeEvent(Event $events)
+    public function removeEvent(EventTemplate $events)
     {
         $this->events->removeElement($events);
     }
@@ -101,7 +101,7 @@ class Distance
     /**
      * Get events
      *
-     * @return Collection
+     * @return EventTemplate[]
      */
     public function getEvents()
     {

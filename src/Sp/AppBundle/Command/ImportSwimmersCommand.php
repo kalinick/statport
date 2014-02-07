@@ -52,6 +52,7 @@ class ImportSwimmersCommand extends ContainerAwareCommand
                 $em->flush();
             }
         }
+        $em->flush();
         $output->writeln('Done');
     }
 
