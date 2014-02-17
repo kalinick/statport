@@ -10,7 +10,7 @@ namespace Sp\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sp\AppBundle\Repository\EventResultRepository")
  * @ORM\Table(name="event_result")
  */
 class EventResult
@@ -65,6 +65,11 @@ class EventResult
      * @ORM\Column(type="string", name="relay", length=1)
      */
     private $relay;
+
+    /**
+     * @ORM\Column(type="integer", name="age", length=3)
+     */
+    private $age;
 
     /**
      * Get id
@@ -258,5 +263,28 @@ class EventResult
     public function getRelay()
     {
         return $this->relay;
+    }
+
+    /**
+     * Set age
+     *
+     * @param string $age
+     * @return EventResult
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return string
+     */
+    public function getAge()
+    {
+        return $this->age;
     }
 }

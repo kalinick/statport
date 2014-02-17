@@ -13,21 +13,21 @@
     </thead>
     <tbody>
     {% set i = 0 %}
-    {% for eventType, events in report %}
+    {% for eventType, eventResults in report %}
     <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
-        <td class="eventType" rowspan="{{ events|length }}">{{ eventType }}</td>
+        <td class="eventType" rowspan="{{ eventResults|length }}">{{ eventType }}</td>
         {% set first = true %}
-        {% for event in events %}
+        {% for eventResult in eventResults %}
             {% if(not first) %}
                 <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
             {% endif %}
-            <td>{{ event.date.format('d/m/Y') }}</td>
-            <td>{{ event.meet }}</td>
-            <td>{{ event.gender }}</td>
-            <td>{{ event.age }}</td>
-            <td>{{ event.lsc }}</td>
-            <td>{{ event.club }}</td>
-            <td>{{ event.seconds|timeToString }}</td>
+            <td>{{ eventResult.res.event.meet.date.format('d/m/Y') }}</td>
+            <td>{{ eventResult.res.event.meet }}</td>
+            <td>{{ eventResult.gender }}</td>
+            <td>{{ eventResult.res.age }}</td>
+            <td>{{ eventResult.res.lsc }}</td>
+            <td>{{ eventResult.res.club }}</td>
+            <td>{{ eventResult.res.seconds|timeToString }}</td>
             {% if(not first) %}
                 </tr>
             {% endif %}

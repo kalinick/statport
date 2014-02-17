@@ -41,8 +41,8 @@ class SwimmerController extends Controller
         $oSwimmer = $this->getSwimmerManager()->getSwimmer($id);
         return array(
             'swimmer' => $oSwimmer,
-            'swimmers' => $this->getSwimmerManager()->getSwimmers(),
-            'events' => $this->getEventManager()->findEvents(),
+            //'swimmers' => $this->getSwimmerManager()->getSwimmers(),
+            //'events' => $this->getEventManager()->findEvents(),
             'reportsTitles' => $this->getReportsManager()->getReportsTitles(),
             'reports' => $this->getReportsManager()->getSwimmerReports($oSwimmer)
         );

@@ -135,4 +135,12 @@ class Meet
     {
         return $this->events;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
 }

@@ -45,6 +45,11 @@ class ReportsModel
     private $eventRepository;
 
     /**
+     * @var Repository\EventResultRepository
+     */
+    private $eventResultRepository;
+
+    /**
      * @var TimeStandartManager
      */
     private $timeStandartManager;
@@ -59,6 +64,7 @@ class ReportsModel
         $this->doctrine = $doctrine;
         $this->swimmerRepository = $this->doctrine->getRepository('SpAppBundle:Swimmer');
         $this->eventRepository = $this->doctrine->getRepository('SpAppBundle:Event');
+        $this->eventResultRepository = $this->doctrine->getRepository('SpAppBundle:EventResult');
     }
 
     /**
@@ -107,18 +113,18 @@ class ReportsModel
      */
     public function getSwimmerReports(Entity\Swimmer $oSwimmer)
     {
-        $aResult = array();
-        $aResult['performance'] = $this->getPerformanceReport($oSwimmer);
-        $aResult['bestTime'] = $this->getBestTimeReport($oSwimmer);
-        $aResult['byMeet'] = $this->getByMeetReport($oSwimmer);
-        $aResult['rank'] = $this->getRankReport($oSwimmer);
-        $aResult['historical'] = $this->getHistoricalReport($oSwimmer);
-        $aResult['timeDeficiency'] = $this->getTimeDeficiencyReport($oSwimmer);
-        $aResult['withinTeam'] = $this->getWithinTeamReport($oSwimmer);
-        $aResult['withinTeamGraphic'] = $this->getWithinTeamGraphicReport($oSwimmer, $aResult['performance']);
-        $aResult['withinRegionGraphic'] = $this->getWithinRegionGraphicReport($oSwimmer, $aResult['performance']);
+        $reports = array();
+        $reports['performance'] = $this->getPerformanceReport($oSwimmer);
+        $reports['bestTime'] = $this->getBestTimeReport($oSwimmer);
+        $reports['byMeet'] = $this->getByMeetReport($oSwimmer);
+        $reports['rank'] = $this->getRankReport($oSwimmer, $reports['performance']);
+//        $reports['historical'] = $this->getHistoricalReport($oSwimmer);
+//        $reports['timeDeficiency'] = $this->getTimeDeficiencyReport($oSwimmer);
+//        $reports['withinTeam'] = $this->getWithinTeamReport($oSwimmer);
+//        $reports['withinTeamGraphic'] = $this->getWithinTeamGraphicReport($oSwimmer, $reports['performance']);
+//        $reports['withinRegionGraphic'] = $this->getWithinRegionGraphicReport($oSwimmer, $reports['performance']);
 
-        return $aResult;
+        return $reports;
     }
 
     /**
@@ -127,17 +133,17 @@ class ReportsModel
      */
     private function getPerformanceReport(Entity\Swimmer $oSwimmer)
     {
-        $aResult = array();
-        $aPerformance = $this->swimmerRepository->getPerformanceReport($oSwimmer);
-        foreach($aPerformance as $row) {
-            $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
-            if (!isset($aResult[$event])) {
-                $aResult[$event] = array();
+        $performance = array();
+        $results = $this->eventResultRepository->getPerformanceReport($oSwimmer);
+        foreach($results as $result) {
+            $event = $result['eventTitle'];
+            if (!isset($performance[$event])) {
+                $performance[$event] = array();
             }
 
-            $aResult[$event][] = $row;
+            $performance[$event][] = $result;
         }
-        return $aResult;
+        return $performance;
     }
 
     /**
@@ -146,7 +152,7 @@ class ReportsModel
      */
     private function getBestTimeReport(Entity\Swimmer $oSwimmer)
     {
-        return $this->swimmerRepository->getBestTimeReport($oSwimmer);
+        return $this->eventResultRepository->getBestTimeReport($oSwimmer);
     }
 
     /**
@@ -155,48 +161,42 @@ class ReportsModel
      */
     private function getByMeetReport(Entity\Swimmer $oSwimmer)
     {
-        return $this->swimmerRepository->getByMeetReport($oSwimmer);
+        return $this->eventResultRepository->getByMeetReport($oSwimmer);
     }
 
     /**
      * @param Entity\Swimmer $oSwimmer
+     * @param array          $performanceReport
+     *
      * @return array
      */
-    private function getRankReport(Entity\Swimmer $oSwimmer)
+    private function getRankReport(Entity\Swimmer $oSwimmer, array $performanceReport)
     {
-        $aResult = array();
-        $aRank = $this->swimmerRepository->getRankReport($oSwimmer);
-
-        $aIds = array();
-        foreach($aRank as $row) {
-            $aIds[] = $row['id'];
-        }
-        $aTemp = $this->eventRepository->countEventsMember($aIds);
-        $aEventMemberNum = array();
-        foreach($aTemp as $row) {
-            $aEventMemberNum[$row['id']] = $row['num'];
-        }
-
-        foreach($aRank as $row) {
-            $row['resultsNum'] = $aEventMemberNum[$row['id']];
-            $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
-            if (!isset($aResult[$event])) {
-                $aResult[$event] = array();
+        $eventIds = array();
+        foreach($performanceReport as $eventResults) {
+            foreach($eventResults as $eventResult) {
+                $eventIds[] = $eventResult['res']->getEvent()->getId();
             }
-
-            if ($row['resultsNum'] > 1) {
-                $row['tile'] = round((($row['rank'] - 1) / ($row['resultsNum'] - 1)) * 100, 2);
-            } else {
-                $row['tile'] = null;
-            }
-
-
-            $aResult[$event][] = $row;
         }
 
-        return $aResult;
+        $maxRangListRaw = $this->eventResultRepository->getMaxRangByEvents($eventIds);
+        $maxRangList = array();
+        foreach($maxRangListRaw as $row) {
+            $maxRangList[$row['event']] = $row['maxRank'];
+        }
+
+        foreach($performanceReport as $k1 => $eventResults) {
+            foreach($eventResults as $k2 => $eventResult) {
+                $performanceReport[$k1][$k2]['maxRang'] = (int) $maxRangList[$eventResult['res']->getEvent()->getId()];
+                if ($performanceReport[$k1][$k2]['maxRang'] > 1) {
+                    $performanceReport[$k1][$k2]['tile'] =
+                        round((($eventResult['res']->getRank() - 1) / ($performanceReport[$k1][$k2]['maxRang'] - 1)) * 100, 2);
+                }
+            }
+        }
+
+        return $performanceReport;
     }
-
 
     /**
      * @param Entity\Swimmer $oSwimmer

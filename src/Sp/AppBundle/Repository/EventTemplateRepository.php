@@ -9,9 +9,6 @@ namespace Sp\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-use Sp\AppBundle\Entity;
-use Sp\ReportsBundle\Classes\AgeInterval;
-
 class EventTemplateRepository extends EntityRepository
 {
 
