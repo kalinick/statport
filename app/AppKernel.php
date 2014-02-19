@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Sp\FrontBundle\SpFrontBundle(),
             new Sp\ReportsBundle\SpReportsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

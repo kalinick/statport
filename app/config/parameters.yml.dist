@@ -3,8 +3,8 @@ parameters:
     database_host: 127.0.0.1
     database_port: null
     database_name: statport
-    database_user: root
-    database_password: null
+    database_user: statport
+    database_password: '945dfD,T=Q6h'
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
