@@ -39,7 +39,7 @@ class UnprocessedResultTransactionAdmin extends Admin
     {
         $formMapper
             ->add('title')
-            ->add('processState', 'entity', ['class' => 'SpAppBundle:ProcessState'])
+            ->add('processState', 'entity', array('class' => 'SpAppBundle:ProcessState'))
             ->end();
     }
 
@@ -54,6 +54,6 @@ class UnprocessedResultTransactionAdmin extends Admin
 
     public function getBatchActions()
     {
-        return [];
+        return array();
     }
 }

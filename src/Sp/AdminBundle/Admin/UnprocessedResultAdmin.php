@@ -32,7 +32,7 @@ class UnprocessedResultAdmin extends Admin
     {
         $formMapper
             ->add('transaction')
-            ->add('processState', 'entity', ['class' => 'SpAppBundle:ProcessState'])
+            ->add('processState', 'entity', array('class' => 'SpAppBundle:ProcessState'))
             ->add('value')
             ->end();
     }
@@ -49,13 +49,13 @@ class UnprocessedResultAdmin extends Admin
 
     public function getBatchActions()
     {
-        return [];
+        return array();
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagrid)
     {
         $datagrid
-            ->add('unprocessedresulttransaction', 'doctrine_orm_callback', [
+            ->add('unprocessedresulttransaction', 'doctrine_orm_callback', array(
                 'callback' => function($queryBuilder, $alias, $field, $value) {
                         if (!empty($value['value'])) {
                             $queryBuilder->andWhere('o.transaction = :transactionId');
@@ -64,6 +64,6 @@ class UnprocessedResultAdmin extends Admin
                         return true;
                     },
                 'field_type' => 'hidden'
-            ]);
+            ));
     }
 }

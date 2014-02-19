@@ -54,7 +54,7 @@ class EventManager
     {
         if ($this->events === null) {
             $events = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($events as $event) {
                 $result[$this->getKey($event->getMeet(), $event->getEventTemplate(), $event->getGender())] = $event;
             }

@@ -40,7 +40,7 @@ class SwimmingStyleManager
     {
         if ($this->swimmingStyles === null) {
             $swimmingStyles = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($swimmingStyles as $swimmingStyle) {
                 $result[$swimmingStyle->getTitle()] = $swimmingStyle;
             }

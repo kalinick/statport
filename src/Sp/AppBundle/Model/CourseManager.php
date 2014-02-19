@@ -40,7 +40,7 @@ class CourseManager
     {
         if ($this->courses === null) {
             $courses = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($courses as $course) {
                 $result[$course->getTitle()] = $course;
             }

@@ -19,7 +19,7 @@ class PageController extends Controller
      */
     public function indexAction()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -28,7 +28,7 @@ class PageController extends Controller
      */
     public function sampleAction()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -37,7 +37,7 @@ class PageController extends Controller
      */
     public function privacyAction()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -46,7 +46,7 @@ class PageController extends Controller
      */
     public function termsAction()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -55,7 +55,7 @@ class PageController extends Controller
      */
     public function legalAction()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -64,7 +64,7 @@ class PageController extends Controller
      */
     public function aboutAction()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -73,6 +73,6 @@ class PageController extends Controller
      */
     public function contactAction()
     {
-        return [];
+        return array();
     }
 }

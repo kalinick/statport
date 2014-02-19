@@ -40,7 +40,7 @@ class LscManager
     {
         if ($this->lscs === null) {
             $lscs = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($lscs as $lsc) {
                 $result[$lsc->getTitle()] = $lsc;
             }

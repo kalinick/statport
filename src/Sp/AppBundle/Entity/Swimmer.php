@@ -69,7 +69,7 @@ class Swimmer
     private $club;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(name="club_entered_date", type="date", nullable=true)
      */
     private $clubEnteredDate;
 
@@ -289,29 +289,6 @@ class Swimmer
     }
 
     /**
-     * Set clubEnteredDate
-     *
-     * @param \DateTime $clubEnteredDate
-     * @return Swimmer
-     */
-    public function setClubEnteredDate($clubEnteredDate)
-    {
-        $this->clubEnteredDate = $clubEnteredDate;
-    
-        return $this;
-    }
-
-    /**
-     * Get clubEnteredDate
-     *
-     * @return \DateTime 
-     */
-    public function getClubEnteredDate()
-    {
-        return $this->clubEnteredDate;
-    }
-
-    /**
      * Set club
      *
      * @param Club $club
@@ -332,5 +309,28 @@ class Swimmer
     public function getClub()
     {
         return $this->club;
+    }
+
+    /**
+     * Set clubEnteredDate
+     *
+     * @param \DateTime $clubEnteredDate
+     * @return Swimmer
+     */
+    public function setClubEnteredDate($clubEnteredDate)
+    {
+        $this->clubEnteredDate = $clubEnteredDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get clubEnteredDate
+     *
+     * @return \DateTime 
+     */
+    public function getClubEnteredDate()
+    {
+        return $this->clubEnteredDate;
     }
 }

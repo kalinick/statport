@@ -40,7 +40,7 @@ class MeetManager
     {
         if ($this->meets === null) {
             $meets = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($meets as $meet) {
                 $result[$meet->getTitle()] = $meet;
             }

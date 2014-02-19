@@ -53,11 +53,17 @@ class EventTemplate
     private $events;
 
     /**
+     * @ORM\OneToMany(targetEntity="TimeStandartResult", mappedBy="eventTemplate")
+     */
+    private $timeStandartResults;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->events = new ArrayCollection();
+        $this->timeStandartResults = new ArrayCollection();
     }
 
     /**
@@ -193,5 +199,38 @@ class EventTemplate
     public function getEvents()
     {
         return $this->events;
+    }
+
+    /**
+     * Add time standart result
+     *
+     * @param TimeStandartResult $timeStandartResult
+     * @return EventTemplate
+     */
+    public function addTimeStandartResults(TimeStandartResult $timeStandartResult)
+    {
+        $this->timeStandartResults[] = $timeStandartResult;
+
+        return $this;
+    }
+
+    /**
+     * Remove time standart result
+     *
+     * @param TimeStandartResult $timeStandartResult
+     */
+    public function removeTimeStandartResult(TimeStandartResult $timeStandartResult)
+    {
+        $this->timeStandartResults->removeElement($timeStandartResult);
+    }
+
+    /**
+     * Get time standart result
+     *
+     * @return Collection
+     */
+    public function getTimeStandartResults()
+    {
+        return $this->timeStandartResults;
     }
 }

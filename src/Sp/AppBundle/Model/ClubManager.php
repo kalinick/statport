@@ -40,7 +40,7 @@ class ClubManager
     {
         if ($this->clubs === null) {
             $clubs = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($clubs as $club) {
                 $result[$club->getTitle()] = $club;
             }

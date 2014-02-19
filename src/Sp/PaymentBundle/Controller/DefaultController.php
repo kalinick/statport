@@ -25,7 +25,7 @@ class DefaultController extends Controller
      */
     public function orderAction()
     {
-        return [];
+        return array();
     }
 
     /**

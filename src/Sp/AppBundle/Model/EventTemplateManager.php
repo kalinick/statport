@@ -41,7 +41,7 @@ class EventTemplateManager
     {
         if ($this->eventTemplates === null) {
             $eventTemplates = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($eventTemplates as $eventTemplate) {
                 $result[$eventTemplate->getTitle()] = $eventTemplate;
             }

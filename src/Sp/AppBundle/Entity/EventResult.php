@@ -67,7 +67,7 @@ class EventResult
     private $relay;
 
     /**
-     * @ORM\Column(type="integer", name="age", length=3)
+     * @ORM\Column(type="integer", name="age", length=3, nullable=true)
      */
     private $age;
 

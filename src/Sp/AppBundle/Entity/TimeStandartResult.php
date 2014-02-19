@@ -8,8 +8,6 @@
 namespace Sp\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="Sp\AppBundle\Repository\TimeStandartResultRepository")
@@ -25,22 +23,10 @@ class TimeStandartResult
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Distance")
-     * @ORM\JoinColumn(name="distance_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="EventTemplate")
+     * @ORM\JoinColumn(name="event_template_id", referencedColumnName="id", nullable=false)
      */
-    private $distance;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="SwimmingStyle")
-     * @ORM\JoinColumn(name="style_id", referencedColumnName="id", nullable=false)
-     */
-    private $style;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Course")
-     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", nullable=false)
-     */
-    private $course;
+    private $eventTemplate;
 
     /**
      * @ORM\ManyToOne(targetEntity="TimeStandart")
@@ -76,6 +62,29 @@ class TimeStandartResult
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set event template
+     *
+     * @param EventTemplate $eventTemplate
+     * @return TimeStandartResult
+     */
+    public function setEventTemplate(EventTemplate $eventTemplate = null)
+    {
+        $this->eventTemplate = $eventTemplate;
+
+        return $this;
+    }
+
+    /**
+     * Get event template
+     *
+     * @return EventTemplate
+     */
+    public function getEventTemplate()
+    {
+        return $this->eventTemplate;
     }
 
     /**
@@ -148,52 +157,6 @@ class TimeStandartResult
     }
 
     /**
-     * Set distance
-     *
-     * @param Distance $distance
-     * @return TimeStandartResult
-     */
-    public function setDistance(Distance $distance = null)
-    {
-        $this->distance = $distance;
-    
-        return $this;
-    }
-
-    /**
-     * Get distance
-     *
-     * @return Distance
-     */
-    public function getDistance()
-    {
-        return $this->distance;
-    }
-
-    /**
-     * Set style
-     *
-     * @param SwimmingStyle $style
-     * @return TimeStandartResult
-     */
-    public function setStyle(SwimmingStyle $style = null)
-    {
-        $this->style = $style;
-    
-        return $this;
-    }
-
-    /**
-     * Get style
-     *
-     * @return SwimmingStyle
-     */
-    public function getStyle()
-    {
-        return $this->style;
-    }
-
-    /**
      * Set timeStandart
      *
      * @param TimeStandart $timeStandart
@@ -214,29 +177,6 @@ class TimeStandartResult
     public function getTimeStandart()
     {
         return $this->timeStandart;
-    }
-
-    /**
-     * Set course
-     *
-     * @param Course $course
-     * @return TimeStandartResult
-     */
-    public function setCourse(Course $course = null)
-    {
-        $this->course = $course;
-    
-        return $this;
-    }
-
-    /**
-     * Get course
-     *
-     * @return Course
-     */
-    public function getCourse()
-    {
-        return $this->course;
     }
 
     /**

@@ -40,7 +40,7 @@ class DistanceManager
     {
         if ($this->distances === null) {
             $distances = $this->repository->findAll();
-            $result = [];
+            $result = array();
             foreach($distances as $distance) {
                 $result[$distance->getLength()] = $distance;
             }
