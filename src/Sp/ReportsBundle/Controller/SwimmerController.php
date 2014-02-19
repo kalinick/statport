@@ -27,9 +27,9 @@ class SwimmerController extends Controller
      */
     public function swimmersAction()
     {
-        return [
+        return array(
             'swimmers' => $this->getSwimmerManager()->getSwimmers()
-        ];
+        );
     }
 
     /**
