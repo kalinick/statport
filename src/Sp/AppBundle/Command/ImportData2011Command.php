@@ -66,19 +66,19 @@ class ImportData2011Command extends ContainerAwareCommand
                 $ts = $data[16];
                 $relay = $data[18];
 
-                $swimmersIdFix = [2838 => 2839, 450 => 451, 1912 => 1913, 4153 => 4154, 381 => 382, 651 => 652,
+                $swimmersIdFix = array(2838 => 2839, 450 => 451, 1912 => 1913, 4153 => 4154, 381 => 382, 651 => 652,
                     2660 => 2661, 90 => 5177, 2378 => 2379, 120 => 5178, 4113 => 4114, 1385 => 1386, 1388 => 1389,
                     944 => 945, 48 => 5176, 285 => 5180, 4408 => 4409, 3332 => 3333, 749 => 750, 4410 => 4411,
                     3797 => 3798, 1251 => 1252, 2179 => 2180, 692 => 693, 2181 => 2182, 2159 => 2160, 694 => 695,
                     2005 => 2006, 1968 => 1969, 2023 => 2024, 286 => 287, 2908 => 2909, 874 => 875, 2840 => 2841,
                     3571 => 3572, 1272 => 1273, 1677 => 1678
-                ];
+                );
                 if (isset($swimmersIdFix[$swimmerId])) {
                     $swimmerId = $swimmersIdFix[$swimmerId];
                 }
 
                 if (empty($swimmerId)) {
-                    $emptySwimmers = ['Desroches' => 991, 'Roggenstein, Mara' => 3572, 'Hall, Sidnee' => 1597,
+                    $emptySwimmers = array('Desroches' => 991, 'Roggenstein, Mara' => 3572, 'Hall, Sidnee' => 1597,
                         'Evans, Reece' => 1161, 'Kaijser, Anna' => 2062, 'Babich Morrow' => 151, 'Chu, Cameron' => 737,
                         'Kardinal, Galen' => 2077, 'Viceconte, Madeleine' => 4337, 'Garrard, Yizhuang' => 1363,
                         'Ortega-Riek, Sabrina' => 3162, 'Russell-Cheung, Jesse' => 3636, 'Orbach-Mandel, Hannah' => 3151,
@@ -114,7 +114,7 @@ class ImportData2011Command extends ContainerAwareCommand
                         'Magat, Stephen' => 2572, 'Solache Nishizaki' => 3916, 'Lansing, Marissa' => 2301, 'Cabinian, Charrissa' => 561,
                         'Lindhag, Mckenzi' => 2441, 'Khoo, Katrina' => 2124, 'Pohlmann, Jonah' => 3353, 'Dunlap, Ariana' => 1086,
                         'Wing, Mahinalani' => 4545, 'Jamison, Daniel' => 1946, 'Kaijser, Johan' => 2064
-                    ];
+                    );
 
                     foreach($emptySwimmers as $needle => $value) {
                         if (strpos($data[12], $needle) !== false) {
@@ -124,7 +124,7 @@ class ImportData2011Command extends ContainerAwareCommand
                     }
                 }
 
-                $skipList = ['Sto. Domingo, Noa', 'Sto. Domingo, Mia'];
+                $skipList = array('Sto. Domingo, Noa', 'Sto. Domingo, Mia');
                 foreach($skipList as $needle ) {
                     if (strpos($data[12], $needle) !== false) {
                         continue 2;
