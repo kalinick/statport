@@ -79,11 +79,17 @@ class Swimmer
     private $results;
 
     /**
+     * @ORM\OneToMany(targetEntity="UserChild", mappedBy="swimmer")
+     */
+    private $children;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->results = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -332,5 +338,38 @@ class Swimmer
     public function getClubEnteredDate()
     {
         return $this->clubEnteredDate;
+    }
+
+    /**
+     * Add children
+     *
+     * @param UserChild $children
+     * @return Swimmer
+     */
+    public function addChildren(UserChild $children)
+    {
+        $this->children[] = $children;
+    
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param UserChild $children
+     */
+    public function removeChildren(UserChild $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }

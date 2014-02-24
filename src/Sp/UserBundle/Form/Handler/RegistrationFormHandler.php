@@ -24,6 +24,9 @@ class RegistrationFormHandler extends BaseHandler
         if ('POST' === $this->request->getMethod()) {
             $this->form->bind($this->request);
             $user->getProfile()->setUser($user);
+            foreach($user->getChildren() as $child) {
+                $child->setUser($user);
+            }
             if ($this->form->isValid()) {
                 $this->onSuccess($user, $confirmation);
 

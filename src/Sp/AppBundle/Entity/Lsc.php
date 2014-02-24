@@ -77,26 +77,26 @@ class Lsc
     }
 
     /**
-     * Add event result
+     * Add eventResults
      *
-     * @param EventResult $eventResult
+     * @param EventResult $eventResults
      * @return Lsc
      */
-    public function addEvent(EventResult $eventResult)
+    public function addEventResult(EventResult $eventResults)
     {
-        $this->eventResults[] = $eventResult;
+        $this->eventResults[] = $eventResults;
 
         return $this;
     }
 
     /**
-     * Remove event result
+     * Remove eventResults
      *
-     * @param EventResult $eventResult
+     * @param EventResult $eventResults
      */
-    public function removeEvent(EventResult $eventResult)
+    public function removeEventResult(EventResult $eventResults)
     {
-        $this->eventResults->removeElement($eventResult);
+        $this->eventResults->removeElement($eventResults);
     }
 
     /**

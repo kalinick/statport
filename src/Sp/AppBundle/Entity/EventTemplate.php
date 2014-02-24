@@ -225,6 +225,19 @@ class EventTemplate
     }
 
     /**
+     * Add timeStandartResults
+     *
+     * @param TimeStandartResult $timeStandartResults
+     * @return EventTemplate
+     */
+    public function addTimeStandartResult(TimeStandartResult $timeStandartResults)
+    {
+        $this->timeStandartResults[] = $timeStandartResults;
+
+        return $this;
+    }
+
+    /**
      * Get time standart result
      *
      * @return Collection

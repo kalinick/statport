@@ -16,8 +16,8 @@ class RegistrationFormType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('profile', new UserProfileFormType(), array('label'  => ' '));
-
         parent::buildForm($builder, $options);
+        $builder->add('children', 'collection', array('type' => new ChildrenFormType(), 'allow_add' => true, 'label'  => ' '));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -7,6 +7,7 @@
 
 namespace Sp\AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,9 +30,15 @@ class User extends BaseUser
      **/
     private $profile;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UserChild", mappedBy="user", cascade={"all"})
+     */
+    private $children;
+
     public function __construct()
     {
         parent::__construct();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -65,5 +72,38 @@ class User extends BaseUser
     public function getProfile()
     {
         return $this->profile;
+    }
+
+    /**
+     * Add children
+     *
+     * @param UserChild $children
+     * @return User
+     */
+    public function addChildren(UserChild $children)
+    {
+        $this->children[] = $children;
+    
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param UserChild $children
+     */
+    public function removeChildren(UserChild $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection|UserChild[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }

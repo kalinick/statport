@@ -4,12 +4,17 @@
     <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
         {{ form_widget(form) }}
 
+        <div class="children">
+            <div class="items"></div>
+            <button class="add-child">Add child</button>
+        </div>
+
         <div class="terms">
             <p>By joining Sport-Statport, you are indicating that you have read, understood and agreed to the <strong class="d-gray">Terms of service</strong></p>
             <p><input type="checkbox" id="termsAccepted" name="termsAccepted"><strong class="d-gray">I agree to </strong><a href="{{ url('terms_page') }}">Terms of Service</a></p>
         </div>
 
-        <div>
+        <div class="button">
             <input type="submit" disabled="disabled" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
         </div>
     </form>
