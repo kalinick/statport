@@ -16,6 +16,10 @@ Registration.prototype =
                 $('input[type="submit"]').attr('disabled', 'disabled');
             }
         });
+
+        $('.add-child').click(function() {
+            $('.children .items').append($('#fos_user_registration_form_children').data('prototype'));
+        });
     }
 };
 

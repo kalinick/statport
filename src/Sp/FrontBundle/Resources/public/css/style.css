@@ -181,6 +181,11 @@ form.sign-in input[type="text"], form.sign-in input[type="password"] {
     width: 300px;
 }
 
+.registration form div {
+    float: left;
+    width: 465px;
+}
+
 .registration .account-info {
     color: #0082FF;
     font-size: 28px;
@@ -192,12 +197,16 @@ form.sign-in input[type="text"], form.sign-in input[type="password"] {
 }
 
 .registration .terms {
+    clear: both;
     font-size: 14px;
     margin-left: 90px;
     width: 400px;
+    float: none;
 }
 
-
+.registration .button {
+    float: none;
+}
 
 
 
@@ -808,7 +817,7 @@ table tr.even-row {
     margin: 33px 0 0;
 }
 .sub-header {
-     font-size: 31px;
+    font-size: 31px;
     font-weight: bold;
 }
 
