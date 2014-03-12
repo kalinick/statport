@@ -117,4 +117,20 @@ class SwimmerRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param string $firstName
+     * @param string $lastName
+     *
+     * @return Entity\Swimmer
+     */
+    public function findByFirstLastName($firstName, $lastName)
+    {
+        return $this
+            ->createQueryBuilder('s')
+            ->where('s.firstName = :firstName')->setParameter('firstName', $firstName)
+            ->andWhere('s.lastName = :lastName')->setParameter('lastName', $lastName)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

@@ -7,14 +7,14 @@
 
 namespace Sp\ReportsBundle\Controller;
 
+use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sp\AppBundle\Entity;
+use Sp\AppBundle\Model;
+use Sp\ReportsBundle\Model\ReportsModel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
-use Sp\AppBundle\Model;
-use Sp\ReportsBundle\Model\ReportsModel;
 
 /**
  * @Route("/swimmer")
@@ -23,12 +23,20 @@ class SwimmerController extends Controller
 {
     /**
      * @Route("/", name="reports_swimmers")
+     * @Secure(roles="IS_AUTHENTICATED_REMEMBERED")
      * @Template()
      */
     public function swimmersAction()
     {
+        $swimmers = [];
+        foreach($this->getUser()->getChildren() as $child) {
+            $swimmer = $child->getSwimmer();
+            if ($swimmer !== null) {
+                $swimmers[] = $swimmer;
+            }
+        }
         return array(
-            'swimmers' => $this->getSwimmerManager()->getSwimmers()
+            'swimmers' => $swimmers
         );
     }
 

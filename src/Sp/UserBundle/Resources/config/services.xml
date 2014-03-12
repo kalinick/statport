@@ -21,6 +21,9 @@
             <argument type="service" id="fos_user.user_manager" />
             <argument type="service" id="fos_user.mailer" />
             <argument type="service" id="fos_user.util.token_generator" />
+            <call method="setSwimmerManager">
+                <argument type='service' id='sp_app.swimmer_manager' />
+            </call>
         </service>
     </services>
 </container>

@@ -16,6 +16,24 @@ class EventResultRepository extends EntityRepository
     /**
      * @param Entity\Swimmer $oSwimmer
      *
+     * @return Entity\EventResult[]
+     */
+    public function findBySwimmer(Entity\Swimmer $oSwimmer)
+    {
+        return $this
+            ->createQueryBuilder('er')
+            ->innerJoin('er.event', 'e')
+            ->innerJoin('e.meet', 'm')
+            ->innerJoin('e.eventTemplate', 'et')
+            ->where('er.swimmer = :swimmerId')
+            ->setParameter('swimmerId', $oSwimmer->getId())
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param Entity\Swimmer $oSwimmer
+     *
      * @return \Doctrine\ORM\QueryBuilder
      */
     private function getCommonReportBillet(Entity\Swimmer $oSwimmer)

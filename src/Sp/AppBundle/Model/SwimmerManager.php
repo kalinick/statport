@@ -7,6 +7,7 @@
 
 namespace Sp\AppBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sp\AppBundle\Repository;
 use Sp\AppBundle\Entity;
 
@@ -19,7 +20,6 @@ class SwimmerManager
      * @var Registry
      */
     private $doctrine;
-
     /**
      * @var Repository\SwimmerRepository
      */
@@ -29,6 +29,14 @@ class SwimmerManager
     {
         $this->doctrine = $doctrine;
         $this->repository = $this->doctrine->getRepository('SpAppBundle:Swimmer');
+    }
+
+    /**
+     * @return Repository\EventResultRepository
+     */
+    public function getEventResultRepository()
+    {
+        return $this->doctrine->getRepository('SpAppBundle:EventResult');
     }
 
     /**
@@ -53,5 +61,28 @@ class SwimmerManager
         }
 
         return $oSwimmer;
+    }
+
+    /**
+     * @param Entity\UserChild[] $children
+     */
+    public function assignSwimmersToChildren($children)
+    {
+        foreach($children as $child) {
+            $swimmer = $this->repository->findByFirstLastName($child->getFirstName(), $child->getLastName());
+            if ($swimmer instanceof Entity\Swimmer) {
+                $child->setSwimmer($swimmer);
+                if ($swimmer->getBirthday() === null) {
+                    $swimmer->setBirthday($child->getBirthday());
+
+                    foreach($this->getEventResultRepository()->findBySwimmer($swimmer) as $result) {
+                        $age = $result->getEvent()->getMeet()->getDate()->diff($swimmer->getBirthday())->format('%y');
+                        $result->setAge($age);
+                    }
+                }
+            }
+        }
+
+        $this->doctrine->getManager()->flush();
     }
 }

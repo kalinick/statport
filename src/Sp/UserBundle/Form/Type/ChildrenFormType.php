@@ -17,7 +17,8 @@ class ChildrenFormType extends AbstractType
     {
         $builder->add('firstName');
         $builder->add('lastName');
-        $builder->add('birthday');
+        $builder->add('birthday', 'birthday', array('input' => 'datetime',
+            'attr' => array('class' => 'datetime'), 'data' => (new \DateTime())->setDate(2000, 1, 1)));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

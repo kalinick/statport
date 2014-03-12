@@ -17,9 +17,12 @@ Registration.prototype =
             }
         });
 
-        $('.add-child').click(function() {
-            $('.children .items').append($('#fos_user_registration_form_children').data('prototype'));
-        });
+        var childNum = 1;
+        $('.add-child').click(function(event) {
+            $('.children .items').append($('#fos_user_registration_form_children').data('prototype')
+                .replace('__name__', '').replace('label__', 'Child:').replace(/__name__/g, childNum++));
+            event.preventDefault();
+        }).click();
     }
 };
 

@@ -160,7 +160,7 @@ form.sign-in input[type="text"], form.sign-in input[type="password"] {
     color: #003AE1;
 }
 
-#fos_user_registration_form label {
+.fos_user_registration_register label {
     display: inline-block;
     font-size: 11px;
     font-weight: bold;
@@ -171,7 +171,11 @@ form.sign-in input[type="text"], form.sign-in input[type="password"] {
     width: 130px;
 }
 
-#fos_user_registration_form input, #fos_user_registration_form select {
+.fos_user_registration_register input[type="text"],
+.fos_user_registration_register input[type="number"],
+.fos_user_registration_register input[type="email"],
+.fos_user_registration_register input[type="password"],
+#fos_user_registration_form select {
     background: none repeat scroll 0 0 #ECECEC;
     border: medium none;
     border-radius: 12px;
@@ -208,11 +212,25 @@ form.sign-in input[type="text"], form.sign-in input[type="password"] {
     float: none;
 }
 
+.fos_user_registration_register .children {
+    padding-top: 30px;
+}
 
+.fos_user_registration_register .children .items > div {
+    border-bottom: 1px solid #AAAAAA;
+    margin-left: 30px;
+}
 
+.fos_user_registration_register .children .add-child {
+    float: right;
+    margin-top: 20px;
+}
 
-
-
+.fos_user_registration_register .children .items .datetime {
+    float: right;
+    margin-top: 14px;
+    width: 250px;
+}
 
 
 
