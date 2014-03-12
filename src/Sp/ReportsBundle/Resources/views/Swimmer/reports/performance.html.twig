@@ -21,13 +21,13 @@
             {% if(not first) %}
                 <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
             {% endif %}
-            <td>{{ eventResult.res.event.meet.date.format('d/m/Y') }}</td>
-            <td>{{ eventResult.res.event.meet }}</td>
-            <td>{{ eventResult.gender }}</td>
-            <td>{{ eventResult.res.age }}</td>
-            <td>{{ eventResult.res.lsc }}</td>
-            <td>{{ eventResult.res.club }}</td>
-            <td>{{ eventResult.res.seconds|timeToString }}</td>
+            <td>{{ eventResult.event.meet.date.format('d/m/Y') }}</td>
+            <td>{{ eventResult.event.meet }}</td>
+            <td>{{ eventResult.event.gender }}</td>
+            <td>{{ eventResult.age }}</td>
+            <td>{{ eventResult.lsc }}</td>
+            <td>{{ eventResult.club }}</td>
+            <td>{{ eventResult.seconds|timeToString }}</td>
             {% if(not first) %}
                 </tr>
             {% endif %}

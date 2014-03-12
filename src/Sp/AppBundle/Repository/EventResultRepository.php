@@ -51,13 +51,13 @@ class EventResultRepository extends EntityRepository
 
     /**
      * @param Entity\Swimmer $oSwimmer
-     * @return array
+     * @return Entity\EventResult[]
      */
     public function getPerformanceReport(Entity\Swimmer $oSwimmer)
     {
         return $this
             ->getCommonReportBillet($oSwimmer)
-            ->select('er as res, e, et.title as eventTitle, s.gender')
+            ->select('er, e, et, m')
             ->innerJoin('er.swimmer', 's')
             ->getQuery()
             ->getResult();

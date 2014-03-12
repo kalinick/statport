@@ -117,7 +117,7 @@ class ReportsModel
         $reports['performance'] = $this->getPerformanceReport($oSwimmer);
         $reports['bestTime'] = $this->getBestTimeReport($oSwimmer);
         $reports['byMeet'] = $this->getByMeetReport($oSwimmer);
-        $reports['rank'] = $this->getRankReport($oSwimmer, $reports['performance']);
+        $reports['rank'] = $this->getRankReport($reports['performance']);
 //        $reports['historical'] = $this->getHistoricalReport($oSwimmer);
 //        $reports['timeDeficiency'] = $this->getTimeDeficiencyReport($oSwimmer);
 //        $reports['withinTeam'] = $this->getWithinTeamReport($oSwimmer);
@@ -136,7 +136,7 @@ class ReportsModel
         $performance = array();
         $results = $this->eventResultRepository->getPerformanceReport($oSwimmer);
         foreach($results as $result) {
-            $event = $result['eventTitle'];
+            $event = $result->getEvent()->getEventTemplate()->getTitle();
             if (!isset($performance[$event])) {
                 $performance[$event] = array();
             }
@@ -165,17 +165,16 @@ class ReportsModel
     }
 
     /**
-     * @param Entity\Swimmer $oSwimmer
-     * @param array          $performanceReport
+     * @param array $performanceReport
      *
      * @return array
      */
-    private function getRankReport(Entity\Swimmer $oSwimmer, array $performanceReport)
+    private function getRankReport(array $performanceReport)
     {
         $eventIds = array();
         foreach($performanceReport as $eventResults) {
             foreach($eventResults as $eventResult) {
-                $eventIds[] = $eventResult['res']->getEvent()->getId();
+                $eventIds[] = $eventResult->getEvent()->getId();
             }
         }
 
@@ -187,10 +186,10 @@ class ReportsModel
 
         foreach($performanceReport as $k1 => $eventResults) {
             foreach($eventResults as $k2 => $eventResult) {
-                $performanceReport[$k1][$k2]['maxRang'] = (int) $maxRangList[$eventResult['res']->getEvent()->getId()];
-                if ($performanceReport[$k1][$k2]['maxRang'] > 1) {
-                    $performanceReport[$k1][$k2]['tile'] =
-                        round((($eventResult['res']->getRank() - 1) / ($performanceReport[$k1][$k2]['maxRang'] - 1)) * 100, 2);
+                $performanceReport[$k1][$k2]->maxRang = (int) $maxRangList[$eventResult->getEvent()->getId()];
+                if ($performanceReport[$k1][$k2]->maxRang > 1) {
+                    $performanceReport[$k1][$k2]->tile =
+                        round((($eventResult->getRank() - 1) / ($performanceReport[$k1][$k2]->maxRang - 1)) * 100, 2);
                 }
             }
         }
@@ -199,10 +198,11 @@ class ReportsModel
     }
 
     /**
-     * @param Entity\Swimmer $oSwimmer
+     * @param array $performanceReport
+     *
      * @return array
      */
-    private function getHistoricalReport(Entity\Swimmer $oSwimmer)
+    private function getHistoricalReport(array $performanceReport)
     {
         $aEvents = array();
         $aEventResults = $this->swimmerRepository->getHistoricalReport($oSwimmer);
