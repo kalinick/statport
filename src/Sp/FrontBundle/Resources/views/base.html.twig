@@ -15,8 +15,12 @@
                             <a href="{{ path('index_page') }}"><img src="{{ asset('bundles/spfront/images/sport-statport.png') }}" alt="Sport-Statport.com"></a>
                         </div>
                         <div class="menu">
-                            <div class="menu-item bold" style="width: 69px;"><a href="{{ path('sample_page') }}" class="blue">Reports</a></div>
+                            <div class="menu-item bold" style="width: 110px;"><a href="{{ path('sample_page') }}" class="blue">Reports template</a></div>
                             <div class="divisor divisor-menu"></div>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <div class="menu-item bold" style="width: 69px;"><a href="{{ path('reports_swimmers') }}" class="blue">Reports</a></div>
+                                <div class="divisor divisor-menu"></div>
+                            {% endif %}
                             <div class="menu-item bold" style="width: 69px;">
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
