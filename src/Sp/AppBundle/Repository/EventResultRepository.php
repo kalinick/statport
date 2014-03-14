@@ -57,7 +57,7 @@ class EventResultRepository extends EntityRepository
     {
         return $this
             ->getCommonReportBillet($oSwimmer)
-            ->select('er, e, et, m')
+            ->select('er, e, et, m, s')
             ->innerJoin('er.swimmer', 's')
             ->getQuery()
             ->getResult();

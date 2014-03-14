@@ -118,7 +118,7 @@ class ReportsModel
         $reports['bestTime'] = $this->getBestTimeReport($oSwimmer);
         $reports['byMeet'] = $this->getByMeetReport($oSwimmer);
         $reports['rank'] = $this->getRankReport($reports['performance']);
-//        $reports['historical'] = $this->getHistoricalReport($oSwimmer);
+        $reports['historical'] = $this->getHistoricalReport($reports['performance']);
 //        $reports['timeDeficiency'] = $this->getTimeDeficiencyReport($oSwimmer);
 //        $reports['withinTeam'] = $this->getWithinTeamReport($oSwimmer);
 //        $reports['withinTeamGraphic'] = $this->getWithinTeamGraphicReport($oSwimmer, $reports['performance']);
@@ -204,21 +204,9 @@ class ReportsModel
      */
     private function getHistoricalReport(array $performanceReport)
     {
-        $aEvents = array();
-        $aEventResults = $this->swimmerRepository->getHistoricalReport($oSwimmer);
-        foreach($aEventResults as $row) {
-            $event = $row['distance'] . ' ' . $row['style'] . ' ' . $row['course'];
-            if (!isset($aEvents[$event])) {
-                $aEvents[$event] = array();
-            }
-
-            $aEvents[$event][] = $row;
-        }
-
         $aTimeStandartTitles = $this->getTimeStandartManager()->getTimeStandartTitles();
-
         $report = array();
-        foreach($aEvents as $event => $aEventResults) {
+        foreach($performanceReport as $event => $aEventResults) {
             $aDate = array();
             $aSwimmerSeconds = array();
             $aTimeStandartSeconds = array();
