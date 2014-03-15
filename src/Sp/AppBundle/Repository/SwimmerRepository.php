@@ -88,25 +88,16 @@ class SwimmerRepository extends EntityRepository
      */
     public function getSwimmerToSwimmerReport($meId, $swimmerId, $event)
     {
-        $event = json_decode($event, true);
-
         return $this
             ->createQueryBuilder('s')
             ->select('s.id, m.title as meet, er.seconds')
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->innerJoin('SpAppBundle:Meet', 'm', 'WITH', 'm.id = e.meet')
-            ->innerJoin('SpAppBundle:Distance', 'd', 'WITH', 'e.distance = d.id')
-            ->innerJoin('SpAppBundle:SwimmingStyle', 'ss', 'WITH', 'e.style = ss.id')
-            ->innerJoin('SpAppBundle:Course', 'c', 'WITH', 'e.course = c.id')
             ->where('s.id IN (:id)')
-            ->andWhere('e.distance = :distance')
-            ->andWhere('e.style = :style')
-            ->andWhere('e.course = :course')
+            ->andWhere('e.eventTemplate = :eventTemplate')
             ->setParameter('id', array($swimmerId, $meId))
-            ->setParameter('distance', $event['distanceId'])
-            ->setParameter('style', $event['styleId'])
-            ->setParameter('course', $event['courseId'])
+            ->setParameter('eventTemplate', $event)
             ->orderBy('m.date')
             ->getQuery()
             ->getResult();

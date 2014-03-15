@@ -35,13 +35,13 @@
                 {{ include('SpReportsBundle:Swimmer:reports/withinTeam.html.twig', {'report': reports['withinTeam'], 'swimmer': swimmer}) }}
             </div>
             <div class="report" data-id="8">
-                {#{{ include('SpReportsBundle:Swimmer:reports/withinTeamGraphic.html.twig', {'report': reports['withinTeamGraphic']}) }}#}
+                {{ include('SpReportsBundle:Swimmer:reports/withinTeamGraphic.html.twig', {'report': reports['withinTeamGraphic']}) }}
             </div>
             <div class="report" data-id="9">
-                {#{{ include('SpReportsBundle:Swimmer:reports/withinRegionGraphic.html.twig', {'report': reports['withinRegionGraphic']}) }}#}
+                {{ include('SpReportsBundle:Swimmer:reports/withinRegionGraphic.html.twig', {'report': reports['withinRegionGraphic']}) }}
             </div>
             <div class="report" data-id="10">
-                {#{{ include('SpReportsBundle:Swimmer:reports/swimmerToSwimmer.html.twig', {'swimmers': swimmers, 'events': events}) }}#}
+                {{ include('SpReportsBundle:Swimmer:reports/swimmerToSwimmer.html.twig', {'swimmers': swimmers, 'events': events}) }}
             </div>
         </div>
         <div class="clear-both"></div>

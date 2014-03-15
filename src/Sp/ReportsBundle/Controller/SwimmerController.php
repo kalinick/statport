@@ -49,8 +49,8 @@ class SwimmerController extends Controller
         $oSwimmer = $this->getSwimmerManager()->getSwimmer($id);
         return array(
             'swimmer' => $oSwimmer,
-            //'swimmers' => $this->getSwimmerManager()->getSwimmers(),
-            //'events' => $this->getEventManager()->findEvents(),
+            'swimmers' => $this->getSwimmerManager()->getSwimmers(),
+            'events' => $this->getEventTemplateManager()->findEventTemplates(),
             'reportsTitles' => $this->getReportsManager()->getReportsTitles(),
             'reports' => $this->getReportsManager()->getSwimmerReports($oSwimmer)
         );
@@ -71,11 +71,11 @@ class SwimmerController extends Controller
     }
 
     /**
-     * @return Model\EventManager
+     * @return Model\EventTemplateManager
      */
-    protected function getEventManager()
+    protected function getEventTemplateManager()
     {
-        return $this->get('sp_app.event_manager');
+        return $this->get('sp_app.event_template_manager');
     }
 
     /**

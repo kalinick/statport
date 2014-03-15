@@ -122,8 +122,8 @@ class ReportsModel
         $aBestTime = $this->getBestTime($reports['performance']);
         $reports['timeDeficiency'] = $this->getTimeDeficiencyReport($aBestTime);
         $reports['withinTeam'] = $this->getWithinTeamReport($aBestTime);
-//        $reports['withinTeamGraphic'] = $this->getWithinTeamGraphicReport($oSwimmer, $reports['performance']);
-//        $reports['withinRegionGraphic'] = $this->getWithinRegionGraphicReport($oSwimmer, $reports['performance']);
+        $reports['withinTeamGraphic'] = $this->getWithinTeamGraphicReport($oSwimmer, $reports['performance']);
+        $reports['withinRegionGraphic'] = $this->getWithinRegionGraphicReport($oSwimmer, $reports['performance']);
 
         return $reports;
     }
@@ -344,13 +344,14 @@ class ReportsModel
         $aResult = array();
         foreach($performance as $style => $aEvent) {
             $aResult[$style] = array('meet' => array(), 'my' => array(), 'avg' => array());
-            foreach($aEvent as $event) {
+            /* @var Entity\EventResult $eventResult */
+            foreach($aEvent as $eventResult) {
                 $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
                 $ageInterval = $this->getHelperModel()->getAgeInterval($age);
-                $avg = $this->eventRepository->getAvgByEventClubAgeGender($event['eventId'], $event['clubId'], $ageInterval, $oSwimmer->getGender());
+                $avg = $this->eventRepository->getAvgByEventClubAgeGender($eventResult->getEvent()->getId(), $eventResult->getClub()->getId(), $ageInterval, $oSwimmer->getGender());
 
-                $aResult[$style]['meet'][] = $event['meet'];
-                $aResult[$style]['my'][] = $event['seconds'];
+                $aResult[$style]['meet'][] = $eventResult->getEvent()->getMeet()->getTitle();
+                $aResult[$style]['my'][] = $eventResult->getSeconds();
                 $aResult[$style]['avg'][] = (float) round($avg, 2);
             }
 
@@ -372,13 +373,14 @@ class ReportsModel
         $aResult = array();
         foreach($performance as $style => $aEvent) {
             $aResult[$style] = array('meet' => array(), 'my' => array(), 'avg' => array());
-            foreach($aEvent as $event) {
+            /* @var Entity\EventResult $eventResult */
+            foreach($aEvent as $eventResult) {
                 $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
                 $ageInterval = $this->getHelperModel()->getAgeInterval($age);
-                $avg = $this->eventRepository->getAvgByEventRegionAgeGender($event['eventId'], $event['lscId'], $ageInterval, $oSwimmer->getGender());
+                $avg = $this->eventRepository->getAvgByEventRegionAgeGender($eventResult->getEvent()->getId(), $eventResult->getClub()->getId(), $ageInterval, $oSwimmer->getGender());
 
-                $aResult[$style]['meet'][] = $event['meet'];
-                $aResult[$style]['my'][] = $event['seconds'];
+                $aResult[$style]['meet'][] = $eventResult->getEvent()->getMeet()->getTitle();
+                $aResult[$style]['my'][] = $eventResult->getSeconds();
                 $aResult[$style]['avg'][] = (float) round($avg, 2);
             }
 
