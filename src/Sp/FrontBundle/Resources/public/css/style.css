@@ -226,11 +226,6 @@ form.sign-in input[type="text"], form.sign-in input[type="password"] {
     margin-top: 20px;
 }
 
-.fos_user_registration_register .children .items .datetime {
-    float: right;
-    margin-top: 14px;
-    width: 250px;
-}
 
 
 

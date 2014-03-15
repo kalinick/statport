@@ -17,7 +17,7 @@ class ChildrenFormType extends AbstractType
     {
         $builder->add('firstName');
         $builder->add('lastName');
-        $builder->add('birthday', 'birthday', array('input' => 'datetime',
+        $builder->add('birthday', 'birthday', array('input' => 'datetime', 'widget' => 'single_text', 'format' => 'MM/dd/yyyy',
             'attr' => array('class' => 'datetime'), 'data' => (new \DateTime())->setDate(2000, 1, 1)));
     }
 

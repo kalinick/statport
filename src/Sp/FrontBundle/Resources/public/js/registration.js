@@ -20,7 +20,8 @@ Registration.prototype =
         var childNum = 1;
         $('.add-child').click(function(event) {
             $('.children .items').append($('#fos_user_registration_form_children').data('prototype')
-                .replace('__name__', '').replace('label__', 'Child:').replace(/__name__/g, childNum++));
+                    .replace('__name__', '').replace('label__', 'Child:').replace(/__name__/g, childNum++))
+                .find('.datetime').datepicker({changeYear: true});
             event.preventDefault();
         }).click();
     }
