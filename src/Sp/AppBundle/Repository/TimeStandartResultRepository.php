@@ -14,28 +14,23 @@ use Sp\AppBundle\Entity;
 class TimeStandartResultRepository extends EntityRepository
 {
     /**
-     * @param int $distanceId
-     * @param int $styleId
-     * @param int $courseId
+     * @param int    $eventTemplateId
      * @param string $gender
-     * @param int $age
+     * @param int    $age
+     *
      * @return array
      */
-    public function findTimeStandartsForEvent($distanceId, $styleId, $courseId, $gender, $age)
+    public function findTimeStandartsForEvent($eventTemplateId, $gender, $age)
     {
         return $this
             ->createQueryBuilder('tsr')
             ->select('tsr.seconds, ts.title')
             ->innerJoin('SpAppBundle:TimeStandart', 'ts', 'WITH', 'tsr.timeStandart = ts.id')
-            ->where('tsr.distance = :distance')
-            ->andWhere('tsr.style = :style')
-            ->andWhere('tsr.course = :course')
+            ->where('tsr.eventTemplate = :eventTemplate')
             ->andWhere('tsr.gender = :gender')
             ->andWhere('tsr.minAge <= :age')
             ->andWhere('tsr.maxAge >= :age')
-            ->setParameter('distance', $distanceId)
-            ->setParameter('style', $styleId)
-            ->setParameter('course', $courseId)
+            ->setParameter('eventTemplate', $eventTemplateId)
             ->setParameter('gender', $gender)
             ->setParameter('age', $age)
             ->getQuery()

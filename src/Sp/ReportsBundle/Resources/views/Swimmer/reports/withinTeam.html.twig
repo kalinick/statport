@@ -5,25 +5,25 @@
     <tr>
         <th>{{ swimmer.toStringGenderAge }}</th>
         {% for event in report %}
-            <th>{{ event|eventToString }}</th>
+            <td>{{ event.event.event.eventTemplate.title }}</td>
         {% endfor %}
     </tr>
     <tr>
         <td>Best Result</td>
         {% for event in report %}
-            <td>{{ event.best }}</td>
+            <td>{{ event.best|timeToString }}</td>
         {% endfor %}
     </tr>
     <tr>
         <td>Average Time</td>
         {% for event in report %}
-            <td>{{ event.avg }}</td>
+            <td>{{ event.avg|timeToString }}</td>
         {% endfor %}
     </tr>
     <tr>
         <td>Your Best Time</td>
         {% for event in report %}
-        <td>{{ event.seconds }}</td>
+        <td>{{ event.event.seconds|timeToString }}</td>
         {% endfor %}
     </tr>
 </table>

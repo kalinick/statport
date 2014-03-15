@@ -39,16 +39,14 @@ class TimeStandartManager
     }
 
     /**
-     * @param int $distanceId
-     * @param int $styleId
-     * @param int $courseId
+     * @param int $eventTemplateId
      * @param string $gender
      * @param int $age
      * @return array
      */
-    public function getTimeStandartsForEvent($distanceId, $styleId, $courseId, $gender, $age)
+    public function getTimeStandartsForEvent($eventTemplateId, $gender, $age)
     {
-        $aTemp = $this->tsrRepository->findTimeStandartsForEvent($distanceId, $styleId, $courseId, $gender, $age);
+        $aTemp = $this->tsrRepository->findTimeStandartsForEvent($eventTemplateId, $gender, $age);
 
         $aResult = array();
         foreach($aTemp as $row) {
@@ -58,10 +56,10 @@ class TimeStandartManager
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getTimeStandartTitles()
     {
-        return $this->tsRepository->findTimeStandartTitles();
+        return array_map('current', $this->tsRepository->findTimeStandartTitles());
     }
 }

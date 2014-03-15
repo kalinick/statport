@@ -12,8 +12,8 @@
     {% set i = 0 %}
     {% for event in report %}
     <tr class="{% if (i % 2 == 1) %}grayed{% endif %}">
-        <td>{{ event|eventToString }}</td>
-        <td>{{ event.seconds|timeToString }}</td>
+        <td>{{ event.event.event.eventTemplate.title }}</td>
+        <td>{{ event.event.seconds|timeToString }}</td>
         <td>{{ event.achievedTs }}</td>
         <td>{{ event.nextTs }}</td>
         <td>{{ event.gap }}</td>

@@ -51,13 +51,11 @@ class SwimmerRepository extends EntityRepository
     /**
      * @param AgeInterval $ageInterval
      * @param string $gender
-     * @param int $distanceId
-     * @param int $styleId
-     * @param int $courseId
+     * @param int $eventTemplateId
      * @param int $clubId
      * @return array
      */
-    public function getMinAvgByClub(AgeInterval $ageInterval, $gender, $distanceId, $styleId, $courseId, $clubId)
+    public function getMinAvgByClub(AgeInterval $ageInterval, $gender, $eventTemplateId, $clubId)
     {
         return $this
             ->createQueryBuilder('s')
@@ -65,20 +63,16 @@ class SwimmerRepository extends EntityRepository
             ->innerJoin('SpAppBundle:EventResult', 'er', 'WITH', 'er.swimmer = s.id')
             ->innerJoin('SpAppBundle:Event', 'e', 'WITH', 'e.id = er.event')
             ->andWhere('s.gender = :gender')
-            ->andWhere('s.birthday >= :minBirthday')
-            ->andWhere('s.birthday <= :maxBirthday')
+//            ->andWhere('s.birthday >= :minBirthday')
+//            ->andWhere('s.birthday <= :maxBirthday')
 //            ->andWhere('er.age >= :minAge')
 //            ->andWhere('er.age <= :maxAge')
-            ->andWhere('e.distance = :distance')
-            ->andWhere('e.style = :style')
-            ->andWhere('e.course = :course')
-            ->andWhere('e.club = :club')
+            ->andWhere('e.eventTemplate = :eventTemplate')
+            ->andWhere('er.club = :club')
             ->setParameter('gender', $gender)
-            ->setParameter('minBirthday', $ageInterval->getMinBirthdayAsString())
-            ->setParameter('maxBirthday', $ageInterval->getMaxBirthdayAsString())
-            ->setParameter('distance', $distanceId)
-            ->setParameter('style', $styleId)
-            ->setParameter('course', $courseId)
+//            ->setParameter('minBirthday', $ageInterval->getMinBirthdayAsString())
+//            ->setParameter('maxBirthday', $ageInterval->getMaxBirthdayAsString())
+            ->setParameter('eventTemplate', $eventTemplateId)
             ->setParameter('club', $clubId)
 //            ->setParameter('minAge', $ageInterval->getMinAge())
 //            ->setParameter('maxAge', $ageInterval->getMaxAge())

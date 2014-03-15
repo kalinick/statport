@@ -119,8 +119,9 @@ class ReportsModel
         $reports['byMeet'] = $this->getByMeetReport($oSwimmer);
         $reports['rank'] = $this->getRankReport($reports['performance']);
         $reports['historical'] = $this->getHistoricalReport($reports['performance']);
-//        $reports['timeDeficiency'] = $this->getTimeDeficiencyReport($oSwimmer);
-//        $reports['withinTeam'] = $this->getWithinTeamReport($oSwimmer);
+        $aBestTime = $this->getBestTime($reports['performance']);
+        $reports['timeDeficiency'] = $this->getTimeDeficiencyReport($aBestTime);
+        $reports['withinTeam'] = $this->getWithinTeamReport($aBestTime);
 //        $reports['withinTeamGraphic'] = $this->getWithinTeamGraphicReport($oSwimmer, $reports['performance']);
 //        $reports['withinRegionGraphic'] = $this->getWithinRegionGraphicReport($oSwimmer, $reports['performance']);
 
@@ -209,19 +210,17 @@ class ReportsModel
         foreach($performanceReport as $event => $aEventResults) {
             $aDate = array();
             $aSwimmerSeconds = array();
-            $aTimeStandartSeconds = array();
-            foreach($aTimeStandartTitles as $row) {
-                $aTimeStandartSeconds[$row['title']] = array();
-            }
+            $aTimeStandartSeconds = array_fill_keys($aTimeStandartTitles, array());
 
-            foreach($aEventResults as $res) {
-                $aDate[] = $res['date']->format('d/m/Y');
-                $aSwimmerSeconds[] = $res['seconds'];
-                //$age = $this->getHelperModel()->getAge($res['birthday'], $res['date']);
-                $age = $this->getHelperModel()->getAge($res['birthday']);
+            /* @var Entity\EventResult $eventResult */
+            foreach($aEventResults as $eventResult) {
+                $aDate[] = $eventResult->getEvent()->getMeet()->getDate()->format('d/m/Y');
+                $aSwimmerSeconds[] = $eventResult->getSeconds();
 
                 $tempTimeStandart = $this->getTimeStandartManager()->getTimeStandartsForEvent(
-                    $res['distanceId'], $res['styleId'], $res['courseId'], $res['gender'], $age);
+                    $eventResult->getEvent()->getEventTemplate()->getId(),
+                    $eventResult->getSwimmer()->getGender(),
+                    $eventResult->getAge());
 
                 foreach($aTimeStandartSeconds as $title => $val) {
                     $aTimeStandartSeconds[$title][] = (isset($tempTimeStandart[$title])) ? $tempTimeStandart[$title] : null;
@@ -239,17 +238,40 @@ class ReportsModel
     }
 
     /**
-     * @param Entity\Swimmer $oSwimmer
+     * @param array $performanceReport
+     *
      * @return array
      */
-    public function getTimeDeficiencyReport(Entity\Swimmer $oSwimmer)
+    private function getBestTime(array $performanceReport)
     {
-        $aBestTime = $this->swimmerRepository->getBestTimeReport($oSwimmer);
+        $aBestTime = array();
+        foreach ($performanceReport as $eventResults) {
+            $min = null;
+            /* @var Entity\EventResult $eventResult */
+            foreach ($eventResults as $eventResult) {
+                if ($min === null || $eventResult->getSeconds() < $min['event']->getSeconds()) {
+                    $min = ['event' => $eventResult];
+                }
+            }
+            $aBestTime[] = $min;
+        }
 
-        $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
+        return $aBestTime;
+    }
+
+    /**
+     * @param array $aBestTime
+     *
+     * @return array
+     */
+    public function getTimeDeficiencyReport(array $aBestTime)
+    {
         foreach($aBestTime as &$res) {
+
             $aTimeStandart = $this->getTimeStandartManager()->getTimeStandartsForEvent(
-                $res['distanceId'], $res['styleId'], $res['courseId'], $oSwimmer->getGender(), $age);
+                $res['event']->getEvent()->getEventTemplate()->getId(),
+                $res['event']->getSwimmer()->getGender(),
+                $res['event']->getAge());
 
             if(empty($aTimeStandart)) {
                 $res['achievedTs'] = null;
@@ -260,7 +282,7 @@ class ReportsModel
 
             $achieved = null;
             foreach($aTimeStandart as $key => $ts) {
-                if ($res['seconds'] > $ts) {
+                if ($res['event']->getSeconds() > $ts) {
                     break;
                 }
                 $achieved = $key;
@@ -271,13 +293,13 @@ class ReportsModel
                 $nextTsValue = reset($aTimeStandart);
                 $nextTs = key($aTimeStandart);
                 $res['nextTs'] = $nextTs;
-                $res['gap'] = $nextTsValue - $res['seconds'];
+                $res['gap'] = $nextTsValue - $res['event']->getSeconds();
             } else {
                 $res['achievedTs'] = $achieved;
 
-                if ($res['seconds'] > $ts) {
+                if ($res['event']->getSeconds() > $ts) {
                     $res['nextTs'] = $key;
-                    $res['gap'] = $res['seconds'] - $aTimeStandart[$key];
+                    $res['gap'] = $res['event']->getSeconds() - $aTimeStandart[$key];
                 } else {
                     $res['nextTs'] = null;
                     $res['gap'] = null;
@@ -289,24 +311,21 @@ class ReportsModel
     }
 
     /**
-     * @param Entity\Swimmer $oSwimmer
+     * @param array $aBestTime
+     *
      * @return array
      */
-    public function getWithinTeamReport(Entity\Swimmer $oSwimmer)
+    public function getWithinTeamReport(array $aBestTime)
     {
-        $aBestTime = $this->swimmerRepository->getBestTimeReport($oSwimmer);
-
         foreach($aBestTime as &$res) {
-            $age = $this->getHelperModel()->getAge($oSwimmer->getBirthday());
+            $age = $res['event']->getAge();
             $ageInterval = $this->getHelperModel()->getAgeInterval($age);
 
             $minAvg = $this->swimmerRepository->getMinAvgByClub(
                 $ageInterval,
-                $oSwimmer->getGender(),
-                $res['distanceId'],
-                $res['styleId'],
-                $res['courseId'],
-                $res['clubId']
+                $res['event']->getSwimmer()->getGender(),
+                $res['event']->getEvent()->getEventTemplate()->getId(),
+                $res['event']->getClub()->getId()
             );
             $res['best'] = $minAvg['best'];
             $res['avg'] = ($minAvg['middle'] === null) ? null : round($minAvg['middle'], 2);
