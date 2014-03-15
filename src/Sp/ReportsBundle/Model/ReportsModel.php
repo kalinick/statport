@@ -15,7 +15,7 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class ReportsModel
 {
-    private $reportsTitles = [
+    private $reportsTitles = array(
         'Performance Overview',
         'Best Time by Event',
         'Individual meet results',
@@ -27,7 +27,7 @@ class ReportsModel
         'Average Time Comparsion by Event ‐ State',
 //        'Season to Season Comparsion',
         'Swimmer to Swimmer Comparsion'
-    ];
+    );
 
     /**
      * @var Registry
@@ -250,7 +250,7 @@ class ReportsModel
             /* @var Entity\EventResult $eventResult */
             foreach ($eventResults as $eventResult) {
                 if ($min === null || $eventResult->getSeconds() < $min['event']->getSeconds()) {
-                    $min = ['event' => $eventResult];
+                    $min = array('event' => $eventResult);
                 }
             }
             $aBestTime[] = $min;
