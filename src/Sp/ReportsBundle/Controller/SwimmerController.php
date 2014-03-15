@@ -28,7 +28,7 @@ class SwimmerController extends Controller
      */
     public function swimmersAction()
     {
-        $swimmers = [];
+        $swimmers = array();
         foreach($this->getUser()->getChildren() as $child) {
             $swimmer = $child->getSwimmer();
             if ($swimmer !== null) {
