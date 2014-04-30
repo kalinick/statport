@@ -1,5 +1,10 @@
 {% extends 'SpFrontBundle::base.html.twig' %}
 
 {% block content %}
-    <a href="{{ path('payment_checkout') }}">pay</a>
+    {% set sum = 0 %}
+    {% for child in children %}
+        <div>{{ child.firstName }} {{ child.lastName }} {{ price }} $</div>
+        {% set sum = sum + price %}
+    {% endfor %}
+    <div>Sum: {{ sum }} $ <a href="{{ path('payment_checkout') }}">pay</a></div>
 {% endblock %}

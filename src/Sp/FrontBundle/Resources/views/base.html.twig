@@ -22,6 +22,10 @@
                                 <div class="menu-item bold" style="width: 69px;"><a href="{{ path('reports_swimmers') }}" class="blue">Reports</a></div>
                                 <div class="divisor divisor-menu"></div>
                             {% endif %}
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <div class="menu-item bold" style="width: 69px;"><a href="{{ path('payment_order') }}" class="blue">Order</a></div>
+                                <div class="divisor divisor-menu"></div>
+                            {% endif %}
                             <div class="menu-item bold" style="width: 69px;">
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>

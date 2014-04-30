@@ -46,16 +46,16 @@ class PaymentManager
     }
 
     /**
-     * @param array $swimmers
+     * @param array $children
      * @param $completeUrlName
      * @param $cancelUrlName
      * @return RedirectResponse
      * @throws \RuntimeException
      */
-    public function checkout(array $swimmers, $completeUrlName, $cancelUrlName)
+    public function checkout(array $children, $completeUrlName, $cancelUrlName)
     {
         // TODO: need create real data
-        $amount = 14.99;
+        $amount = 14.99 * count($children);
 
         $em = $this->doctrine->getManager();
         $order = new Order();
