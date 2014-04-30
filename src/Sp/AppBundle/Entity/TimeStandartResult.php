@@ -23,13 +23,13 @@ class TimeStandartResult
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="EventTemplate")
+     * @ORM\ManyToOne(targetEntity="EventTemplate", inversedBy="timeStandartResults")
      * @ORM\JoinColumn(name="event_template_id", referencedColumnName="id", nullable=false)
      */
     private $eventTemplate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TimeStandart")
+     * @ORM\ManyToOne(targetEntity="TimeStandart", inversedBy="timeStandartResults")
      * @ORM\JoinColumn(name="time_standart_id", referencedColumnName="id", nullable=false)
      */
     private $timeStandart;

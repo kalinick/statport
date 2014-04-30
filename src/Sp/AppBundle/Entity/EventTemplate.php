@@ -30,19 +30,19 @@ class EventTemplate
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Distance")
+     * @ORM\ManyToOne(targetEntity="Distance", inversedBy="events")
      * @ORM\JoinColumn(name="distance_id", referencedColumnName="id", nullable=false)
      */
     private $distance;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SwimmingStyle")
+     * @ORM\ManyToOne(targetEntity="SwimmingStyle", inversedBy="events")
      * @ORM\JoinColumn(name="style_id", referencedColumnName="id", nullable=false)
      */
     private $style;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Course")
+     * @ORM\ManyToOne(targetEntity="Course", inversedBy="events")
      * @ORM\JoinColumn(name="course_id", referencedColumnName="id", nullable=false)
      */
     private $course;

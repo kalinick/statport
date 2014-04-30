@@ -63,7 +63,7 @@ class Swimmer
     private $birthday;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club")
+     * @ORM\ManyToOne(targetEntity="Club", inversedBy="swimmers")
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
      */
     private $club;

@@ -38,13 +38,13 @@ class UserChild
     private $birthday;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="children")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Swimmer")
+     * @ORM\ManyToOne(targetEntity="Swimmer", inversedBy="children")
      * @ORM\JoinColumn(name="swimmer_id", referencedColumnName="id")
      */
     private $swimmer;

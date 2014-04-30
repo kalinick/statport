@@ -23,13 +23,13 @@ class EventResult
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="results")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", nullable=false)
      */
     private $event;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Swimmer")
+     * @ORM\ManyToOne(targetEntity="Swimmer", inversedBy="results")
      * @ORM\JoinColumn(name="swimmer_id", referencedColumnName="id", nullable=false)
      */
     private $swimmer;
@@ -45,13 +45,13 @@ class EventResult
     private $rank;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Lsc")
+     * @ORM\ManyToOne(targetEntity="Lsc", inversedBy="results")
      * @ORM\JoinColumn(name="lsc_id", referencedColumnName="id", nullable=false)
      */
     private $lsc;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club")
+     * @ORM\ManyToOne(targetEntity="Club", inversedBy="results")
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
      */
     private $club;

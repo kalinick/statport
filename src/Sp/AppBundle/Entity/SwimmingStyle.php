@@ -25,7 +25,7 @@ class SwimmingStyle
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="EventTemplate", mappedBy="course")
+     * @ORM\OneToMany(targetEntity="EventTemplate", mappedBy="style")
      */
     private $events;
 

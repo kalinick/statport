@@ -26,7 +26,7 @@ class Event
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Meet")
+     * @ORM\ManyToOne(targetEntity="Meet", inversedBy="events")
      * @ORM\JoinColumn(name="meet_id", referencedColumnName="id", nullable=false)
      */
     private $meet;
@@ -37,7 +37,7 @@ class Event
     private $results;
 
     /**
-     * @ORM\ManyToOne(targetEntity="EventTemplate")
+     * @ORM\ManyToOne(targetEntity="EventTemplate", inversedBy="events")
      * @ORM\JoinColumn(name="event_template_id", referencedColumnName="id", nullable=false)
      */
     private $eventTemplate;

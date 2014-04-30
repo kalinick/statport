@@ -33,14 +33,14 @@ class Lsc
     /**
      * @ORM\OneToMany(targetEntity="EventResult", mappedBy="lsc")
      */
-    private $eventResults;
+    private $results;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->eventResults = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     /**
@@ -77,26 +77,27 @@ class Lsc
     }
 
     /**
-     * Add eventResults
+     * Add result
      *
-     * @param EventResult $eventResults
+     * @param EventResult $result
+     *
      * @return Lsc
      */
-    public function addEventResult(EventResult $eventResults)
+    public function addEventResult(EventResult $result)
     {
-        $this->eventResults[] = $eventResults;
+        $this->results[] = $result;
 
         return $this;
     }
 
     /**
-     * Remove eventResults
+     * Remove result
      *
-     * @param EventResult $eventResults
+     * @param EventResult $result
      */
-    public function removeEventResult(EventResult $eventResults)
+    public function removeEventResult(EventResult $result)
     {
-        $this->eventResults->removeElement($eventResults);
+        $this->results->removeElement($result);
     }
 
     /**
@@ -104,9 +105,9 @@ class Lsc
      *
      * @return Collection
      */
-    public function getEventResults()
+    public function getResults()
     {
-        return $this->eventResults;
+        return $this->results;
     }
 
     /**

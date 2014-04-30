@@ -51,7 +51,7 @@ class UserProfile
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity="State")
+     * @ORM\ManyToOne(targetEntity="State", inversedBy="userProfile")
      * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=true)
      */
     private $state;

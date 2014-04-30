@@ -25,7 +25,6 @@ class Club
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -35,11 +34,14 @@ class Club
      * @ORM\Column(type="string", length=255)
      */
     private $title;
-
     /**
      * @ORM\OneToMany(targetEntity="Swimmer", mappedBy="club")
      */
     private $swimmers;
+    /**
+     * @ORM\OneToMany(targetEntity="EventResult", mappedBy="club")
+     */
+    private $results;
 
     /**
      * Constructor
@@ -47,6 +49,7 @@ class Club
     public function __construct()
     {
         $this->swimmers = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     /**
@@ -113,6 +116,41 @@ class Club
     public function getSwimmers()
     {
         return $this->swimmers;
+    }
+
+
+    /**
+     * Add result
+     *
+     * @param EventResult $result
+     *
+     * @return Club
+     */
+    public function addEventResult(EventResult $result)
+    {
+        $this->results[] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Remove result
+     *
+     * @param EventResult $result
+     */
+    public function removeEventResult(EventResult $result)
+    {
+        $this->results->removeElement($result);
+    }
+
+    /**
+     * Get event results
+     *
+     * @return Collection
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 
     /**
