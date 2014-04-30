@@ -1,0 +1,10 @@
+rsync.exclude
+app/cache**
+app/logs**
+.git**
+bin**
+.gitignore
+.travis.yml
+composer.json
+composer.lock
+composer.phar
