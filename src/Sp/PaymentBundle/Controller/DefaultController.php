@@ -36,7 +36,12 @@ class DefaultController extends Controller
      */
     public function checkoutAction()
     {
-        return $this->getPaymentManager()->checkout(array(1), 'checkout_complete', 'checkout_cancel');
+        $children = array();
+        foreach($this->getUser()->getChildren() as $child) {
+            $children[] = $child->getFirstName() . ' ' . $child->getLastName();
+        }
+
+        return $this->getPaymentManager()->checkout($children, 'checkout_complete', 'checkout_cancel');
     }
 
     /**

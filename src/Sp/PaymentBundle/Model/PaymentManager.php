@@ -55,7 +55,8 @@ class PaymentManager
     public function checkout(array $children, $completeUrlName, $cancelUrlName)
     {
         // TODO: need create real data
-        $amount = 14.99 * count($children);
+        $price = 14.99;
+        $amount = $price * count($children);
 
         $em = $this->doctrine->getManager();
         $order = new Order();
@@ -65,18 +66,18 @@ class PaymentManager
 
         $extendedData = new ExtendedData();
         $extendedData->set('return_url',
-            $this->router->generate($completeUrlName, array('orderId' => $order->getId()), true));
+            $this->router->generate($completeUrlName, array('id' => $order->getId()), true));
         $extendedData->set('cancel_url',
-            $this->router->generate($cancelUrlName, array('orderId' => $order->getId()), true));
+            $this->router->generate($cancelUrlName, array('id' => $order->getId()), true));
 
         $checkout_params = array('PAYMENTREQUEST_0_AMT' => $amount,
             'PAYMENTREQUEST_0_ITEMAMT' => $amount,
             'PAYMENTREQUEST_0_PAYMENTACTION', "Sale");
 
-//        foreach ($lines as $n => $line) {
-//            $checkout_params["L_PAYMENTREQUEST_0_NAME$n"] = $line['description'];
-//            $checkout_params["L_PAYMENTREQUEST_0_AMT$n"] = "14.95";
-//        }
+        foreach ($children as $i => $child) {
+            $checkout_params["L_PAYMENTREQUEST_0_NAME$i"] = $child;
+            $checkout_params["L_PAYMENTREQUEST_0_AMT$i"] = $price;
+        }
         $extendedData->set('checkout_params', $checkout_params);
 
         $instruction = new PaymentInstruction($amount, "USD", "paypal_express_checkout", $extendedData);
